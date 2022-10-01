@@ -4,6 +4,22 @@ import { Menu } from "../components/Menu";
 export const Login = () => {
   const email = useRef();
   const password = useRef();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await axios
+      .post("http://localhost:5000/user/login", {})
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          window.location.href = "/";
+        } else {
+          alert("Something went wrong");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div className="App">
       <header>

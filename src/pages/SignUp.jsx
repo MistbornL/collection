@@ -6,6 +6,24 @@ export const SignUp = () => {
   const password = useRef();
   const firstName = useRef();
   const lastName = useRef();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await axios
+      .post("http://localhost:5000/user/signup", {})
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          window.location.href = "/";
+        } else {
+          alert("Something went wrong");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="App">
       <header>
@@ -16,7 +34,11 @@ export const SignUp = () => {
           <div class="col-sm-6">
             <div class="card">
               <div style={{ padding: "32px" }} class="card-body">
-                <form style={{ gap: "20px" }} className="d-flex flex-column ">
+                <form
+                  onSubmit={handleSubmit}
+                  style={{ gap: "20px" }}
+                  className="d-flex flex-column "
+                >
                   <h2 class="card-title">Sign Up</h2>
                   <div className="form-group w-100">
                     <label htmlFor="firstName">First Name</label>
@@ -62,10 +84,10 @@ export const SignUp = () => {
                   </div>
                   <div>
                     <button type="submit" className="btn btn-primary w-25">
-                      Login
+                      Sign Up
                     </button>
                     <h4>
-                      Don't have An Account <a href="/signup">Sign Up</a>
+                      have An Account? <a href="/">Log In</a>
                     </h4>
                   </div>
                 </form>
