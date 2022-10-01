@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Menu } from "../components/Menu";
-
+import axios from "axios";
 export const SignUp = () => {
   const email = useRef();
   const password = useRef();
@@ -9,19 +9,34 @@ export const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios
-      .post("http://localhost:5000/user/signup", {})
-      .then((res) => {
-        console.log(res);
-        if (res.status === 200) {
-          window.location.href = "/";
-        } else {
-          alert("Something went wrong");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (
+      email.current.value === "" &&
+      password.current.value === "" &&
+      firstName.current.value === "" &&
+      lastName.current.value === ""
+    ) {
+      alert("Please enter all the fields");
+    } else {
+      await axios
+        .post("http://localhost:5000/user/signup", {
+          email: email.current.value,
+          password: password.current.value,
+          firstName: firstName.current.value,
+          lastName: lastName.current.value,
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.status === 200) {
+            window.location.href = "/";
+          }
+        })
+        .catch((err) => {
+          console.log(err.response.data);
+          if (err.response.status === 409) {
+            alert("email already exists");
+          }
+        });
+    }
   };
 
   return (
@@ -30,16 +45,19 @@ export const SignUp = () => {
         <Menu />
       </header>
       <main>
-        <div style={{ marginTop: "100px" }} class="row justify-content-center ">
-          <div class="col-sm-6">
-            <div class="card">
-              <div style={{ padding: "32px" }} class="card-body">
+        <div
+          style={{ marginTop: "100px" }}
+          className="row justify-content-center "
+        >
+          <div className="col-sm-6">
+            <div className="card">
+              <div style={{ padding: "32px" }} className="card-body">
                 <form
                   onSubmit={handleSubmit}
                   style={{ gap: "20px" }}
                   className="d-flex flex-column "
                 >
-                  <h2 class="card-title">Sign Up</h2>
+                  <h2 className="card-title">Sign Up</h2>
                   <div className="form-group w-100">
                     <label htmlFor="firstName">First Name</label>
                     <input
