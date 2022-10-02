@@ -45,74 +45,98 @@ export const SignUp = () => {
         <Menu />
       </header>
       <main>
-        <div
-          style={{ marginTop: "100px" }}
-          className="row justify-content-center "
-        >
-          <div className="col-sm-6">
-            <div className="card">
-              <div style={{ padding: "32px" }} className="card-body">
-                <form
-                  onSubmit={handleSubmit}
-                  style={{ gap: "20px" }}
-                  className="d-flex flex-column "
-                >
-                  <h2 className="card-title">Sign Up</h2>
-                  <div className="form-group w-100">
-                    <label htmlFor="firstName">First Name</label>
+        <section className="vh-100">
+          <div className="container py-5 h-100">
+            <div className="row d-flex align-items-center justify-content-center h-100">
+              <div className="col-md-8 col-lg-7 col-xl-6">
+                <img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                  className="img-fluid"
+                  alt="Phone"
+                />
+              </div>
+              <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                <form onSubmit={handleSubmit} style={{ width: "23rem" }}>
+                  <h3
+                    className="fw-normal mb-3 pb-3"
+                    style={{ letterSpacing: "pacing1px" }}
+                  >
+                    Sign Up
+                  </h3>
+
+                  <div className="form-outline mb-2">
                     <input
                       ref={firstName}
-                      placeholder="First Name"
                       type="text"
-                      className="form-control"
                       id="firstName"
+                      className="form-control form-control-lg"
                     />
+                    <label className="form-label" htmlFor="FirstName">
+                      First Name
+                    </label>
                   </div>
-                  <div className="form-group w-100">
-                    <label htmlFor="lastName">Last Name</label>
+
+                  <div className="form-outline mb-2">
                     <input
                       ref={lastName}
                       type="text"
-                      className="form-control"
-                      id="lastName"
-                      placeholder="Last Name"
+                      id="LastName"
+                      className="form-control form-control-lg"
                     />
+                    <label className="form-label" htmlFor="LastName">
+                      Last Name
+                    </label>
                   </div>
-                  <div className="form-group w-100">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
+
+                  <div className="form-outline mb-2">
                     <input
                       ref={email}
                       type="email"
-                      className="form-control"
-                      id="exampleInputEmail1"
-                      aria-describedby="emailHelp"
-                      placeholder="Enter Email"
+                      id="form2Example18"
+                      className="form-control form-control-lg"
                     />
+                    <label className="form-label" htmlFor="form2Example18">
+                      Email address
+                    </label>
                   </div>
 
-                  <div className="form-group w-100">
-                    <label htmlFor="exampleInputPassword1">Password</label>
+                  <div className="form-outline mb-2">
                     <input
                       ref={password}
                       type="password"
-                      className="form-control"
-                      id="exampleInputPassword1"
-                      placeholder="Password"
+                      id="form2Example28"
+                      className="form-control form-control-lg"
                     />
+                    <label className="form-label" htmlFor="form2Example28">
+                      Password
+                    </label>
                   </div>
-                  <div>
-                    <button type="submit" className="btn btn-primary w-25">
+
+                  <div className="pt-1 mb-2">
+                    <button
+                      className="btn btn-info btn-lg btn-block"
+                      type="button"
+                    >
                       Sign Up
                     </button>
-                    <h4>
-                      have An Account? <a href="/">Log In</a>
-                    </h4>
                   </div>
+
+                  <p className="small mb-5 pb-lg-2">
+                    <a className="text-muted" href="#!">
+                      Forgot password?
+                    </a>
+                  </p>
+                  <p>
+                    have an account? Continue On
+                    <a href="/" className="link-info">
+                      Login Page
+                    </a>
+                  </p>
                 </form>
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </main>
     </div>
   );

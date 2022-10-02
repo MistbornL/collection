@@ -6,7 +6,7 @@ export const Menu = () => {
       style={{ padding: "20xp" }}
       className="navbar navbar-expand-lg navbar-dark bg-dark"
     >
-      <a className="navbar-brand" href="#">
+      <a className="navbar-brand" href="/">
         Collector
       </a>
       <button
@@ -27,13 +27,13 @@ export const Menu = () => {
       >
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <a className="nav-link" href="#">
-              Home
+            <a className="nav-link" href="/collections">
+              Collections
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
-              Link
+            <a className="nav-link" href="/account">
+              Account
             </a>
           </li>
           <li className="nav-item dropdown">
@@ -46,7 +46,7 @@ export const Menu = () => {
               aria-haspopup="true"
               aria-expanded="false"
             >
-              Dropdown
+              Account
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
               <a className="dropdown-item" href="#">
@@ -60,11 +60,6 @@ export const Menu = () => {
                 Something else here
               </a>
             </div>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link disabled" href="#">
-              Disabled
-            </a>
           </li>
         </ul>
         <form className="form-inline my-2 my-lg-0 d-flex">

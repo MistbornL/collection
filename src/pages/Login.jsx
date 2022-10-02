@@ -7,6 +7,7 @@ export const Login = () => {
   const password = useRef();
   const handleSubmit = async (e) => {
     e.preventDefault();
+    localStorage.setItem("email", email.current.value);
     if (email.current.value !== "" && password.current.value !== "") {
       await axios
         .post("http://localhost:5000/user/login", {
@@ -40,55 +41,71 @@ export const Login = () => {
       <header>
         <Menu />
       </header>
+      <section className="vh-100">
+        <div className="container py-5 h-100">
+          <div className="row d-flex align-items-center justify-content-center h-100">
+            <div className="col-md-8 col-lg-7 col-xl-6">
+              <img
+                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                className="img-fluid"
+                alt="Phone"
+              />
+            </div>
+            <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+              <form onSubmit={handleSubmit} style={{ width: "23rem" }}>
+                <h3
+                  class="fw-normal mb-3 pb-3"
+                  style={{ letterSpacing: "pacing1px" }}
+                >
+                  Log in
+                </h3>
 
-      <div
-        style={{ marginTop: "100px" }}
-        className="row justify-content-center "
-      >
-        <div className="col-sm-6">
-          <div className="card">
-            <div style={{ padding: "32px" }} className="card-body">
-              <form
-                onSubmit={handleSubmit}
-                style={{ gap: "20px" }}
-                className="d-flex flex-column "
-              >
-                <h2 className="card-title">Login</h2>
-                <div className="form-group w-100">
-                  <label htmlFor="exampleInputEmail1">Email address</label>
+                <div class="form-outline mb-4">
                   <input
                     ref={email}
                     type="email"
-                    className="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter Email"
+                    id="form2Example18"
+                    class="form-control form-control-lg"
                   />
+                  <label class="form-label" for="form2Example18">
+                    Email address
+                  </label>
                 </div>
 
-                <div className="form-group w-100">
-                  <label htmlFor="exampleInputPassword1">Password</label>
+                <div class="form-outline mb-4">
                   <input
                     ref={password}
                     type="password"
-                    className="form-control"
-                    id="exampleInputPassword1"
-                    placeholder="Password"
+                    id="form2Example28"
+                    class="form-control form-control-lg"
                   />
+                  <label class="form-label" for="form2Example28">
+                    Password
+                  </label>
                 </div>
-                <div>
-                  <button type="submit" className="btn btn-primary w-25">
+
+                <div class="pt-1 mb-4">
+                  <button class="btn btn-info btn-lg btn-block" type="button">
                     Login
                   </button>
-                  <h4>
-                    Don't have An Account <a href="/signup">Sign Up</a>
-                  </h4>
                 </div>
+
+                <p class="small mb-5 pb-lg-2">
+                  <a class="text-muted" href="#!">
+                    Forgot password?
+                  </a>
+                </p>
+                <p>
+                  Don't have an account?
+                  <a href="/signup" class="link-info">
+                    Register here
+                  </a>
+                </p>
               </form>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
