@@ -4,18 +4,25 @@ import { Menu } from "../components/Menu";
 
 export const Account = () => {
   const email = localStorage.getItem("email");
+  const token = localStorage.getItem("token");
+  const [user, setUser] = React.useState({});
+  console.log(user);
+  console.log(token);
 
   const fetchAccount = async () => {
-    await axios({
-      method: "GET",
-      url: "http://localhost:5000/user/profile",
-      params: { email: email },
-    })
-      .then((res) => {
-        console.log(res);
+    await axios
+      .get(`http://localhost:5000/users/profile`, {
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          email: email,
+        },
       })
-      .catch((err) => {
-        console.log(err);
+      .then((res) => {
+        console.log(res.data);
+        setUser(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -61,14 +68,16 @@ export const Account = () => {
                         <div className="row pt-1">
                           <div className="col-6 mb-3">
                             <h6>Email</h6>
-                            <p className="text-muted">info@example.com</p>
+                            <p className="text-muted">{user.email}</p>
                           </div>
                           <div className="col-6 mb-3">
-                            <h6>Phone</h6>
-                            <p className="text-muted">123 456 789</p>
+                            <h6>Full Name</h6>
+                            <p className="text-muted">
+                              {user.firstName} {user.lastName}
+                            </p>
                           </div>
                         </div>
-                        <h6>Projects</h6>
+                        <h6>Collections</h6>
                         <hr className="mt-0 mb-4" />
                         <div className="row pt-1">
                           <div className="col-6 mb-3">

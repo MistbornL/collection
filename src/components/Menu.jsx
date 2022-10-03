@@ -48,18 +48,17 @@ export const Menu = () => {
             >
               Account
             </a>
-            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="#">
-                Action
-              </a>
-              <a className="dropdown-item" href="#">
-                Another action
-              </a>
-              <div className="dropdown-divider"></div>
-              <a className="dropdown-item" href="#">
-                Something else here
-              </a>
-            </div>
+          </li>
+          <li className="nav-item">
+            <a
+              onClick={() => {
+                localStorage.clear();
+              }}
+              className="nav-link"
+              href="/"
+            >
+              Logout
+            </a>
           </li>
         </ul>
         <form className="form-inline my-2 my-lg-0 d-flex">
