@@ -50,27 +50,6 @@ export const Account = () => {
       });
   };
 
-  const createCollection = async () => {
-    await axios
-      .post(`http://localhost:5000/collections/create`, {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          email: email,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        if (res.status === 200) {
-          window.location.href = "/";
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
   useEffect(() => {
     fetchAccount();
   }, []);
@@ -138,7 +117,12 @@ export const Account = () => {
                       </div>
                     </div>
                     <div className="d-flex justify-content-center mb-5">
-                      <button className="btn btn-primary">
+                      <button
+                        onClick={() => {
+                          window.location.href = "/collection/create";
+                        }}
+                        className="btn btn-primary"
+                      >
                         Create Collection
                       </button>
                       <button
