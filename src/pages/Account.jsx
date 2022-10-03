@@ -6,8 +6,6 @@ export const Account = () => {
   const email = localStorage.getItem("email");
   const token = localStorage.getItem("token");
   const [user, setUser] = React.useState({});
-  console.log(user);
-  console.log(token);
 
   const fetchAccount = async () => {
     await axios
@@ -29,6 +27,50 @@ export const Account = () => {
       });
   };
 
+  const handleDelete = async () => {
+    await axios
+      .delete(`http://localhost:5000/users/delete`, {
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          email: email,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        if (res.status === 200) {
+          localStorage.clear();
+          window.location.href = "/";
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const createCollection = async () => {
+    await axios
+      .post(`http://localhost:5000/collections/create`, {
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          email: email,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        if (res.status === 200) {
+          window.location.href = "/";
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   useEffect(() => {
     fetchAccount();
   }, []);
@@ -38,11 +80,11 @@ export const Account = () => {
         <Menu />
       </header>
       <main>
-        <section className="vh-100" style={{ backgroundColor: "#f4f5f7" }}>
+        <section className="vh-100" style={{ backgroundColor: "#8098d1" }}>
           <div className="container py-5 h-100">
             <div className="row d-flex justify-content-center align-items-center h-100">
-              <div className="col col-lg-6 mb-4 mb-lg-0">
-                <div className="card mb-3" style={{ borderRadius: ".5rem" }}>
+              <div className="col col-lg-6 mb-3 mb-lg-0">
+                <div className="card mb-10" style={{ borderRadius: ".5rem" }}>
                   <div className="row g-0">
                     <div
                       className="col-md-4 gradient-custom text-center text-white"
@@ -76,6 +118,10 @@ export const Account = () => {
                               {user.firstName} {user.lastName}
                             </p>
                           </div>
+                          <div className="col-6 mb-3">
+                            <h6>Status</h6>
+                            <p className="text-muted">{user.role}</p>
+                          </div>
                         </div>
                         <h6>Collections</h6>
                         <hr className="mt-0 mb-4" />
@@ -89,18 +135,18 @@ export const Account = () => {
                             <p className="text-muted">Dolor sit amet</p>
                           </div>
                         </div>
-                        <div className="d-flex justify-content-start">
-                          <a href="#!">
-                            <i className="fab fa-facebook-f fa-lg me-3"></i>
-                          </a>
-                          <a href="#!">
-                            <i className="fab fa-twitter fa-lg me-3"></i>
-                          </a>
-                          <a href="#!">
-                            <i className="fab fa-instagram fa-lg"></i>
-                          </a>
-                        </div>
                       </div>
+                    </div>
+                    <div className="d-flex justify-content-center mb-5">
+                      <button className="btn btn-primary">
+                        Create Collection
+                      </button>
+                      <button
+                        onClick={handleDelete}
+                        className="btn btn-primary"
+                      >
+                        Delete User
+                      </button>
                     </div>
                   </div>
                 </div>
