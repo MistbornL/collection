@@ -1,11 +1,12 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Menu } from "../components/Menu";
 
 export const Account = () => {
   const email = localStorage.getItem("email");
   const token = localStorage.getItem("token");
-  const [user, setUser] = React.useState({});
+  const [collections, setCollections] = useState([]);
+  const [user, setUser] = useState({});
 
   const fetchAccount = async () => {
     await axios
@@ -19,7 +20,6 @@ export const Account = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
         setUser(res.data);
       })
       .catch((err) => {
@@ -49,6 +49,32 @@ export const Account = () => {
         console.log(err);
       });
   };
+
+  const fetchCollection = async () => {
+    await axios
+      .get(`http://localhost:5000/collection/userCol`, {
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        params: {
+          createdBy: email,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        if (res.status === 200) {
+          setCollections(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    fetchCollection();
+  }, []);
 
   useEffect(() => {
     fetchAccount();
@@ -105,14 +131,14 @@ export const Account = () => {
                         <h6>Collections</h6>
                         <hr className="mt-0 mb-4" />
                         <div className="row pt-1">
-                          <div className="col-6 mb-3">
-                            <h6>Recent</h6>
-                            <p className="text-muted">Lorem ipsum</p>
-                          </div>
-                          <div className="col-6 mb-3">
-                            <h6>Most Viewed</h6>
-                            <p className="text-muted">Dolor sit amet</p>
-                          </div>
+                          {collections.map((collection) => {
+                            return (
+                              <div key={collection._id} className="col-6 mb-3">
+                                <h6>Recent</h6>
+                                <a className="text-muted">{collection.title}</a>
+                              </div>
+                            );
+                          })}
                         </div>
                       </div>
                     </div>
