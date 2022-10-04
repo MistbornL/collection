@@ -1,71 +1,27 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Menu } from "../components/Menu";
+import axios from "axios";
 
-export const Account = () => {
-  const email = localStorage.getItem("email");
+export const Collection = () => {
+  const { id } = useParams();
   const token = localStorage.getItem("token");
-  const [collections, setCollections] = useState([]);
-  const [user, setUser] = useState({});
+  const [item, setItem] = useState([]);
 
-  const fetchAccount = async () => {
+  const fetchItem = async () => {
     await axios
-      .get(`http://localhost:5000/users/profile`, {
+      .get(`http://localhost:5000/collection/userItem`, {
         headers: {
           "content-type": "application/json",
           Authorization: `Bearer ${token}`,
         },
         params: {
-          email: email,
+          id: id,
         },
       })
       .then((res) => {
-        setUser(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const handleDelete = async () => {
-    await axios
-      .delete(`http://localhost:5000/users/delete`, {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          email: email,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        if (res.status === 200) {
-          localStorage.clear();
-          window.location.href = "/";
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const fetchCollection = async () => {
-    await axios
-      .get(`http://localhost:5000/collection/userCol`, {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          createdBy: email,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        if (res.status === 200) {
-          setCollections(res.data);
-        }
+        console.log(res);
+        setItem(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -73,8 +29,7 @@ export const Account = () => {
   };
 
   useEffect(() => {
-    fetchCollection();
-    fetchAccount();
+    fetchItem();
   }, []);
   return (
     <div className="App">
@@ -111,24 +66,22 @@ export const Account = () => {
                         <hr className="mt-0 mb-4" />
                         <div className="row pt-1">
                           <div className="col-6 mb-3">
-                            <h6>Email</h6>
-                            <p className="text-muted">{user.email}</p>
+                            <h6>title</h6>
+                            <p className="text-muted">{item.title}</p>
                           </div>
                           <div className="col-6 mb-3">
                             <h6>Full Name</h6>
-                            <p className="text-muted">
-                              {user.firstName} {user.lastName}
-                            </p>
+                            <p className="text-muted">{item.description}</p>
                           </div>
                           <div className="col-6 mb-3">
                             <h6>Status</h6>
-                            <p className="text-muted">{user.role}</p>
+                            {/* <p className="text-muted">{user.role}</p> */}
                           </div>
                         </div>
-                        <h6>Collections</h6>
+                        {/* <h6>Collections</h6>
                         <hr className="mt-0 mb-4" />
                         <div className="row pt-1">
-                          {collections.map((collection) => {
+                          {item.map((collection) => {
                             return (
                               <div key={collection._id} className="col-6 mb-3">
                                 <h6>{collection.title}</h6>
@@ -146,7 +99,7 @@ export const Account = () => {
                               </div>
                             );
                           })}
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                     <div className="d-flex justify-content-center mb-5">
@@ -159,7 +112,7 @@ export const Account = () => {
                         Create Collection
                       </button>
                       <button
-                        onClick={handleDelete}
+                        // onClick={handleDelete}
                         className="btn btn-primary"
                       >
                         Delete User
