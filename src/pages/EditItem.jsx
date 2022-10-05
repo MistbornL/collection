@@ -12,6 +12,7 @@ export const EditItem = () => {
 
   const modifyItem = async () => {
     const updateData = {
+      createdBy: localStorage.getItem("email"),
       id: id,
       title: title.current.value,
       description: description.current.value,

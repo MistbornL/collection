@@ -8,6 +8,7 @@ export const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     localStorage.setItem("email", email.current.value);
+
     if (email.current.value !== "" && password.current.value !== "") {
       await axios
         .post("http://localhost:5000/user/login", {
@@ -18,6 +19,7 @@ export const Login = () => {
           console.log(res);
           if (res.status === 200) {
             localStorage.setItem("token", res.data.token);
+            localStorage.setItem("role", res.data.user.role);
             window.location.href = "/";
           } else {
             alert("Something went wrong");

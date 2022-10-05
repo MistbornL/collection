@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Account } from "./pages/Account";
+import { AllItems } from "./pages/AllItems";
 import { Collection } from "./pages/Collection";
 import { CreateCollection } from "./pages/CreateCollection";
 import { CreateItem } from "./pages/CreateItem";
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<Login />} />
       )}
       <Route path="/signup" element={<SignUp />} />
+      <Route path="/collections" element={<AllItems />} />
       <Route path="/account" element={<Account />} />
       <Route path="/collection/create" element={<CreateCollection />} />
       <Route path="/collection/item/create/:id" element={<CreateItem />} />

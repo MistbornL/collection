@@ -6,6 +6,7 @@ export const Account = () => {
   const email = localStorage.getItem("email");
   const token = localStorage.getItem("token");
   const [collections, setCollections] = useState([]);
+  console.log(collections);
   const [user, setUser] = useState({});
 
   const fetchAccount = async () => {

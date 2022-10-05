@@ -10,12 +10,14 @@ export const CreateItem = () => {
   const description = useRef();
   const image = useRef();
   const { id } = useParams();
+  const email = localStorage.getItem("email");
 
   const postItem = async () => {
     await axios
       .post(
         `http://localhost:5000/collection/create/item`,
         {
+          createdBy: email,
           title: title.current.value,
           description: description.current.value,
           image: image.current.value,
