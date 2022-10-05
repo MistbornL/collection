@@ -6,7 +6,8 @@ import axios from "axios";
 export const Collection = () => {
   const { id } = useParams();
   const token = localStorage.getItem("token");
-  const [item, setItem] = useState([]);
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchItem = async () => {
     await axios
@@ -20,8 +21,31 @@ export const Collection = () => {
         },
       })
       .then((res) => {
-        console.log(res);
-        setItem(res.data);
+        console.log(res.data);
+        setItems(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const deleteItem = async (id) => {
+    await axios
+      .delete(
+        `http://localhost:5000/collection/delete/item`,
+
+        {
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          params: { id: id },
+        }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          items.filter((item) => item._id !== id);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -29,6 +53,7 @@ export const Collection = () => {
   };
 
   useEffect(() => {
+    setLoading(false);
     fetchItem();
   }, []);
   return (
@@ -36,95 +61,84 @@ export const Collection = () => {
       <header>
         <Menu />
       </header>
-      <main>
-        <section className="vh-100" style={{ backgroundColor: "#8098d1" }}>
-          <div className="container py-5 h-100">
-            <div className="row d-flex justify-content-center align-items-center h-100">
-              <div className="col col-lg-6 mb-3 mb-lg-0">
-                <div className="card mb-10" style={{ borderRadius: ".5rem" }}>
-                  <div className="row g-0">
-                    <div
-                      className="col-md-4 gradient-custom text-center text-white"
-                      style={{
-                        borderTopLeftRadius: ".5rem",
-                        borderBottomLeftRadius: ".5rem",
-                      }}
-                    >
-                      <img
-                        src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                        alt="Avatar"
-                        className="img-fluid my-5"
-                        style={{ width: "80px" }}
-                      />
-                      <h5>Marie Horwitz</h5>
-                      <p>Web Designer</p>
-                      <i className="far fa-edit mb-5"></i>
-                    </div>
-                    <div className="col-md-8">
-                      <div className="card-body p-4">
-                        <h6>Information</h6>
-                        <hr className="mt-0 mb-4" />
-                        <div className="row pt-1">
-                          <div className="col-6 mb-3">
-                            <h6>title</h6>
-                            <p className="text-muted">{item.title}</p>
+      {!loading ? (
+        <main>
+          {items.map((item, index) => {
+            return (
+              <section
+                key={index}
+                className=""
+                style={{ backgroundColor: "#8098d1" }}
+              >
+                <div className="container py-5 h-100">
+                  <div className="row d-flex justify-content-center align-items-center h-100">
+                    <div className="col col-lg-6 ">
+                      <div
+                        className="card mb-3"
+                        style={{ borderRadius: ".5rem" }}
+                      >
+                        <div className="row g-0">
+                          <div
+                            className="justify-content-center d-flex "
+                            style={{
+                              borderTopLeftRadius: ".5rem",
+                              borderBottomLeftRadius: ".5rem",
+                            }}
+                          >
+                            <img
+                              src={item.image}
+                              alt="Avatar"
+                              className="img-fluid my-5"
+                              style={{ width: "250px" }}
+                            />
                           </div>
-                          <div className="col-6 mb-3">
-                            <h6>Full Name</h6>
-                            <p className="text-muted">{item.description}</p>
+                          <div className="col-md-5 w-100 ">
+                            <div className="card-body p-4 ">
+                              <h6>Information</h6>
+                              <hr className="mt-0 mb-4" />
+                              <div className="col  pt-2">
+                                <div className="col-6 mb-5">
+                                  <h6>title</h6>
+                                  <p className="text-muted">{item.title}</p>
+                                </div>
+
+                                <div className="w-100 mb-5">
+                                  <h6>Description</h6>
+                                  <p className="text-muted">
+                                    {item.description}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
                           </div>
-                          <div className="col-6 mb-3">
-                            <h6>Status</h6>
-                            {/* <p className="text-muted">{user.role}</p> */}
+                          <div className="d-flex justify-content-center gap-5 mb-5">
+                            <button
+                              onClick={() => {
+                                window.location.href = `/collection/item/create/${id}`;
+                              }}
+                              className="btn btn-primary"
+                            >
+                              Create Item
+                            </button>
+                            <button
+                              onClick={() => deleteItem(item._id)}
+                              className="btn btn-primary"
+                            >
+                              Delete item
+                            </button>
                           </div>
                         </div>
-                        {/* <h6>Collections</h6>
-                        <hr className="mt-0 mb-4" />
-                        <div className="row pt-1">
-                          {item.map((collection) => {
-                            return (
-                              <div key={collection._id} className="col-6 mb-3">
-                                <h6>{collection.title}</h6>
-                                <h7 className="text-muted">
-                                  {collection.description}
-                                </h7>
-                                <button
-                                  onClick={() => {
-                                    window.location.href = `/collection/${collection._id}`;
-                                  }}
-                                  className="btn btn-primary "
-                                >
-                                  view collection
-                                </button>
-                              </div>
-                            );
-                          })}
-                        </div> */}
                       </div>
-                    </div>
-                    <div className="d-flex justify-content-center mb-5">
-                      <button
-                        onClick={() => {
-                          window.location.href = "/collection/create";
-                        }}
-                        className="btn btn-primary"
-                      >
-                        Create Collection
-                      </button>
-                      <button
-                        // onClick={handleDelete}
-                        className="btn btn-primary"
-                      >
-                        Delete User
-                      </button>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
+              </section>
+            );
+          })}
+        </main>
+      ) : (
+        <h1>loading</h1>
+      )}
     </div>
   );
 };

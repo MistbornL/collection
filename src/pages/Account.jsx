@@ -132,9 +132,10 @@ export const Account = () => {
                             return (
                               <div key={collection._id} className="col-6 mb-3">
                                 <h6>{collection.title}</h6>
-                                <h7 className="text-muted">
+                                <h6 className="text-muted">
                                   {collection.description}
-                                </h7>
+                                </h6>
+
                                 <button
                                   onClick={() => {
                                     window.location.href = `/collection/${collection._id}`;
@@ -149,7 +150,7 @@ export const Account = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="d-flex justify-content-center mb-5">
+                    <div className="d-flex justify-content-center gap-5 mb-5">
                       <button
                         onClick={() => {
                           window.location.href = "/collection/create";
