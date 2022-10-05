@@ -124,7 +124,15 @@ export const Collection = () => {
                               onClick={() => deleteItem(item._id)}
                               className="btn btn-primary"
                             >
-                              Delete item
+                              Delete Item
+                            </button>
+                            <button
+                              onClick={() =>
+                                (window.location.href = `/collection/item/edit/${item._id}`)
+                              }
+                              className="btn btn-primary"
+                            >
+                              Modify Item
                             </button>
                           </div>
                         </div>

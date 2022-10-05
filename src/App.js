@@ -4,6 +4,7 @@ import { Account } from "./pages/Account";
 import { Collection } from "./pages/Collection";
 import { CreateCollection } from "./pages/CreateCollection";
 import { CreateItem } from "./pages/CreateItem";
+import { EditItem } from "./pages/EditItem";
 
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
@@ -23,6 +24,7 @@ function App() {
       <Route path="/collection/create" element={<CreateCollection />} />
       <Route path="/collection/item/create/:id" element={<CreateItem />} />
       <Route path="/collection/:id" element={<Collection />} />
+      <Route path="/collection/item/edit/:id" element={<EditItem />} />
     </Routes>
   );
 }
