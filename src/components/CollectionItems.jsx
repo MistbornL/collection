@@ -3,7 +3,7 @@ import React from "react";
 export const CollectionItems = ({ item, handleComment, id, deleteItem }) => {
   const role = localStorage.getItem("role");
   const email = localStorage.getItem("email");
-
+  const token = localStorage.getItem("token");
   return (
     <section key={item._id} className="" style={{ backgroundColor: "#8098d1" }}>
       <div className="container py-5 h-100">
@@ -39,24 +39,26 @@ export const CollectionItems = ({ item, handleComment, id, deleteItem }) => {
                         <h6>Description</h6>
                         <p className="text-muted">{item.description}</p>
                       </div>
-                      <div className="w-100 mb-5  ">
-                        <h6>Comment</h6>
-                        <textarea
-                          style={{ resize: "none" }}
-                          type="text"
-                          className="form-group w-100 "
-                        />
-                        <button
-                          onClick={handleComment}
-                          type="button"
-                          className="btn btn-primary "
-                        >
-                          comment
-                        </button>
-                        <p>
-                          to see comments visit <a href="/">Item</a>
-                        </p>
-                      </div>
+                      {token ? (
+                        <div className="w-100 mb-5  ">
+                          <h6>Comment</h6>
+                          <textarea
+                            style={{ resize: "none" }}
+                            type="text"
+                            className="form-group w-100 "
+                          />
+                          <button
+                            onClick={handleComment}
+                            type="button"
+                            className="btn btn-primary "
+                          >
+                            comment
+                          </button>
+                          <p>
+                            to see comments visit <a href="/">Item</a>
+                          </p>
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 </div>

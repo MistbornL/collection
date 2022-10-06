@@ -1,6 +1,7 @@
 import React from "react";
 
 export const Menu = () => {
+  const token = localStorage.getItem("token");
   return (
     <nav
       style={{ padding: "20xp" }}
@@ -32,7 +33,7 @@ export const Menu = () => {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/account">
+            <a className="nav-link" href={token ? "/account" : "/"}>
               Account
             </a>
           </li>
