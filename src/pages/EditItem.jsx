@@ -9,16 +9,18 @@ export const EditItem = () => {
   const description = useRef();
   const image = useRef();
   const token = localStorage.getItem("token");
+  const email = localStorage.getItem("email");
+  console.log(email);
 
   const modifyItem = async () => {
     const updateData = {
-      createdBy: localStorage.getItem("email"),
+      createdBy: email,
       id: id,
       title: title.current.value,
       description: description.current.value,
       image: image.current.value,
     };
-    console.log(modifyItem);
+
     await axios
       .put(`http://localhost:5000/collection/update/item`, updateData, {
         headers: {
@@ -50,7 +52,7 @@ export const EditItem = () => {
         },
       })
       .then((res) => {
-        let item = res.data.filter((item) => item._id === id)[0];
+        let item = res.data.filter((item) => item.id !== id)[0];
         console.log(item);
         title.current.value = item.title;
         description.current.value = item.description;

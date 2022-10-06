@@ -139,7 +139,7 @@ export const Account = () => {
 
                                 <button
                                   onClick={() => {
-                                    window.location.href = `/collection/${collection._id}`;
+                                    window.location.href = `/collection/items/${collection._id}`;
                                   }}
                                   className="btn btn-primary "
                                 >

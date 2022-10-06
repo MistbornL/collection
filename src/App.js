@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Account } from "./pages/Account";
 import { AllItems } from "./pages/AllItems";
-import { Collection } from "./pages/Collection";
+import { Items } from "./pages/Items";
 import { CreateCollection } from "./pages/CreateCollection";
 import { CreateItem } from "./pages/CreateItem";
 import { EditItem } from "./pages/EditItem";
@@ -25,7 +25,7 @@ function App() {
       <Route path="/account" element={<Account />} />
       <Route path="/collection/create" element={<CreateCollection />} />
       <Route path="/collection/item/create/:id" element={<CreateItem />} />
-      <Route path="/collection/:id" element={<Collection />} />
+      <Route path="/collection/items/:id" element={<Items />} />
       <Route path="/collection/item/edit/:id" element={<EditItem />} />
     </Routes>
   );

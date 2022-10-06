@@ -45,6 +45,29 @@ export const AllItems = () => {
       });
   };
 
+  const deleteItem = async (id) => {
+    await axios
+      .delete(
+        `http://localhost:5000/collection/delete/item`,
+
+        {
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          params: { id: id },
+        }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          collections.filter((item) => item._id !== id);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useState(() => {
     fetchAllCollections();
   }, []);
@@ -59,6 +82,8 @@ export const AllItems = () => {
               handleComment={handleComment}
               key={item._id}
               item={item}
+              id={item.collectionId}
+              deleteItem={deleteItem}
             />
           );
         })}

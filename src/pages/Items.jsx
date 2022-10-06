@@ -4,25 +4,24 @@ import { Menu } from "../components/Menu";
 import axios from "axios";
 import { CollectionItems } from "../components/CollectionItems";
 
-export const Collection = () => {
+export const Items = () => {
   const { id } = useParams();
   const token = localStorage.getItem("token");
   const [items, setItems] = useState([]);
   console.log(items);
 
-  const fetchItem = async () => {
+  const fetchItems = async () => {
     await axios
-      .get(`http://localhost:5000/collection/userItem`, {
+      .get(`http://localhost:5000/collection/userItems`, {
         headers: {
           "content-type": "application/json",
           Authorization: `Bearer ${token}`,
         },
         params: {
-          id: id,
+          CollectionId: id,
         },
       })
       .then((res) => {
-        console.log(res.data);
         setItems(res.data);
       })
       .catch((err) => {
@@ -54,7 +53,7 @@ export const Collection = () => {
   };
 
   useEffect(() => {
-    fetchItem();
+    fetchItems();
   }, []);
   return (
     <div className="App">

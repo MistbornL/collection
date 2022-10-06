@@ -4,8 +4,9 @@ export const CollectionItems = ({ item, handleComment, id, deleteItem }) => {
   const role = localStorage.getItem("role");
   const email = localStorage.getItem("email");
   const token = localStorage.getItem("token");
+
   return (
-    <section key={item._id} className="" style={{ backgroundColor: "#8098d1" }}>
+    <section key={item._id} style={{ backgroundColor: "#8098d1" }}>
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col col-lg-6 ">
@@ -73,6 +74,7 @@ export const CollectionItems = ({ item, handleComment, id, deleteItem }) => {
                       Create Item
                     </button>
                     <button
+                      type="button"
                       onClick={() => deleteItem(item._id)}
                       className="btn btn-primary"
                     >
