@@ -30,20 +30,16 @@ export const Items = () => {
 
   const deleteItem = async (id) => {
     await axios
-      .delete(
-        `http://localhost:5000/collection/delete/item`,
-
-        {
-          headers: {
-            "content-type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          params: { id: id },
-        }
-      )
+      .delete(`http://localhost:5000/collection/delete/item/${id}`, {
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         if (res.status === 200) {
           items.filter((item) => item._id !== id);
+          window.location.reload();
         }
       })
       .catch((err) => {

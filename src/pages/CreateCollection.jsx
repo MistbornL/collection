@@ -11,7 +11,6 @@ export const CreateCollection = () => {
   const [user, setUser] = useState({});
   const description = useRef();
   var { email } = useParams();
-  console.log();
 
   const handleCreate = () => {
     if (user.role === "admin" && email !== email2) {
@@ -26,7 +25,7 @@ export const CreateCollection = () => {
   };
   useEffect(() => {
     FetchAccount(email2, token, setUser);
-  }, []);
+  }, [email2, token]);
   return (
     <div className="App">
       <header>

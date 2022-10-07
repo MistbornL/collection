@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { Menu } from "../components/Menu";
-import axios from "axios";
 import { HandleSignUp } from "../helper/HandleSignUp";
 export const SignUp = () => {
   const email = useRef();

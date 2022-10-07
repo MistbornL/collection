@@ -24,7 +24,10 @@ function App() {
       <Route path="/collection/create" element={<CreateCollection />} />
       <Route path="/collection/create/:email" element={<CreateCollection />} />
       <Route path="/collection/update/:id" element={<EditCollection />} />
-      <Route path="/collection/item/create/:id" element={<CreateItem />} />
+      <Route
+        path="/collection/item/create/:id/:email"
+        element={<CreateItem />}
+      />
       <Route path="/collection/items/:id" element={<Items />} />
       <Route path="/collection/item/edit/:id" element={<EditItem />} />
     </Routes>

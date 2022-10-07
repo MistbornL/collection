@@ -9,9 +9,9 @@ export const Collection = () => {
   const [collections, setCollections] = useState([]);
 
   const { email } = useParams();
+  const email2 = localStorage.getItem("email");
   const role = localStorage.getItem("role");
   const token = localStorage.getItem("token");
-
   useState(() => {
     FetchCollection(email, setCollections);
   }, []);
@@ -49,7 +49,7 @@ export const Collection = () => {
                   >
                     View Items
                   </button>
-                  {role === "admin" || email === collection.createdBy ? (
+                  {role === "admin" || email2 === collection.createdBy ? (
                     <div className="mt-3">
                       <button
                         onClick={() => {

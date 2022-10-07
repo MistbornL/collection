@@ -10,19 +10,10 @@ export const EditItem = () => {
   const description = useRef();
   const image = useRef();
   const token = localStorage.getItem("token");
-  const email = localStorage.getItem("email");
-  console.log(email);
-  const updateData = {
-    createdBy: email,
-    id: id,
-    title: title.current.value,
-    description: description.current.value,
-    image: image.current.value,
-  };
 
   useEffect(() => {
     GetDataForItem(title, description, image, token, id);
-  }, []);
+  }, [id, token]);
   return (
     <div className="App">
       <header>
@@ -62,7 +53,7 @@ export const EditItem = () => {
             <button
               className="btn bg-primary btn-lg mt-3"
               onClick={() => {
-                ModifyItem(updateData, token);
+                ModifyItem(id, token, title, description, image);
               }}
             >
               Modify

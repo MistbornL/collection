@@ -74,7 +74,7 @@ export const CollectionItems = ({ item, handleComment, id, deleteItem }) => {
                   <div className="d-flex justify-content-center gap-5 mb-5">
                     <button
                       onClick={() => {
-                        window.location.href = `/collection/item/create/${id}`;
+                        window.location.href = `/collection/item/create/${id}/${item.createdBy}`;
                       }}
                       className="btn btn-primary"
                     >
@@ -82,7 +82,9 @@ export const CollectionItems = ({ item, handleComment, id, deleteItem }) => {
                     </button>
                     <button
                       type="button"
-                      onClick={() => deleteItem(item._id)}
+                      onClick={() => {
+                        deleteItem(item._id);
+                      }}
                       className="btn btn-primary"
                     >
                       Delete Item

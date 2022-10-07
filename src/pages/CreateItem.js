@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import axios from "axios";
 import { Menu } from "../components/Menu";
 import { useParams } from "react-router-dom";
 import { PostItem } from "../helper/PostiTem";
@@ -11,15 +10,7 @@ export const CreateItem = () => {
   const description = useRef();
   const image = useRef();
   const { id } = useParams();
-  const email = localStorage.getItem("email");
-
-  const data = {
-    createdBy: email,
-    title: title.current.value,
-    description: description.current.value,
-    image: image.current.value,
-    collectionId: id,
-  };
+  const { email } = useParams();
 
   return (
     <div className="App">
@@ -59,7 +50,9 @@ export const CreateItem = () => {
             </div>
             <button
               className="btn bg-primary btn-lg mt-3"
-              onClick={() => PostItem(data, token)}
+              onClick={() =>
+                PostItem(email, title, description, image, id, token)
+              }
             >
               Create
             </button>

@@ -1,6 +1,13 @@
 import axios from "axios";
 
-export const PostItem = async (data, token) => {
+export const PostItem = async (email, title, description, image, id, token) => {
+  const data = {
+    createdBy: email,
+    title: title.current.value,
+    description: description.current.value,
+    image: image.current.value,
+    collectionId: id,
+  };
   await axios
     .post(`http://localhost:5000/collection/create/item`, data, {
       headers: {
