@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Menu } from "../components/Menu";
@@ -8,6 +7,7 @@ import { FetchCollection } from "../helper/FetchCollection";
 
 export const Collection = () => {
   const [collections, setCollections] = useState([]);
+
   const { email } = useParams();
   const role = localStorage.getItem("role");
   const token = localStorage.getItem("token");
@@ -49,11 +49,11 @@ export const Collection = () => {
                   >
                     View Items
                   </button>
-                  {role === "admin" ? (
+                  {role === "admin" || email === collection.createdBy ? (
                     <div className="mt-3">
                       <button
                         onClick={() => {
-                          window.location.href = "/collection/create";
+                          window.location.href = `/collection/create/${collection.createdBy}`;
                         }}
                         className="btn btn-primary"
                       >

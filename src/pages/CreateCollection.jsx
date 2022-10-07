@@ -1,13 +1,32 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Menu } from "../components/Menu";
 import { CreateCollectionApi } from "../helper/CreateCollection";
+import { FetchAccount } from "../helper/FetchAccount";
 
 export const CreateCollection = () => {
   const token = localStorage.getItem("token");
-  const email = localStorage.getItem("email");
+  var email2 = localStorage.getItem("email");
   const title = useRef();
+  const [user, setUser] = useState({});
   const description = useRef();
+  var { email } = useParams();
+  console.log();
 
+  const handleCreate = () => {
+    if (user.role === "admin" && email !== email2) {
+      CreateCollectionApi(token, email, title, description);
+      console.log("b");
+    } else if (email2 !== "admin@gmail.com" && email === email2) {
+      CreateCollectionApi(token, email2, title, description);
+      console.log("c");
+    } else {
+      CreateCollectionApi(token, email2, title, description);
+    }
+  };
+  useEffect(() => {
+    FetchAccount(email2, token, setUser);
+  }, []);
   return (
     <div className="App">
       <header>
@@ -40,9 +59,7 @@ export const CreateCollection = () => {
             </div>
             <button
               className="btn bg-primary btn-lg mt-3"
-              onClick={() =>
-                CreateCollectionApi(token, email, title, description)
-              }
+              onClick={handleCreate}
             >
               Create
             </button>

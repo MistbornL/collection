@@ -1,12 +1,6 @@
 import axios from "axios";
 
-export const CreateCollectionApi = async (
-  token,
-
-  email,
-  title,
-  description
-) => {
+export const CreateCollectionApi = async (token, email, title, description) => {
   const data = {
     createdBy: email,
     title: title.current.value,
