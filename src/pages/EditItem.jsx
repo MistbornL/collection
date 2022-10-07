@@ -1,7 +1,8 @@
-import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Menu } from "../components/Menu";
+import { GetDataForItem } from "../helper/GetDataForITem";
+import { ModifyItem } from "../helper/ModifyItem";
 
 export const EditItem = () => {
   const { id } = useParams();
@@ -11,60 +12,16 @@ export const EditItem = () => {
   const token = localStorage.getItem("token");
   const email = localStorage.getItem("email");
   console.log(email);
-
-  const modifyItem = async () => {
-    const updateData = {
-      createdBy: email,
-      id: id,
-      title: title.current.value,
-      description: description.current.value,
-      image: image.current.value,
-    };
-
-    await axios
-      .put(`http://localhost:5000/collection/update/item`, updateData, {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          console.log(res.data);
-          window.location.href = "/account";
-        }
-      })
-      .catch((err) => {
-        alert("something went wrong");
-        console.log(err);
-      });
-  };
-
-  const fetchItem = async () => {
-    await axios
-      .get(`http://localhost:5000/collection/userItem`, {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          id: id,
-        },
-      })
-      .then((res) => {
-        let item = res.data.filter((item) => item.id !== id)[0];
-        console.log(item);
-        title.current.value = item.title;
-        description.current.value = item.description;
-        image.current.value = item.image;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const updateData = {
+    createdBy: email,
+    id: id,
+    title: title.current.value,
+    description: description.current.value,
+    image: image.current.value,
   };
 
   useEffect(() => {
-    fetchItem();
+    GetDataForItem(title, description, image, token, id);
   }, []);
   return (
     <div className="App">
@@ -102,7 +59,12 @@ export const EditItem = () => {
                 placeholder="Description"
               />
             </div>
-            <button className="btn bg-primary btn-lg mt-3" onClick={modifyItem}>
+            <button
+              className="btn bg-primary btn-lg mt-3"
+              onClick={() => {
+                ModifyItem(updateData, token);
+              }}
+            >
               Modify
             </button>
           </div>

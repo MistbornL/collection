@@ -1,43 +1,12 @@
 import React, { useRef } from "react";
 import { Menu } from "../components/Menu";
 import axios from "axios";
+import { HandleSignUp } from "../helper/HandleSignUp";
 export const SignUp = () => {
   const email = useRef();
   const password = useRef();
   const firstName = useRef();
   const lastName = useRef();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (
-      email.current.value === "" &&
-      password.current.value === "" &&
-      firstName.current.value === "" &&
-      lastName.current.value === ""
-    ) {
-      alert("Please enter all the fields");
-    } else {
-      await axios
-        .post("http://localhost:5000/user/signup", {
-          email: email.current.value,
-          password: password.current.value,
-          firstName: firstName.current.value,
-          lastName: lastName.current.value,
-        })
-        .then((res) => {
-          console.log(res);
-          if (res.status === 200) {
-            window.location.href = "/";
-          }
-        })
-        .catch((err) => {
-          console.log(err.response.data);
-          if (err.response.status === 409) {
-            alert("email already exists");
-          }
-        });
-    }
-  };
 
   return (
     <div className="App">
@@ -56,7 +25,7 @@ export const SignUp = () => {
                 />
               </div>
               <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                <form onSubmit={handleSubmit} style={{ width: "23rem" }}>
+                <form style={{ width: "23rem" }}>
                   <h3
                     className="fw-normal mb-3 pb-3"
                     style={{ letterSpacing: "pacing1px" }}
@@ -64,56 +33,51 @@ export const SignUp = () => {
                     Sign Up
                   </h3>
 
-                  <div className="form-outline mb-2">
+                  <div className="form mb-2">
                     <input
                       ref={firstName}
                       type="text"
+                      placeholder="First Name"
                       id="firstName"
                       className="form-control form-control-lg"
                     />
-                    <label className="form-label" htmlFor="FirstName">
-                      First Name
-                    </label>
                   </div>
 
-                  <div className="form-outline mb-2">
+                  <div className="form mb-2">
                     <input
                       ref={lastName}
+                      placeholder="Last Name"
                       type="text"
                       id="LastName"
                       className="form-control form-control-lg"
                     />
-                    <label className="form-label" htmlFor="LastName">
-                      Last Name
-                    </label>
                   </div>
 
-                  <div className="form-outline mb-2">
+                  <div className="form mb-2">
                     <input
                       ref={email}
                       type="email"
                       id="form2Example18"
+                      label="Email"
                       className="form-control form-control-lg"
                     />
-                    <label className="form-label" htmlFor="form2Example18">
-                      Email address
-                    </label>
                   </div>
 
-                  <div className="form-outline mb-2">
+                  <div className="form mb-2">
                     <input
                       ref={password}
                       type="password"
                       id="form2Example28"
                       className="form-control form-control-lg"
+                      placeholder="Password"
                     />
-                    <label className="form-label" htmlFor="form2Example28">
-                      Password
-                    </label>
                   </div>
 
                   <div className="pt-1 mb-2">
                     <button
+                      onClick={() => {
+                        HandleSignUp(email, password, firstName, lastName);
+                      }}
                       className="btn btn-info btn-lg btn-block"
                       type="submit"
                     >

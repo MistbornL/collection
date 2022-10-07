@@ -4,6 +4,7 @@ export const CollectionItems = ({ item, handleComment, id, deleteItem }) => {
   const role = localStorage.getItem("role");
   const email = localStorage.getItem("email");
   const token = localStorage.getItem("token");
+  console.log(item);
 
   return (
     <section key={item._id} style={{ backgroundColor: "#8098d1" }}>
@@ -31,6 +32,12 @@ export const CollectionItems = ({ item, handleComment, id, deleteItem }) => {
                     <h6>Information</h6>
                     <hr className="mt-0 mb-4" />
                     <div className="col  pt-2">
+                      <div className="col-6 mb-5">
+                        <h6>Created By</h6>
+                        <a href={`/collection/${item.createdBy}`}>
+                          {item.createdBy}
+                        </a>
+                      </div>
                       <div className="col-6 mb-5">
                         <h6>title</h6>
                         <p className="text-muted">{item.title}</p>

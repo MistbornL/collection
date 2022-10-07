@@ -7,7 +7,7 @@ export const Menu = () => {
       style={{ padding: "20xp" }}
       className="navbar navbar-expand-lg navbar-dark bg-dark"
     >
-      <a className="navbar-brand" href="/">
+      <a className="navbar-brand " href="/">
         Collector
       </a>
       <button
@@ -33,23 +33,16 @@ export const Menu = () => {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href={token ? "/account" : "/"}>
+            <a className="nav-link" href={token ? "/account" : "/login"}>
               Account
             </a>
           </li>
-          <li className="nav-item dropdown">
-            <a
-              className="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Account
+          <li className="nav-item">
+            <a className="nav-link" href={"/signup"}>
+              Sign Up
             </a>
           </li>
+
           <li className="nav-item">
             <a
               onClick={() => {
@@ -70,7 +63,7 @@ export const Menu = () => {
             aria-label="Search"
           />
           <button
-            className="btn btn-outline-success my-2 my-sm-0"
+            className="btn btn-outline-success  my-2 my-sm-0"
             type="submit"
           >
             Search

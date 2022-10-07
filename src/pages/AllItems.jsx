@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { CollectionItems } from "../components/CollectionItems";
 import { Menu } from "../components/Menu";
+import { FetCchAllItems } from "../helper/FetchAllItems";
 
 export const AllItems = () => {
   const token = localStorage.getItem("token");
@@ -23,22 +24,6 @@ export const AllItems = () => {
         if (res.status === 200) {
           console.log(res.data);
         }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const fetchAllCollections = async () => {
-    await axios
-      .get(`http://localhost:5000/collection/item`, {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setCollections(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -69,7 +54,7 @@ export const AllItems = () => {
   };
 
   useState(() => {
-    fetchAllCollections();
+    FetCchAllItems(setCollections);
   }, []);
   return (
     <div className="App">

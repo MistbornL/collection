@@ -15,7 +15,6 @@ export const Items = () => {
       .get(`http://localhost:5000/collection/userItems`, {
         headers: {
           "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
         },
         params: {
           CollectionId: id,

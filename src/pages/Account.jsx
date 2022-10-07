@@ -1,81 +1,21 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Menu } from "../components/Menu";
+import { DeleteCollection } from "../helper/DeleteCollection";
+import { DeleteUser } from "../helper/DeleteUser";
+import { FetchAccount } from "../helper/FetchAccount";
+import { FetchCollection } from "../helper/FetchCollection";
 
 export const Account = () => {
   const email = localStorage.getItem("email");
   const token = localStorage.getItem("token");
   const [collections, setCollections] = useState([]);
-  console.log(collections);
+
   const [user, setUser] = useState({});
-
-  const fetchAccount = async () => {
-    await axios
-      .get(`http://localhost:5000/users/profile`, {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          email: email,
-        },
-      })
-      .then((res) => {
-        setUser(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const handleDelete = async () => {
-    await axios
-      .delete(`http://localhost:5000/users/delete`, {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          email: email,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        if (res.status === 200) {
-          localStorage.clear();
-          window.location.href = "/";
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const fetchCollection = async () => {
-    await axios
-      .get(`http://localhost:5000/collection/userCol`, {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          createdBy: email,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        if (res.status === 200) {
-          setCollections(res.data);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  console.log(user);
 
   useEffect(() => {
-    fetchCollection();
-    fetchAccount();
+    FetchCollection(email, setCollections);
+    FetchAccount(email, token, setUser);
   }, []);
   return (
     <div className="App">
@@ -131,7 +71,7 @@ export const Account = () => {
                         <div className="row pt-1">
                           {collections.map((collection) => {
                             return (
-                              <div key={collection._id} className="col-6 mb-3">
+                              <div key={collection._id} className="raw-6 mb-3 ">
                                 <h6>{collection.title}</h6>
                                 <h6 className="text-muted">
                                   {collection.description}
@@ -143,7 +83,27 @@ export const Account = () => {
                                   }}
                                   className="btn btn-primary "
                                 >
-                                  view collection
+                                  view Items
+                                </button>
+                                <button
+                                  onClick={() => {
+                                    window.location.href = `/collection/update/${collection._id}`;
+                                  }}
+                                  className="btn  btn-primary  "
+                                >
+                                  Modify Collection
+                                </button>
+                                <button
+                                  onClick={() =>
+                                    DeleteCollection(
+                                      collection._id,
+                                      token,
+                                      collections
+                                    )
+                                  }
+                                  className="btn btn-primary mt-2"
+                                >
+                                  delete collection
                                 </button>
                               </div>
                             );
@@ -161,7 +121,7 @@ export const Account = () => {
                         Create Collection
                       </button>
                       <button
-                        onClick={handleDelete}
+                        onClick={() => DeleteUser(email, token)}
                         className="btn btn-primary"
                       >
                         Delete User

@@ -7,23 +7,22 @@ import { CreateCollection } from "./pages/CreateCollection";
 import { CreateItem } from "./pages/CreateItem";
 import { EditItem } from "./pages/EditItem";
 
-import { Home } from "./pages/Home";
+import { Collection } from "./pages/Collection";
 import { Login } from "./pages/Login";
 import { SignUp } from "./pages/SignUp";
+import { EditCollection } from "./pages/EditColleciton";
 
 function App() {
-  const email = localStorage.getItem("email");
   return (
     <Routes>
-      {email ? (
-        <Route path="/" element={<Home />} />
-      ) : (
-        <Route path="/" element={<Login />} />
-      )}
+      <Route path="/" element={<AllItems />} />
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/collections" element={<AllItems />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/items" element={<AllItems />} />
+      <Route path="/collection/:email" element={<Collection />} />
       <Route path="/account" element={<Account />} />
       <Route path="/collection/create" element={<CreateCollection />} />
+      <Route path="/collection/update/:id" element={<EditCollection />} />
       <Route path="/collection/item/create/:id" element={<CreateItem />} />
       <Route path="/collection/items/:id" element={<Items />} />
       <Route path="/collection/item/edit/:id" element={<EditItem />} />

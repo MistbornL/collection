@@ -1,38 +1,12 @@
-import React, { cloneElement, useEffect, useRef, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useRef, useState } from "react";
 import { Menu } from "../components/Menu";
+import { CreateCollectionApi } from "../helper/CreateCollection";
 
 export const CreateCollection = () => {
   const token = localStorage.getItem("token");
   const email = localStorage.getItem("email");
   const title = useRef();
   const description = useRef();
-
-  const createCollection = async () => {
-    await axios
-      .post(
-        `http://localhost:5000/collection/create`,
-        {
-          createdBy: email,
-          title: title.current.value,
-          description: description.current.value,
-        },
-        {
-          headers: {
-            "content-type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((res) => {
-        if (res.status === 200) {
-          window.location.href = "/account";
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   return (
     <div className="App">
@@ -66,7 +40,9 @@ export const CreateCollection = () => {
             </div>
             <button
               className="btn bg-primary btn-lg mt-3"
-              onClick={createCollection}
+              onClick={() =>
+                CreateCollectionApi(token, email, title, description)
+              }
             >
               Create
             </button>

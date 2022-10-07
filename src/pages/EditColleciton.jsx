@@ -1,25 +1,20 @@
-import React, { useRef } from "react";
-import axios from "axios";
+import React, { useRef, useState } from "react";
+
 import { Menu } from "../components/Menu";
 import { useParams } from "react-router-dom";
-import { PostItem } from "../helper/PostiTem";
+import { GetCollectionData } from "../helper/GetCollectionData";
+import { ModifyCollection } from "../helper/ModifyCollection";
 
-export const CreateItem = () => {
+export const EditCollection = () => {
+  const { id } = useParams();
   const token = localStorage.getItem("token");
-
   const title = useRef();
   const description = useRef();
-  const image = useRef();
-  const { id } = useParams();
-  const email = localStorage.getItem("email");
+  console.log(id);
 
-  const data = {
-    createdBy: email,
-    title: title.current.value,
-    description: description.current.value,
-    image: image.current.value,
-    collectionId: id,
-  };
+  useState(() => {
+    GetCollectionData(token, title, description, id);
+  }, []);
 
   return (
     <div className="App">
@@ -29,22 +24,15 @@ export const CreateItem = () => {
       <main className="d-flex align-items-center justify-content-center mt-5">
         <div className="card  w-50 d-flex  justify-content-center ">
           <div className="card-body">
-            <h1>Create item</h1>
+            <h1>Create Collection</h1>
             <h4 className="card-title">Title</h4>
             <div className="form-group">
               <input
                 ref={title}
                 type="text"
                 className="form-control"
+                aria-describedby="helpId"
                 placeholder="Title"
-              />
-            </div>
-            <div className="form-group">
-              <input
-                ref={image}
-                type="text"
-                className="form-control mt-3"
-                placeholder="image url"
               />
             </div>
             <h4 className="card-text">Description</h4>
@@ -54,14 +42,15 @@ export const CreateItem = () => {
                 style={{ resize: "none" }}
                 type="text"
                 className="form-control form-control-lg"
+                aria-describedby="helpId"
                 placeholder="Description"
               />
             </div>
             <button
               className="btn bg-primary btn-lg mt-3"
-              onClick={() => PostItem(data, token)}
+              onClick={() => ModifyCollection(token, id, title, description)}
             >
-              Create
+              Modify
             </button>
           </div>
         </div>
