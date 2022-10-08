@@ -1,9 +1,16 @@
 import axios from "axios";
 
-export const ModifyCollection = async (token, id, title, description) => {
+export const ModifyCollection = async (
+  token,
+  id,
+  title,
+  description,
+  multiSelections
+) => {
   const data = {
     title: title.current.value,
     description: description.current.value,
+    tags: multiSelections,
   };
   await axios
     .put(`http://localhost:5000/collection/update/${id}`, data, {

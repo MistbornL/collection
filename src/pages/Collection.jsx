@@ -12,6 +12,7 @@ export const Collection = () => {
   const email2 = localStorage.getItem("email");
   const role = localStorage.getItem("role");
   const token = localStorage.getItem("token");
+  console.log(collections);
   useState(() => {
     FetchCollection(email, setCollections);
   }, []);
@@ -41,6 +42,7 @@ export const Collection = () => {
                   <p className="card-text">
                     Description: {collection.description}
                   </p>
+                  <h2 className="card-title">Tags: {collection.tags}</h2>
                   <button
                     onClick={() => {
                       window.location.href = `/collection/items/${collection._id}`;

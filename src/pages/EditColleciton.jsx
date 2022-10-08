@@ -4,15 +4,19 @@ import { Menu } from "../components/Menu";
 import { useParams } from "react-router-dom";
 import { GetCollectionData } from "../helper/GetCollectionData";
 import { ModifyCollection } from "../helper/ModifyCollection";
+import { Typeahead } from "react-bootstrap-typeahead";
+import { FetchTags } from "../helper/FetchTags";
 
 export const EditCollection = () => {
   const { id } = useParams();
   const token = localStorage.getItem("token");
   const title = useRef();
   const description = useRef();
-  console.log(id);
+  const [tags, setTags] = useState([]);
+  const [multiSelections, setMultiSelections] = useState([]);
 
   useState(() => {
+    FetchTags(setTags);
     GetCollectionData(token, title, description, id);
   }, []);
 
@@ -35,6 +39,17 @@ export const EditCollection = () => {
                 placeholder="Title"
               />
             </div>
+            <h4 className="card-text">Tags</h4>
+            <div className="form-group  ">
+              <Typeahead
+                id="basic-example"
+                onChange={setMultiSelections}
+                options={tags}
+                multiple
+                placeholder="Select Tag"
+                selected={multiSelections}
+              />
+            </div>
             <h4 className="card-text">Description</h4>
             <div className="form-group">
               <textarea
@@ -48,7 +63,9 @@ export const EditCollection = () => {
             </div>
             <button
               className="btn bg-primary btn-lg mt-3"
-              onClick={() => ModifyCollection(token, id, title, description)}
+              onClick={() =>
+                ModifyCollection(token, id, title, description, multiSelections)
+              }
             >
               Modify
             </button>

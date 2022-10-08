@@ -1,7 +1,10 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Menu } from "../components/Menu";
 import { useParams } from "react-router-dom";
 import { PostItem } from "../helper/PostiTem";
+import { FetchTags } from "../helper/FetchTags";
+
+import { Typeahead } from "react-bootstrap-typeahead";
 
 export const CreateItem = () => {
   const token = localStorage.getItem("token");
@@ -11,7 +14,12 @@ export const CreateItem = () => {
   const image = useRef();
   const { id } = useParams();
   const { email } = useParams();
+  const [tags, setTags] = useState([]);
+  const [multiSelections, setMultiSelections] = useState([]);
 
+  useEffect(() => {
+    FetchTags(setTags);
+  }, []);
   return (
     <div className="App">
       <header>
@@ -25,6 +33,7 @@ export const CreateItem = () => {
             <div className="form-group">
               <input
                 ref={title}
+                required
                 type="text"
                 className="form-control"
                 placeholder="Title"
@@ -38,9 +47,20 @@ export const CreateItem = () => {
                 placeholder="image url"
               />
             </div>
+            <div className="form-group  mt-3">
+              <Typeahead
+                id="basic-example"
+                onChange={setMultiSelections}
+                options={tags}
+                multiple
+                placeholder="Select Tag"
+                selected={multiSelections}
+              />
+            </div>
             <h4 className="card-text">Description</h4>
             <div className="form-group">
               <textarea
+                required
                 ref={description}
                 style={{ resize: "none" }}
                 type="text"

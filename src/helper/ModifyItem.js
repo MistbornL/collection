@@ -1,10 +1,18 @@
 import axios from "axios";
 
-export const ModifyItem = async (id, token, title, description, image) => {
+export const ModifyItem = async (
+  id,
+  token,
+  title,
+  description,
+  image,
+  multiSelections
+) => {
   const data = {
     title: title.current.value,
     description: description.current.value,
     image: image.current.value,
+    tags: multiSelections,
   };
   await axios
     .put(`http://localhost:5000/collection/item/update/${id}`, data, {

@@ -43,6 +43,22 @@ export const CollectionItems = ({ item, handleComment, id, deleteItem }) => {
                         <p className="text-muted">{item.title}</p>
                       </div>
 
+                      <div className="col-6 mb-5">
+                        <h6>Tags</h6>
+                        <div>
+                          {item.tags.map((tag) => {
+                            return (
+                              <span
+                                key={item._id}
+                                className="badge rounded-pill bg-primary"
+                              >
+                                {tag}
+                              </span>
+                            );
+                          })}
+                        </div>
+                      </div>
+
                       <div className="w-100 mb-5">
                         <h6>Description</h6>
                         <p className="text-muted">{item.description}</p>
