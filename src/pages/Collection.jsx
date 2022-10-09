@@ -12,7 +12,7 @@ export const Collection = () => {
   const email2 = localStorage.getItem("email");
   const role = localStorage.getItem("role");
   const token = localStorage.getItem("token");
-  console.log(collections);
+
   useState(() => {
     FetchCollection(email, setCollections);
   }, []);

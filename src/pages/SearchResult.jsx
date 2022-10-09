@@ -1,32 +1,20 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Menu } from "../components/Menu";
-import axios from "axios";
 import { CollectionItems } from "../components/CollectionItems";
+import { Menu } from "../components/Menu";
+import { Search } from "../helper/Search";
 
-export const Items = () => {
-  const { id } = useParams();
-  const token = localStorage.getItem("token");
+export const SearchResult = () => {
+  const { tag } = useParams();
   const [items, setItems] = useState([]);
-  const { email } = useParams();
+  const token = localStorage.getItem("token");
 
-  const fetchItems = async () => {
-    await axios
-      .get(`http://localhost:5000/collection/userItems`, {
-        headers: {
-          "content-type": "application/json",
-        },
-        params: {
-          CollectionId: id,
-        },
-      })
-      .then((res) => {
-        setItems(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  console.log(items);
+
+  useEffect(() => {
+    Search(tag, setItems);
+  }, [tag]);
 
   const deleteItem = async (id) => {
     await axios
@@ -38,7 +26,6 @@ export const Items = () => {
       })
       .then((res) => {
         if (res.status === 200) {
-          items.filter((item) => item._id !== id);
           window.location.reload();
         }
       })
@@ -47,9 +34,6 @@ export const Items = () => {
       });
   };
 
-  useEffect(() => {
-    fetchItems();
-  }, []);
   return (
     <div className="App">
       <header>
@@ -64,23 +48,13 @@ export const Items = () => {
                 index={index}
                 item={item}
                 deleteItem={deleteItem}
-                id={id}
+                id={item.collectionId}
               />
             );
           })
         ) : (
-          <div className=" no-items">
+          <div className="no-items">
             <h1 className="text-center">No Items</h1>
-            <div className="d-flex justify-content-center gap-5 mb-5">
-              <button
-                onClick={() => {
-                  window.location.href = `/collection/item/create/${id}/${email}`;
-                }}
-                className="btn btn-primary"
-              >
-                Create Item
-              </button>
-            </div>
           </div>
         )}
       </main>

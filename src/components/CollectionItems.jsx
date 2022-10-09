@@ -1,13 +1,19 @@
 import React from "react";
 
-export const CollectionItems = ({ item, handleComment, id, deleteItem }) => {
+export const CollectionItems = ({
+  item,
+  handleComment,
+  id,
+  deleteItem,
+  index,
+}) => {
   const role = localStorage.getItem("role");
   const email = localStorage.getItem("email");
   const token = localStorage.getItem("token");
   console.log(item);
 
   return (
-    <section key={item._id} style={{ backgroundColor: "#8098d1" }}>
+    <section key={index} style={{ backgroundColor: "#8098d1" }}>
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col col-lg-6 ">
@@ -46,11 +52,15 @@ export const CollectionItems = ({ item, handleComment, id, deleteItem }) => {
                       <div className="col-6 mb-5">
                         <h6>Tags</h6>
                         <div>
-                          {item.tags.map((tag) => {
+                          {item.tags.map((tag, index) => {
                             return (
                               <span
-                                key={item._id}
-                                className="badge rounded-pill bg-primary"
+                                style={{ cursor: "pointer", fontSize: "15px" }}
+                                onClick={() => {
+                                  window.location.href = `/search/${tag}`;
+                                }}
+                                key={index}
+                                className="badge rounded-pill bg-primary w-25"
                               >
                                 {tag}
                               </span>

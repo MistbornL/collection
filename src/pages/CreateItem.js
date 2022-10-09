@@ -71,7 +71,15 @@ export const CreateItem = () => {
             <button
               className="btn bg-primary btn-lg mt-3"
               onClick={() =>
-                PostItem(email, title, description, image, id, token)
+                PostItem(
+                  email,
+                  title,
+                  description,
+                  image,
+                  id,
+                  token,
+                  multiSelections
+                )
               }
             >
               Create

@@ -11,6 +11,7 @@ import { Collection } from "./pages/Collection";
 import { Login } from "./pages/Login";
 import { SignUp } from "./pages/SignUp";
 import { EditCollection } from "./pages/EditColleciton";
+import { SearchResult } from "./pages/SearchResult";
 
 function App() {
   return (
@@ -28,8 +29,10 @@ function App() {
         path="/collection/item/create/:id/:email"
         element={<CreateItem />}
       />
-      <Route path="/collection/items/:id" element={<Items />} />
+      <Route path="/collection/item/create/:id/" element={<CreateItem />} />
+      <Route path="/collection/items/:id/:email" element={<Items />} />
       <Route path="/collection/item/edit/:id" element={<EditItem />} />
+      <Route path="/search/:tag" element={<SearchResult />} />
     </Routes>
   );
 }

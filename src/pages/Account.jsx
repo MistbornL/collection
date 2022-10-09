@@ -16,7 +16,7 @@ export const Account = () => {
   useEffect(() => {
     FetchCollection(email, setCollections);
     FetchAccount(email, token, setUser);
-  }, []);
+  }, [email, token]);
   return (
     <div className="App">
       <header>
@@ -79,7 +79,7 @@ export const Account = () => {
 
                                 <button
                                   onClick={() => {
-                                    window.location.href = `/collection/items/${collection._id}`;
+                                    window.location.href = `/collection/items/${collection._id}/${user.email}`;
                                   }}
                                   className="btn btn-primary "
                                 >
