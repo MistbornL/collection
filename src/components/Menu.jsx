@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useRef } from "react";
 
 export const Menu = () => {
   const token = localStorage.getItem("token");
+  const search = useRef();
+
   return (
     <nav
       style={{ padding: "20xp" }}
@@ -60,11 +62,15 @@ export const Menu = () => {
             className="form-control mr-sm-2"
             type="search"
             placeholder="Search"
+            ref={search}
             aria-label="Search"
           />
           <button
             className="btn btn-outline-success  my-2 my-sm-0"
-            type="submit"
+            type="button"
+            onClick={() => {
+              window.location.href = "/search/" + search.current.value;
+            }}
           >
             Search
           </button>
