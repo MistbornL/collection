@@ -8,11 +8,16 @@ export const AllItems = () => {
   const token = localStorage.getItem("token");
   const [collections, setCollections] = useState([]);
 
-  const handleComment = async (id) => {
+  const handleComment = async (id, comments, email) => {
+    const commentsData = {
+      createdBy: email,
+      comment: comments,
+      createdAt: new Date().toLocaleString(),
+    };
     await axios
-      .post(
-        `http://localhost:5000/collection/add/comment`,
-        { id: id },
+      .put(
+        `http://localhost:5000/collection/item/comment`,
+        { id: id, comments: commentsData },
         {
           headers: {
             "content-type": "application/json",
@@ -59,12 +64,13 @@ export const AllItems = () => {
       <Menu />
 
       <main>
-        {collections.map((item) => {
+        {collections.map((item, index) => {
           return (
             <CollectionItems
               handleComment={handleComment}
-              key={item._id}
+              key={index}
               item={item}
+              itemId={item._id}
               id={item.collectionId}
               deleteItem={deleteItem}
             />

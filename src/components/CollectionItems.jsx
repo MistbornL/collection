@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 export const CollectionItems = ({
   item,
@@ -6,11 +6,12 @@ export const CollectionItems = ({
   id,
   deleteItem,
   index,
+  itemId,
 }) => {
   const role = localStorage.getItem("role");
   const email = localStorage.getItem("email");
   const token = localStorage.getItem("token");
-  console.log(item);
+  const comment = useRef();
 
   return (
     <section key={index} style={{ backgroundColor: "#8098d1" }}>
@@ -77,12 +78,19 @@ export const CollectionItems = ({
                         <div className="w-100 mb-5  ">
                           <h6>Comment</h6>
                           <textarea
+                            ref={comment}
                             style={{ resize: "none" }}
                             type="text"
                             className="form-group w-100 "
                           />
                           <button
-                            onClick={handleComment}
+                            onClick={() =>
+                              handleComment(
+                                itemId,
+                                comment.current.value,
+                                email
+                              )
+                            }
                             type="button"
                             className="btn btn-primary "
                           >
