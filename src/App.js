@@ -12,6 +12,7 @@ import { Login } from "./pages/Login";
 import { SignUp } from "./pages/SignUp";
 import { EditCollection } from "./pages/EditColleciton";
 import { SearchResult } from "./pages/SearchResult";
+import { AdminPage } from "./pages/AdminPage";
 
 function App() {
   return (
@@ -22,7 +23,6 @@ function App() {
       <Route path="/items" element={<AllItems />} />
       <Route path="/collection/:email" element={<Collection />} />
       <Route path="/account" element={<Account />} />
-      <Route path="/collection/create" element={<CreateCollection />} />
       <Route path="/collection/create/:email" element={<CreateCollection />} />
       <Route path="/collection/update/:id" element={<EditCollection />} />
       <Route
@@ -33,6 +33,7 @@ function App() {
       <Route path="/collection/items/:id/:email" element={<Items />} />
       <Route path="/collection/item/edit/:id" element={<EditItem />} />
       <Route path="/search/:tag" element={<SearchResult />} />
+      <Route path="/admin" element={<AdminPage />} />
     </Routes>
   );
 }

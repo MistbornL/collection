@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 export const Menu = () => {
   const token = localStorage.getItem("token");
   const search = useRef();
+  const role = localStorage.getItem("role");
 
   return (
     <nav
@@ -56,6 +57,13 @@ export const Menu = () => {
               Logout
             </a>
           </li>
+          {role === "admin" ? (
+            <li className="nav-item">
+              <a className="nav-link" href="/admin">
+                admin
+              </a>
+            </li>
+          ) : null}
         </ul>
         <form className="form-inline my-2 my-lg-0 d-flex">
           <input
@@ -68,9 +76,9 @@ export const Menu = () => {
           <button
             className="btn btn-outline-success  my-2 my-sm-0"
             type="button"
-            onClick={() => {
-              window.location.href = "/search/" + search.current.value;
-            }}
+            onClick={() =>
+              (window.location.href = `/search/${search.current.value}`)
+            }
           >
             Search
           </button>

@@ -45,7 +45,7 @@ export const Collection = () => {
                   <h2 className="card-title">Tags: {collection.tags}</h2>
                   <button
                     onClick={() => {
-                      window.location.href = `/collection/items/${collection._id}`;
+                      window.location.href = `/collection/items/${collection._id}/${email}`;
                     }}
                     className="btn btn-primary"
                   >
