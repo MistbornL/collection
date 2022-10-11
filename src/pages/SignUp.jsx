@@ -78,7 +78,7 @@ export const SignUp = () => {
                         HandleSignUp(email, password, firstName, lastName);
                       }}
                       className="btn btn-info btn-lg btn-block"
-                      type="submit"
+                      type="button"
                     >
                       Sign Up
                     </button>

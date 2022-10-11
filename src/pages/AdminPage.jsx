@@ -8,6 +8,7 @@ import { FetchUsers } from "../helper/FetchUsers";
 import { HandleDelete } from "../helper/DeleteUsers";
 import { handleBlock } from "../helper/BlockUser";
 import { HandleUnblock } from "../helper/UnblockUser";
+import { HandleChangeRole } from "../helper/ChangeRole";
 
 export const AdminPage = () => {
   const [users, setUsers] = React.useState([]);
@@ -16,7 +17,7 @@ export const AdminPage = () => {
 
   useEffect(() => {
     FetchUsers(token, setUsers);
-  }, [token]);
+  }, [token, email]);
 
   const handleChecked = (e) => {
     const email = e.target.name;
@@ -71,6 +72,13 @@ export const AdminPage = () => {
             src={trash}
             alt="delete"
           />
+          <button
+            onClick={() => HandleChangeRole(users, token, setUsers, email)}
+            type="button"
+            className="btn btn-primary btn-lg"
+          >
+            Change Role
+          </button>
         </div>
         <table className="table ">
           <thead>
@@ -92,6 +100,7 @@ export const AdminPage = () => {
               <th scope="col">Date Of Registration</th>
               <th scope="col"> Date of last authorization</th>
               <th scope="col">Status</th>
+              <th scope="col">Role</th>
             </tr>
           </thead>
           <tbody>
@@ -110,11 +119,14 @@ export const AdminPage = () => {
                   <tr>
                     <th scope="row"></th>
                     <td>{user.id}</td>
-                    <td>{user.username}</td>
+                    <td>
+                      {user.firstName} {user.lastName}
+                    </td>
                     <td>{user.email}</td>
                     <td>{user.dateRegister}</td>
                     <td>{user.dateLastAuthorization}</td>
                     <td>{user.status}</td>
+                    <td>{user.role}</td>
                   </tr>
                 </Fragment>
               );
