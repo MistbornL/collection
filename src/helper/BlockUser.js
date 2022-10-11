@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const handleBlock = (users, token, email, setUsers) => {
   const selectedUsers = users.filter((user) => user.isChecked);
+  console.log(token);
 
   selectedUsers.forEach((user) => {
     axios
@@ -22,7 +23,7 @@ export const handleBlock = (users, token, email, setUsers) => {
         console.log(err);
       });
     if (user.email === email) {
-      localStorage.removeItem("token");
+      localStorage.clear();
       window.location.href = "/";
     }
   });

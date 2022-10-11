@@ -19,9 +19,10 @@ export const AdminPage = () => {
   }, [token]);
 
   const handleChecked = (e) => {
-    const name = e.target.name;
+    const email = e.target.name;
+
     const isChecked = e.target.checked;
-    if (name === "allSelect") {
+    if (email === "allSelect") {
       const updatedUsers = users.map((user) => {
         return {
           ...user,
@@ -31,7 +32,7 @@ export const AdminPage = () => {
       setUsers(updatedUsers);
     } else {
       const updatedUsers = users.map((user) => {
-        if (user.username === name) {
+        if (user.email === email) {
           return { ...user, isChecked: isChecked };
         } else {
           return user;
@@ -61,7 +62,7 @@ export const AdminPage = () => {
           <img
             style={{ cursor: "pointer", width: "60px", height: "60px" }}
             src={unblock}
-            onClick={() => HandleUnblock(users, token, email, setUsers)}
+            onClick={() => HandleUnblock(users, token, setUsers)}
             alt="unblock"
           />
           <img
@@ -100,7 +101,7 @@ export const AdminPage = () => {
                   <input
                     className="form-check-input"
                     type="checkbox"
-                    name={user.username}
+                    name={user.email}
                     checked={user?.isChecked || false}
                     onChange={handleChecked}
                     id="flexCheckDefault"

@@ -56,12 +56,16 @@ export const CollectionItems = ({
                           {item.tags.map((tag, index) => {
                             return (
                               <span
-                                style={{ cursor: "pointer", fontSize: "15px" }}
+                                style={{
+                                  cursor: "pointer",
+                                  fontSize: "15px",
+                                  width: "fit-content",
+                                }}
                                 onClick={() => {
                                   window.location.href = `/search/${tag}`;
                                 }}
                                 key={index}
-                                className="badge rounded-pill bg-primary w-25"
+                                className="badge d-flex mb-3 rounded-pill bg-primary "
                               >
                                 {tag}
                               </span>

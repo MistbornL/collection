@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const HandleUnblock = (users, token, email, setUsers) => {
+export const HandleUnblock = (users, token, setUsers) => {
   const selectedUsers = users.filter((user) => user.isChecked);
 
   selectedUsers.forEach((user) => {
@@ -21,14 +21,10 @@ export const HandleUnblock = (users, token, email, setUsers) => {
       .catch((err) => {
         console.log(err);
       });
-    if (user.email === email) {
-      localStorage.removeItem("token");
-      window.location.href = "/";
-    }
   });
   const updatedUsers = users.map((user) => {
     if (user.isChecked) {
-      return { ...user, status: "Active" };
+      return { ...user, status: "Offline" };
     } else {
       return user;
     }
