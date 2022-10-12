@@ -1,4 +1,5 @@
 import axios from "axios";
+import { HandleLogOut } from "./UserLogOut";
 
 export const HandleChangeRole = (users, token, setUsers, email) => {
   const selectedUsers = users.filter((user) => user.isChecked);
@@ -37,7 +38,7 @@ export const HandleChangeRole = (users, token, setUsers, email) => {
       user.role === "admin" &&
       user.email === email
     ) {
-      localStorage.clear();
+      HandleLogOut(token);
       window.location.href = "/";
       return { ...user, role: "user" };
     } else {

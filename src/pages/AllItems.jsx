@@ -7,6 +7,7 @@ import { FetCchAllItems } from "../helper/FetchAllItems";
 export const AllItems = () => {
   const token = localStorage.getItem("token");
   const [collections, setCollections] = useState([]);
+  console.log(collections);
 
   const handleComment = async (id, comments, email) => {
     const commentsData = {

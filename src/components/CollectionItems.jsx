@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { HandleLike } from "../helper/LikeItem";
 
 export const CollectionItems = ({
   item,
@@ -79,31 +80,61 @@ export const CollectionItems = ({
                         <p className="text-muted">{item.description}</p>
                       </div>
                       {token ? (
-                        <div className="w-100 mb-5  ">
-                          <h6>Comment</h6>
-                          <textarea
-                            ref={comment}
-                            style={{ resize: "none" }}
-                            type="text"
-                            className="form-group w-100 "
-                          />
-                          <button
-                            onClick={() =>
-                              handleComment(
-                                itemId,
-                                comment.current.value,
-                                email
-                              )
-                            }
-                            type="button"
-                            className="btn btn-primary "
-                          >
-                            comment
-                          </button>
-                          <p>
-                            to see comments visit <a href="/">Item</a>
-                          </p>
-                        </div>
+                        <>
+                          <div className="w-100 mb-5">
+                            {item.like ? (
+                              <button
+                                type="button"
+                                class="btn btn-outline-primary"
+                              >
+                                Unlike
+                              </button>
+                            ) : (
+                              <button
+                                type="button"
+                                class="btn btn-outline-primary"
+                                onClick={() => HandleLike(item, token)}
+                              >
+                                Like
+                              </button>
+                            )}
+                            {item.likes.length === 0 ? (
+                              <h4>No likes yet</h4>
+                            ) : item.likes.length === 1 ? (
+                              <h4>liked by {item.likes[0].likedBy}</h4>
+                            ) : (
+                              <h4>
+                                liked by {item.likes[0].likedBy} and{" "}
+                                {item.likes.length - 1} others
+                              </h4>
+                            )}
+                          </div>
+                          <div className="w-100 mb-5  ">
+                            <h6>Comment</h6>
+                            <textarea
+                              ref={comment}
+                              style={{ resize: "none" }}
+                              type="text"
+                              className="form-group w-100 "
+                            />
+                            <button
+                              onClick={() =>
+                                handleComment(
+                                  itemId,
+                                  comment.current.value,
+                                  email
+                                )
+                              }
+                              type="button"
+                              className="btn btn-primary "
+                            >
+                              comment
+                            </button>
+                            <p>
+                              to see comments visit <a href="/">Item</a>
+                            </p>
+                          </div>
+                        </>
                       ) : null}
                     </div>
                   </div>

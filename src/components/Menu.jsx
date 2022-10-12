@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
+import { HandleLogOut } from "../helper/UserLogOut";
 
 export const Menu = () => {
   const token = localStorage.getItem("token");
@@ -41,22 +42,17 @@ export const Menu = () => {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href={"/signup"}>
-              Sign Up
-            </a>
+            {token ? (
+              <a onClick={HandleLogOut(token)} className="nav-link" href="/">
+                Logout
+              </a>
+            ) : (
+              <a className="nav-link" href="/login">
+                Login
+              </a>
+            )}
           </li>
 
-          <li className="nav-item">
-            <a
-              onClick={() => {
-                localStorage.clear();
-              }}
-              className="nav-link"
-              href="/"
-            >
-              Logout
-            </a>
-          </li>
           {role === "admin" ? (
             <li className="nav-item">
               <a className="nav-link" href="/admin">
