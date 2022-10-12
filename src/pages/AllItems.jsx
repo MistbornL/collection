@@ -7,18 +7,14 @@ import { FetCchAllItems } from "../helper/FetchAllItems";
 export const AllItems = () => {
   const token = localStorage.getItem("token");
   const [collections, setCollections] = useState([]);
+  const [loading, setLoading] = useState(true);
   console.log(collections);
 
-  const handleComment = async (id, comments, email) => {
-    const commentsData = {
-      createdBy: email,
-      comment: comments,
-      createdAt: new Date().toLocaleString(),
-    };
+  const deleteItem = async (id) => {
+    console.log(id);
     await axios
-      .put(
-        `http://localhost:5000/collection/item/comment`,
-        { id: id, comments: commentsData },
+      .delete(
+        `https://collection-server-mistborn.herokuapp.com/collection/delete/item/${id}`,
         {
           headers: {
             "content-type": "application/json",
@@ -26,25 +22,6 @@ export const AllItems = () => {
           },
         }
       )
-      .then((res) => {
-        if (res.status === 200) {
-          console.log(res.data);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const deleteItem = async (id) => {
-    console.log(id);
-    await axios
-      .delete(`http://localhost:5000/collection/delete/item/${id}`, {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
       .then((res) => {
         if (res.status === 200) {
           console.log(res.data);
@@ -58,27 +35,31 @@ export const AllItems = () => {
   };
 
   useState(() => {
+    setLoading(false);
     FetCchAllItems(setCollections);
   }, []);
   return (
     <div className="App">
       <Menu />
 
-      <main>
-        {collections.map((item, index) => {
-          return (
-            <CollectionItems
-              handleComment={handleComment}
-              key={index}
-              item={item}
-              itemId={item._id}
-              setItems={setCollections}
-              id={item.collectionId}
-              deleteItem={deleteItem}
-            />
-          );
-        })}
-      </main>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <main>
+          {collections.map((item, index) => {
+            return (
+              <CollectionItems
+                key={index}
+                item={item}
+                itemId={item._id}
+                setItems={setCollections}
+                id={item.collectionId}
+                deleteItem={deleteItem}
+              />
+            );
+          })}
+        </main>
+      )}
     </div>
   );
 };

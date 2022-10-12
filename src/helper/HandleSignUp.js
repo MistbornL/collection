@@ -10,7 +10,7 @@ export const HandleSignUp = async (email, password, firstName, lastName) => {
     alert("Please enter all the fields");
   } else {
     await axios
-      .post("http://localhost:5000/user/signup", {
+      .post("https://collection-server-mistborn.herokuapp.com/user/signup", {
         email: email.current.value,
         password: password.current.value,
         firstName: firstName.current.value,

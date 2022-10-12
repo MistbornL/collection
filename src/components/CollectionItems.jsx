@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import { HandleDisLike } from "../helper/DisLikeITem";
 import { HandleLike } from "../helper/LikeItem";
+import { HandleComment } from "../helper/PostComment";
 
 export const CollectionItems = ({
   item,
-  handleComment,
   id,
   deleteItem,
   index,
@@ -117,20 +117,24 @@ export const CollectionItems = ({
                               </h4>
                             )}
                           </div>
-                          <div className="w-100 mb-5  ">
-                            <h6>Comment</h6>
+                          <div
+                            style={{ height: "40px" }}
+                            className="w-100 mb-5 d-flex justify-content-between"
+                          >
                             <textarea
                               ref={comment}
                               style={{ resize: "none" }}
+                              placeholder="Add a comment"
                               type="text"
-                              className="form-group w-100 "
+                              className="form-group w-75 "
                             />
                             <button
                               onClick={() =>
-                                handleComment(
-                                  itemId,
+                                HandleComment(
+                                  item,
                                   comment.current.value,
-                                  email
+                                  setItems,
+                                  token
                                 )
                               }
                               type="button"
@@ -138,9 +142,26 @@ export const CollectionItems = ({
                             >
                               comment
                             </button>
-                            <p>
-                              to see comments visit <a href="/">Item</a>
-                            </p>
+                          </div>
+
+                          <div className="w-100 mb-5">
+                            {item.comments.length === 0 ? (
+                              <h3>No Comments Yet</h3>
+                            ) : (
+                              item.comments.map((comment, index) => {
+                                return (
+                                  <div
+                                    key={index}
+                                    className="d-flex flex-column "
+                                  >
+                                    <h5>Comments</h5>
+                                    <h6 style={{}}>
+                                      {comment.createdBy}: {comment.comment}
+                                    </h6>
+                                  </div>
+                                );
+                              })
+                            )}
                           </div>
                         </>
                       ) : null}

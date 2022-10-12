@@ -7,7 +7,7 @@ export const handleBlock = (users, token, email, setUsers) => {
   selectedUsers.forEach((user) => {
     axios
       .put(
-        `http://localhost:5000/users/block/${user.email}`,
+        `https://collection-server-mistborn.herokuapp.com/users/block/${user.email}`,
         {},
         {
           headers: {

@@ -5,12 +5,15 @@ export const HandleDelete = (users, email, token, setUsers) => {
 
   selectedUsers.forEach((user) => {
     axios
-      .delete(`http://localhost:5000/users/delete/${user.email}`, {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .delete(
+        `https://collection-server-mistborn.herokuapp.com/users/delete/${user.email}`,
+        {
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         console.log(res);
       })

@@ -18,12 +18,16 @@ export const PostItem = async (
     tags: multiSelections,
   };
   await axios
-    .post(`http://localhost:5000/collection/create/item`, data, {
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    .post(
+      `https://collection-server-mistborn.herokuapp.com/collection/create/item`,
+      data,
+      {
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
     .then((res) => {
       if (res.status === 200) {
         window.location.href = "/account";

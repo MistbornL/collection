@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const FetchTags = async (setTags) => {
   await axios
-    .get(`http://localhost:5000/tag`, {
+    .get(`https://collection-server-mistborn.herokuapp.com/tag`, {
       headers: {
         "content-type": "application/json",
       },

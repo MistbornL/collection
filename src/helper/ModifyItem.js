@@ -15,12 +15,16 @@ export const ModifyItem = async (
     tags: multiSelections,
   };
   await axios
-    .put(`http://localhost:5000/collection/item/update/${id}`, data, {
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    .put(
+      `https://collection-server-mistborn.herokuapp.com/collection/item/update/${id}`,
+      data,
+      {
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
     .then((res) => {
       if (res.status === 200) {
         window.location.href = "/account";

@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const HandleLogOut = async (token) => {
   await axios
-    .get("http://localhost:5000/user/logout", {
+    .get("https://collection-server-mistborn.herokuapp.com/user/logout", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -7,12 +7,16 @@ export const CreateCollectionApi = async (token, email, title, description) => {
     description: description.current.value,
   };
   await axios
-    .post(`http://localhost:5000/collection/create`, data, {
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    .post(
+      `https://collection-server-mistborn.herokuapp.com/collection/create`,
+      data,
+      {
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
     .then((res) => {
       if (res.status === 200) {
         window.location.href = "/account";

@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const FetCchAllItems = async (setCollections) => {
   await axios
-    .get(`http://localhost:5000/collection/item`, {
+    .get(`https://collection-server-mistborn.herokuapp.com/collection/item`, {
       headers: {
         "content-type": "application/json",
       },
