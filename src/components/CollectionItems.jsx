@@ -145,6 +145,7 @@ export const CollectionItems = ({
                           </div>
 
                           <div className="w-100 mb-5">
+                            <h5>Comments</h5>
                             {item.comments.length === 0 ? (
                               <h3>No Comments Yet</h3>
                             ) : (
@@ -154,7 +155,6 @@ export const CollectionItems = ({
                                     key={index}
                                     className="d-flex flex-column "
                                   >
-                                    <h5>Comments</h5>
                                     <h6 style={{}}>
                                       {comment.createdBy}: {comment.comment}
                                     </h6>

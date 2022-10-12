@@ -57,7 +57,10 @@ export const SearchResult = () => {
           })
         ) : (
           <div className="no-items">
-            <h1 className="text-center">No Items</h1>
+            <h1 className="text-center">
+              {" "}
+              No Items Go Back To Main <a href="/">Page</a>
+            </h1>
           </div>
         )}
       </main>

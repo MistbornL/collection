@@ -76,7 +76,7 @@ export const Items = () => {
           })
         ) : (
           <div className=" no-items">
-            <h1 className="text-center">No Items</h1>
+            <h1 className="text-center">No Items </h1>
             <div className="d-flex justify-content-center gap-5 mb-5">
               <button
                 onClick={() => {
