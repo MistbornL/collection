@@ -57,6 +57,7 @@ export const SignUp = () => {
                       ref={email}
                       type="email"
                       id="form2Example18"
+                      placeholder="Email"
                       label="Email"
                       className="form-control form-control-lg"
                     />
