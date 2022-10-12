@@ -72,6 +72,7 @@ export const AllItems = () => {
               key={index}
               item={item}
               itemId={item._id}
+              setItems={setCollections}
               id={item.collectionId}
               deleteItem={deleteItem}
             />

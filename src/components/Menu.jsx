@@ -43,7 +43,11 @@ export const Menu = () => {
           </li>
           <li className="nav-item">
             {token ? (
-              <a onClick={HandleLogOut(token)} className="nav-link" href="/">
+              <a
+                onClick={() => HandleLogOut(token)}
+                className="nav-link"
+                href="/"
+              >
                 Logout
               </a>
             ) : (

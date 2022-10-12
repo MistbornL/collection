@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { HandleDisLike } from "../helper/DisLikeITem";
 import { HandleLike } from "../helper/LikeItem";
 
 export const CollectionItems = ({
@@ -7,11 +8,13 @@ export const CollectionItems = ({
   id,
   deleteItem,
   index,
+  setItems,
   itemId,
 }) => {
   const role = localStorage.getItem("role");
   const email = localStorage.getItem("email");
   const token = localStorage.getItem("token");
+
   const comment = useRef();
 
   return (
@@ -82,18 +85,23 @@ export const CollectionItems = ({
                       {token ? (
                         <>
                           <div className="w-100 mb-5">
-                            {item.like ? (
+                            {item.liked ? (
                               <button
+                                onClick={() =>
+                                  HandleDisLike(item, token, setItems)
+                                }
                                 type="button"
                                 class="btn btn-outline-primary"
                               >
-                                Unlike
+                                Dislike
                               </button>
                             ) : (
                               <button
                                 type="button"
                                 class="btn btn-outline-primary"
-                                onClick={() => HandleLike(item, token)}
+                                onClick={() =>
+                                  HandleLike(item, token, setItems)
+                                }
                               >
                                 Like
                               </button>
@@ -101,10 +109,10 @@ export const CollectionItems = ({
                             {item.likes.length === 0 ? (
                               <h4>No likes yet</h4>
                             ) : item.likes.length === 1 ? (
-                              <h4>liked by {item.likes[0].likedBy}</h4>
+                              <h4>liked by {item.likes[0]}</h4>
                             ) : (
                               <h4>
-                                liked by {item.likes[0].likedBy} and{" "}
+                                liked by {item.likes[0]} and{" "}
                                 {item.likes.length - 1} others
                               </h4>
                             )}
