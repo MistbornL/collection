@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Menu } from "../components/Menu";
+import { useTranslation } from "react-i18next";
 import { DeleteCollection } from "../helper/DeleteCollection";
 import { DeleteUser } from "../helper/DeleteUser";
 import { FetchAccount } from "../helper/FetchAccount";
@@ -9,7 +10,7 @@ export const Account = () => {
   const email = localStorage.getItem("email");
   const token = localStorage.getItem("token");
   const [collections, setCollections] = useState([]);
-
+  const { t } = useTranslation();
   const [user, setUser] = useState({});
   console.log(user);
 
@@ -42,38 +43,38 @@ export const Account = () => {
                         className="img-fluid my-5"
                         style={{ width: "80px" }}
                       />
-                      <h5>Marie Horwitz</h5>
-                      <p>Web Designer</p>
-                      <i className="far fa-edit mb-5"></i>
                     </div>
                     <div className="col-md-8">
                       <div className="card-body p-4">
-                        <h6>Information</h6>
+                        <h6>{t("item_information")}</h6>
                         <hr className="mt-0 mb-4" />
                         <div className="row pt-1">
                           <div className="col-6 mb-3">
-                            <h6>Email</h6>
+                            <h6>{t("menu_email")}</h6>
                             <p className="text-muted">{user.email}</p>
                           </div>
                           <div className="col-6 mb-3">
-                            <h6>Full Name</h6>
+                            <h6>{t("user_full_name")}</h6>
                             <p className="text-muted">
                               {user.firstName} {user.lastName}
                             </p>
                           </div>
                           <div className="col-6 mb-3">
-                            <h6>Status</h6>
+                            <h6>{t("user_role")}</h6>
                             <p className="text-muted">{user.role}</p>
                           </div>
                         </div>
-                        <h6>Collections</h6>
+                        <h6>{t("menu_collections")}</h6>
                         <hr className="mt-0 mb-4" />
-                        <div className="row pt-1">
+                        <div className="row pt-1 ">
                           {collections.map((collection) => {
                             return (
-                              <div key={collection._id} className="raw-6 mb-3 ">
-                                <h6>{collection.title}</h6>
-                                <h6 className="text-muted">
+                              <div key={collection._id} className="raw-6 mb-4">
+                                <h6>
+                                  {t("item_title")}: {collection.title}
+                                </h6>
+                                <h6 className="text-muted mb-5">
+                                  {t("item_description")}:{" "}
                                   {collection.description}
                                 </h6>
 
@@ -81,9 +82,9 @@ export const Account = () => {
                                   onClick={() => {
                                     window.location.href = `/collection/items/${collection._id}/${user.email}`;
                                   }}
-                                  className="btn btn-primary "
+                                  className="btn btn-primary  "
                                 >
-                                  view Items
+                                  {t("account_view_items")}
                                 </button>
                                 <button
                                   onClick={() => {
@@ -91,7 +92,7 @@ export const Account = () => {
                                   }}
                                   className="btn  btn-primary  "
                                 >
-                                  Modify Collection
+                                  {t("account_edit_collection")}
                                 </button>
                                 <button
                                   onClick={() =>
@@ -103,7 +104,7 @@ export const Account = () => {
                                   }
                                   className="btn btn-primary mt-2"
                                 >
-                                  delete collection
+                                  {t("account_delete_collection")}
                                 </button>
                               </div>
                             );
@@ -118,13 +119,13 @@ export const Account = () => {
                         }}
                         className="btn btn-primary"
                       >
-                        Create Collection
+                        {t("account_create_collection")}
                       </button>
                       <button
                         onClick={() => DeleteUser(email, token)}
                         className="btn btn-primary"
                       >
-                        Delete User
+                        {t("user_delete")}
                       </button>
                     </div>
                   </div>

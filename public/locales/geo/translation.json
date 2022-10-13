@@ -32,5 +32,14 @@
   "item_others": "სხვამ",
   "item_create": "ჰქმენ ახალი",
   "item_edit": "შეცვალე",
-  "item_delete": "აღგავე"
+  "item_delete": "აღგავე",
+
+  "account_view_items": "ნახე ნივთები",
+  "account_edit_collection": "შეცვალე კოლექცია",
+  "account_create_collection": "შექმენი კოლექცია",
+  "account_delete_collection": "აღგავე კოლექცია",
+
+  "user_role": "როლი",
+  "user_full_name": "სრული სახელი",
+  "user_delete": "აღგავე მომხმარებელი"
 }

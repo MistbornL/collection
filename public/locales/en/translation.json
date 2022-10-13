@@ -32,5 +32,14 @@
   "item_others": "others",
   "item_create": "Create Item",
   "item_edit": "Edit Item",
-  "item_delete": "Delete Item"
+  "item_delete": "Delete Item",
+
+  "account_view_items": "View Items",
+  "account_edit_collection": "Edit Collection",
+  "account_create_collection": "Create Collection",
+  "account_delete_collection": "Delete Collection",
+
+  "user_role": "Role",
+  "user_full_name": "Full Name",
+  "user_delete": "delete user"
 }

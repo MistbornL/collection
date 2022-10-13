@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { Menu } from "../components/Menu";
 import { DeleteCollection } from "../helper/DeleteCollection";
@@ -7,6 +8,7 @@ import { FetchCollection } from "../helper/FetchCollection";
 
 export const Collection = () => {
   const [collections, setCollections] = useState([]);
+  const { t } = useTranslation();
 
   const { email } = useParams();
   const email2 = localStorage.getItem("email");
@@ -35,21 +37,27 @@ export const Collection = () => {
                   className="card-body "
                 >
                   <h2 className="card-title">
-                    Created By: {collection.createdBy}
+                    {t("item_creator")}: {collection.createdBy}
                   </h2>
-                  <h2 className="card-title">Title: {collection.title}</h2>
+                  <h2 className="card-title">
+                    {" "}
+                    {t("item_title")}: {collection.title}
+                  </h2>
 
                   <p className="card-text">
-                    Description: {collection.description}
+                    {t("item_description")}: {collection.description}
                   </p>
-                  <h2 className="card-title">Tags: {collection.tags}</h2>
+                  <h2 className="card-title">
+                    {" "}
+                    {t("item_tags")}: {collection.tags}
+                  </h2>
                   <button
                     onClick={() => {
                       window.location.href = `/collection/items/${collection._id}/${email}`;
                     }}
                     className="btn btn-primary"
                   >
-                    View Items
+                    {t("account_view_items")}
                   </button>
                   {role === "admin" || email2 === collection.createdBy ? (
                     <div className="mt-3">
@@ -59,7 +67,7 @@ export const Collection = () => {
                         }}
                         className="btn btn-primary"
                       >
-                        Create Collection
+                        {t("account_create_collection")}
                       </button>
                       <button
                         onClick={() => {
@@ -67,7 +75,7 @@ export const Collection = () => {
                         }}
                         className="btn btn-primary"
                       >
-                        Modify Collection
+                        {t("account_edit_collection")}
                       </button>
 
                       <button
@@ -76,7 +84,7 @@ export const Collection = () => {
                         }
                         className="btn btn-primary"
                       >
-                        Delete Collection
+                        {t("account_delete_collection")}
                       </button>
                     </div>
                   ) : null}
