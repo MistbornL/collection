@@ -14,6 +14,7 @@ export const HandleLogin = async (email, password) => {
         if (res.status === 200) {
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("role", res.data.user.role);
+          localStorage.setItem("language", res.data.user.language);
           window.location.href = "/";
         } else {
           alert("Something went wrong");

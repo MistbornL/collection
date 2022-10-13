@@ -109,17 +109,17 @@ export const CollectionItems = ({
                               </button>
                             )}
                             {item.likes.length === 0 ? (
-                              <h4> {t("item_no_likes")}</h4>
+                              <h6> {t("item_no_likes")}</h6>
                             ) : item.likes.length === 1 ? (
-                              <h4>
+                              <h6>
                                 {t("item_liked_by")} {item.likes[0]}
-                              </h4>
+                              </h6>
                             ) : (
-                              <h4>
+                              <h6>
                                 {t("item_liked_by")} {item.likes[0]}{" "}
                                 {t("item_and")} {item.likes.length - 1}{" "}
                                 {t("item_others")}
-                              </h4>
+                              </h6>
                             )}
                           </div>
                           <div
@@ -152,7 +152,7 @@ export const CollectionItems = ({
                           <div className="w-100 mb-5">
                             <h5> {t("item_comments")}</h5>
                             {item.comments.length === 0 ? (
-                              <h3> {t("item_no_comments")}</h3>
+                              <h6> {t("item_no_comments")}</h6>
                             ) : (
                               item.comments.map((comment, index) => {
                                 return (

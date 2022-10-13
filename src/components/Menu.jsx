@@ -1,15 +1,26 @@
-import i18next from "i18next";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { HandleLogOut } from "../helper/UserLogOut";
+import i18n from "../i18n";
+import { LanguageHandler } from "../pages/UserLanguage";
 
 export const Menu = () => {
   const token = localStorage.getItem("token");
   const search = useRef();
   const role = localStorage.getItem("role");
   const { t } = useTranslation();
-  console.log(t("menu_collections"));
+  const email = localStorage.getItem("email");
+  const language = localStorage.getItem("language");
 
+  i18n.language = language;
+
+  useEffect(() => {
+    if (language === "geo") {
+      i18n.changeLanguage("geo");
+    } else {
+      i18n.changeLanguage("eng");
+    }
+  }, [language]);
   return (
     <nav
       style={{ padding: "20xp" }}
@@ -69,12 +80,31 @@ export const Menu = () => {
             </li>
           ) : null}
           <li className="nav-item">
-            <a
-              onClick={() => i18next.changeLanguage("geo")}
-              className="nav-link"
-            >
-              GEO
-            </a>
+            {language === "geo" ? (
+              <a
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  token
+                    ? LanguageHandler(token, "en", email)
+                    : i18n.changeLanguage("en");
+                }}
+                className="nav-link"
+              >
+                En
+              </a>
+            ) : (
+              <a
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  token
+                    ? LanguageHandler(token, "geo", email)
+                    : i18n.changeLanguage("geo");
+                }}
+                className="nav-link"
+              >
+                Geo
+              </a>
+            )}
           </li>
         </ul>
         <form className="form-inline my-2 my-lg-0 d-flex">
