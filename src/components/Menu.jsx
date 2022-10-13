@@ -12,8 +12,6 @@ export const Menu = () => {
   const email = localStorage.getItem("email");
   const language = localStorage.getItem("language");
 
-  i18n.language = language;
-
   useEffect(() => {
     if (language === "geo") {
       i18n.changeLanguage("geo");
@@ -80,13 +78,31 @@ export const Menu = () => {
             </li>
           ) : null}
           <li className="nav-item">
-            {language === "geo" ? (
+            {token && language === "geo" ? (
               <a
                 style={{ cursor: "pointer" }}
                 onClick={() => {
-                  token
-                    ? LanguageHandler(token, "en", email)
-                    : i18n.changeLanguage("en");
+                  LanguageHandler(token, "en", email);
+                }}
+                className="nav-link"
+              >
+                En
+              </a>
+            ) : token && language !== "geo" ? (
+              <a
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  LanguageHandler(token, "geo", email);
+                }}
+                className="nav-link"
+              >
+                Geo
+              </a>
+            ) : i18n.language === "geo" ? (
+              <a
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  i18n.changeLanguage("en");
                 }}
                 className="nav-link"
               >
@@ -96,9 +112,7 @@ export const Menu = () => {
               <a
                 style={{ cursor: "pointer" }}
                 onClick={() => {
-                  token
-                    ? LanguageHandler(token, "geo", email)
-                    : i18n.changeLanguage("geo");
+                  i18n.changeLanguage("geo");
                 }}
                 className="nav-link"
               >
