@@ -9,11 +9,13 @@ import { HandleDelete } from "../helper/DeleteUsers";
 import { handleBlock } from "../helper/BlockUser";
 import { HandleUnblock } from "../helper/UnblockUser";
 import { HandleChangeRole } from "../helper/ChangeRole";
+import { useTranslation } from "react-i18next";
 
 export const AdminPage = () => {
   const [users, setUsers] = React.useState([]);
   const token = localStorage.getItem("token");
   const email = localStorage.getItem("email");
+  const { t } = useTranslation();
 
   useEffect(() => {
     FetchUsers(token, setUsers);
@@ -58,7 +60,7 @@ export const AdminPage = () => {
             type="button"
             className="btn btn-danger btn-lg"
           >
-            Block
+            {t("user_block")}
           </button>
           <img
             style={{ cursor: "pointer", width: "60px", height: "60px" }}
@@ -77,7 +79,7 @@ export const AdminPage = () => {
             type="button"
             className="btn btn-primary btn-lg"
           >
-            Change Role
+            {t("user_change_role")}
           </button>
         </div>
         <table className="table ">
@@ -95,12 +97,12 @@ export const AdminPage = () => {
               />
 
               <th scope="col">ID</th>
-              <th scope="col">Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Date Of Registration</th>
-              <th scope="col"> Date of last authorization</th>
-              <th scope="col">Status</th>
-              <th scope="col">Role</th>
+              <th scope="col"> {t("menu_name")}</th>
+              <th scope="col"> {t("menu_email")}</th>
+              <th scope="col"> {t("user_date_registered")}</th>
+              <th scope="col"> {t("user_last_login")}</th>
+              <th scope="col"> {t("user_status")}</th>
+              <th scope="col"> {t("user_role")}</th>
             </tr>
           </thead>
           <tbody>

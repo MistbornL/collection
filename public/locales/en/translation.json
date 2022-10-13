@@ -41,5 +41,10 @@
 
   "user_role": "Role",
   "user_full_name": "Full Name",
-  "user_delete": "delete user"
+  "user_delete": "delete user",
+  "user_block": "block user",
+  "user_change_role": "change role",
+  "user_date_registered": "Date Registered",
+  "user_last_login": "Last Login",
+  "user_status": "Status"
 }
