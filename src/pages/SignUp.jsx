@@ -1,7 +1,9 @@
 import React, { useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { Menu } from "../components/Menu";
 import { HandleSignUp } from "../helper/HandleSignUp";
 export const SignUp = () => {
+  const { t } = useTranslation();
   const email = useRef();
   const password = useRef();
   const firstName = useRef();
@@ -29,14 +31,14 @@ export const SignUp = () => {
                     className="fw-normal mb-3 pb-3"
                     style={{ letterSpacing: "pacing1px" }}
                   >
-                    Sign Up
+                    {t("menu_sign_up")}
                   </h3>
 
                   <div className="form mb-2">
                     <input
                       ref={firstName}
                       type="text"
-                      placeholder="First Name"
+                      placeholder={t("menu_firstName")}
                       id="firstName"
                       className="form-control form-control-lg"
                     />
@@ -45,7 +47,7 @@ export const SignUp = () => {
                   <div className="form mb-2">
                     <input
                       ref={lastName}
-                      placeholder="Last Name"
+                      placeholder={t("menu_lastName")}
                       type="text"
                       id="LastName"
                       className="form-control form-control-lg"
@@ -57,7 +59,7 @@ export const SignUp = () => {
                       ref={email}
                       type="email"
                       id="form2Example18"
-                      placeholder="Email"
+                      placeholder={t("menu_email")}
                       label="Email"
                       className="form-control form-control-lg"
                     />
@@ -69,7 +71,7 @@ export const SignUp = () => {
                       type="password"
                       id="form2Example28"
                       className="form-control form-control-lg"
-                      placeholder="Password"
+                      placeholder={t("menu_password")}
                     />
                   </div>
 
@@ -81,19 +83,14 @@ export const SignUp = () => {
                       className="btn btn-info btn-lg btn-block"
                       type="button"
                     >
-                      Sign Up
+                      {t("menu_sign_up")}
                     </button>
                   </div>
 
-                  <p className="small mb-5 pb-lg-2">
-                    <a className="text-muted" href="#!">
-                      Forgot password?
-                    </a>
-                  </p>
                   <p>
-                    have an account? Continue On
+                    {t("menu_login_text")}
                     <a href="/" className="link-info">
-                      Login Page
+                      {t("menu_login")}
                     </a>
                   </p>
                 </form>

@@ -11,6 +11,7 @@ export const HandleLogOut = async (token) => {
     .then((res) => {
       if (res.status === 200) {
         localStorage.clear();
+        window.location.href = "/";
       }
     })
     .catch((err) => {

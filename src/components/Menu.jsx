@@ -1,10 +1,14 @@
+import i18next from "i18next";
 import React, { useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { HandleLogOut } from "../helper/UserLogOut";
 
 export const Menu = () => {
   const token = localStorage.getItem("token");
   const search = useRef();
   const role = localStorage.getItem("role");
+  const { t } = useTranslation();
+  console.log(t("menu_collections"));
 
   return (
     <nav
@@ -12,7 +16,7 @@ export const Menu = () => {
       className="navbar navbar-expand-lg navbar-dark bg-dark"
     >
       <a className="navbar-brand " href="/">
-        Collector
+        {t("menu_collections")}
       </a>
       <button
         className="navbar-toggler"
@@ -33,26 +37,26 @@ export const Menu = () => {
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
             <a className="nav-link" href="/collections">
-              Collections
+              {t("menu_collections")}
             </a>
           </li>
           <li className="nav-item">
             <a className="nav-link" href={token ? "/account" : "/login"}>
-              Account
+              {t("menu_account")}
             </a>
           </li>
           <li className="nav-item">
             {token ? (
               <a
+                style={{ cursor: "pointer" }}
                 onClick={() => HandleLogOut(token)}
                 className="nav-link"
-                href="/"
               >
-                Logout
+                {t("menu_logout")}
               </a>
             ) : (
               <a className="nav-link" href="/login">
-                Login
+                {t("menu_login")}
               </a>
             )}
           </li>
@@ -60,10 +64,18 @@ export const Menu = () => {
           {role === "admin" ? (
             <li className="nav-item">
               <a className="nav-link" href="/admin">
-                admin
+                {t("menu_admin")}
               </a>
             </li>
           ) : null}
+          <li className="nav-item">
+            <a
+              onClick={() => i18next.changeLanguage("geo")}
+              className="nav-link"
+            >
+              GEO
+            </a>
+          </li>
         </ul>
         <form className="form-inline my-2 my-lg-0 d-flex">
           <input
@@ -80,7 +92,7 @@ export const Menu = () => {
               (window.location.href = `/search/${search.current.value}`)
             }
           >
-            Search
+            {t("menu_search")}
           </button>
         </form>
       </div>

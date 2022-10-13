@@ -1,10 +1,12 @@
 import React, { useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { Menu } from "../components/Menu";
 import { HandleLogin } from "../helper/HandleLogin";
 
 export const Login = () => {
   const email = useRef();
   const password = useRef();
+  const { t } = useTranslation();
 
   return (
     <div className="App">
@@ -27,13 +29,13 @@ export const Login = () => {
                   className="fw-normal mb-3 pb-3"
                   style={{ letterSpacing: "pacing1px" }}
                 >
-                  Log in
+                  {t("menu_login")}
                 </h3>
 
                 <div className="form mb-4">
                   <input
                     ref={email}
-                    type="email"
+                    type={t("menu_email")}
                     placeholder="Email"
                     id="form2Example18"
                     className="form-control form-control-lg"
@@ -43,7 +45,7 @@ export const Login = () => {
                 <div className="form mb-4">
                   <input
                     ref={password}
-                    type="password"
+                    type={t("menu_password")}
                     placeholder="Password"
                     id="form2Example28"
                     className="form-control form-control-lg"
@@ -58,19 +60,14 @@ export const Login = () => {
                     className="btn btn-info btn-lg btn-block"
                     type="button"
                   >
-                    Login
+                    {t("menu_login")}
                   </button>
                 </div>
 
-                <p className="small mb-5 pb-lg-2">
-                  <a className="text-muted" href="#!">
-                    Forgot password?
-                  </a>
-                </p>
                 <p>
-                  Don't have an account?
+                  {t("menu_register_text")}
                   <a href="/signup" className="link-info">
-                    Register here
+                    {t("menu_register")}
                   </a>
                 </p>
               </form>

@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { HandleDisLike } from "../helper/DisLikeITem";
 import { HandleLike } from "../helper/LikeItem";
 import { HandleComment } from "../helper/PostComment";
@@ -14,6 +15,7 @@ export const CollectionItems = ({
   const role = localStorage.getItem("role");
   const email = localStorage.getItem("email");
   const token = localStorage.getItem("token");
+  const { t } = useTranslation();
 
   const comment = useRef();
 
@@ -40,22 +42,22 @@ export const CollectionItems = ({
                 </div>
                 <div className="col-md-5 w-100 ">
                   <div className="card-body p-4 ">
-                    <h6>Information</h6>
+                    <h6> {t("item_information")}</h6>
                     <hr className="mt-0 mb-4" />
                     <div className="col  pt-2">
                       <div className="col-6 mb-5">
-                        <h6>Created By</h6>
+                        <h6>{t("item_creator")}</h6>
                         <a href={`/collection/${item.createdBy}`}>
                           {item.createdBy}
                         </a>
                       </div>
                       <div className="col-6 mb-5">
-                        <h6>title</h6>
+                        <h6>{t("item_title")}</h6>
                         <p className="text-muted">{item.title}</p>
                       </div>
 
                       <div className="col-6 mb-5">
-                        <h6>Tags</h6>
+                        <h6>{t("item_tags")}</h6>
                         <div>
                           {item.tags.map((tag, index) => {
                             return (
@@ -79,7 +81,7 @@ export const CollectionItems = ({
                       </div>
 
                       <div className="w-100 mb-5">
-                        <h6>Description</h6>
+                        <h6>{t("item_description")}</h6>
                         <p className="text-muted">{item.description}</p>
                       </div>
                       {token ? (
@@ -91,29 +93,32 @@ export const CollectionItems = ({
                                   HandleDisLike(item, token, setItems)
                                 }
                                 type="button"
-                                class="btn btn-outline-primary"
+                                className="btn btn-outline-primary"
                               >
-                                Dislike
+                                {t("item_dislike")}
                               </button>
                             ) : (
                               <button
                                 type="button"
-                                class="btn btn-outline-primary"
+                                className="btn btn-outline-primary"
                                 onClick={() =>
                                   HandleLike(item, token, setItems)
                                 }
                               >
-                                Like
+                                {t("item_like")}
                               </button>
                             )}
                             {item.likes.length === 0 ? (
-                              <h4>No likes yet</h4>
+                              <h4> {t("item_no_likes")}</h4>
                             ) : item.likes.length === 1 ? (
-                              <h4>liked by {item.likes[0]}</h4>
+                              <h4>
+                                {t("item_liked_by")} {item.likes[0]}
+                              </h4>
                             ) : (
                               <h4>
-                                liked by {item.likes[0]} and{" "}
-                                {item.likes.length - 1} others
+                                {t("item_liked_by")} {item.likes[0]}{" "}
+                                {t("item_and")} {item.likes.length - 1}{" "}
+                                {t("item_others")}
                               </h4>
                             )}
                           </div>
@@ -140,14 +145,14 @@ export const CollectionItems = ({
                               type="button"
                               className="btn btn-primary "
                             >
-                              comment
+                              {t("item_comment")}
                             </button>
                           </div>
 
                           <div className="w-100 mb-5">
-                            <h5>Comments</h5>
+                            <h5> {t("item_comments")}</h5>
                             {item.comments.length === 0 ? (
-                              <h3>No Comments Yet</h3>
+                              <h3> {t("item_no_comments")}</h3>
                             ) : (
                               item.comments.map((comment, index) => {
                                 return (
@@ -176,7 +181,7 @@ export const CollectionItems = ({
                       }}
                       className="btn btn-primary"
                     >
-                      Create Item
+                      {t("item_create")}
                     </button>
                     <button
                       type="button"
@@ -185,7 +190,7 @@ export const CollectionItems = ({
                       }}
                       className="btn btn-primary"
                     >
-                      Delete Item
+                      {t("item_delete")}
                     </button>
                     <button
                       onClick={() =>
@@ -193,7 +198,7 @@ export const CollectionItems = ({
                       }
                       className="btn btn-primary"
                     >
-                      Modify Item
+                      {t("item_edit")}
                     </button>
                   </div>
                 ) : null}
