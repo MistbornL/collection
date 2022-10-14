@@ -16,7 +16,7 @@ export const Menu = () => {
     if (language === "geo") {
       i18n.changeLanguage("geo");
     } else {
-      i18n.changeLanguage("eng");
+      i18n.changeLanguage("en");
     }
   }, [language]);
   return (
@@ -35,7 +35,7 @@ export const Menu = () => {
       </button>
 
       <a className="navbar-brand " href="/">
-        {t("menu_collections")}
+        {t("menu_collector")}
       </a>
       <button
         className="navbar-toggler"
@@ -98,7 +98,7 @@ export const Menu = () => {
               >
                 En
               </a>
-            ) : token && language !== "geo" ? (
+            ) : token && language === "en" ? (
               <a
                 style={{ cursor: "pointer" }}
                 onClick={() => {
