@@ -1,21 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { useParams } from "react-router-dom";
 import { CollectionCard } from "../components/Collection";
 import { Menu } from "../components/Menu";
+import { GetAllCollection } from "../helper/GetAllCollection";
 
-import { FetchCollection } from "../helper/FetchCollection";
-
-export const Collection = () => {
+export const AllCollections = () => {
   const [collections, setCollections] = useState([]);
-
-  const { email } = useParams();
   const email2 = localStorage.getItem("email");
   const role = localStorage.getItem("role");
   const token = localStorage.getItem("token");
-
-  useState(() => {
-    FetchCollection(email, setCollections);
+  useEffect(() => {
+    GetAllCollection(setCollections);
   }, []);
   return (
     <div className="App">
@@ -25,23 +20,23 @@ export const Collection = () => {
       <main>
         <div
           style={{ marginTop: "100px" }}
-          className="d-flex justify-content-center "
+          className="d-flex align-items-center gap-3  justify-content-center flex-column"
         >
-          <div className="card">
-            {collections.map((collection, index) => {
-              return (
+          {collections.map((collection, index) => {
+            return (
+              <div className="card  ">
                 <CollectionCard
+                  token={token}
                   collection={collection}
                   collections={collections}
-                  email={email}
+                  index={index}
+                  email={collection.createdBy}
                   email2={email2}
                   role={role}
-                  index={index}
-                  token={token}
                 />
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
       </main>
     </div>

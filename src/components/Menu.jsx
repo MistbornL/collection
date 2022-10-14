@@ -22,8 +22,18 @@ export const Menu = () => {
   return (
     <nav
       style={{ padding: "20xp" }}
-      className="navbar navbar-expand-lg navbar-dark bg-dark"
+      className="navbar navbar-expand-md navbar-dark bg-dark"
+      role="navigation"
     >
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarCollapse"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+
       <a className="navbar-brand " href="/">
         {t("menu_collections")}
       </a>
@@ -31,8 +41,8 @@ export const Menu = () => {
         className="navbar-toggler"
         type="button"
         data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
+        data-target="#navbarCollapse"
+        aria-controls="#navbarCollapse"
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
@@ -41,7 +51,7 @@ export const Menu = () => {
 
       <div
         className="collapse navbar-collapse justify-content-between"
-        id="navbarSupportedContent"
+        id="#navbarCollapse"
       >
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">

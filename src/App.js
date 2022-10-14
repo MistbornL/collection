@@ -14,12 +14,14 @@ import { EditCollection } from "./pages/EditColleciton";
 import { SearchResult } from "./pages/SearchResult";
 import { AdminPage } from "./pages/AdminPage";
 import { Suspense } from "react";
+import { AllCollections } from "./pages/AllCollections";
 
 function App() {
   return (
     <Suspense fallback="loading">
       <Routes>
         <Route path="/" element={<AllItems />} />
+        <Route path="/collections" element={<AllCollections />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/items" element={<AllItems />} />
