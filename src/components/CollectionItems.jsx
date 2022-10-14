@@ -4,18 +4,12 @@ import { HandleDisLike } from "../helper/DisLikeITem";
 import { HandleLike } from "../helper/LikeItem";
 import { HandleComment } from "../helper/PostComment";
 
-export const CollectionItems = ({
-  item,
-  id,
-  deleteItem,
-  index,
-  setItems,
-  itemId,
-}) => {
+export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
   const role = localStorage.getItem("role");
   const email = localStorage.getItem("email");
   const token = localStorage.getItem("token");
   const { t } = useTranslation();
+  console.log(item);
 
   const comment = useRef();
 
@@ -87,7 +81,7 @@ export const CollectionItems = ({
                       {token ? (
                         <>
                           <div className="w-100 mb-5">
-                            {item.liked ? (
+                            {item.likes.includes(email) ? (
                               <button
                                 onClick={() =>
                                   HandleDisLike(item, token, setItems)
