@@ -43,8 +43,8 @@ export const Login = () => {
                 <div className="form mb-4">
                   <input
                     {...register("email", { required: true })}
-                    type={t("menu_email")}
-                    placeholder="Email"
+                    type="email"
+                    placeholder={t("menu_email")}
                     id="form2Example18"
                     className="form-control form-control-lg"
                   />
