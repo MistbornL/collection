@@ -26,7 +26,7 @@ export const Menu = () => {
   return (
     <nav
       style={{ padding: "10px" }}
-      className="navbar  navbar-expand-md navbar-dark bg-dark"
+      className="navbar navbar-collapse navbar-expand-md navbar-dark "
       role="navigation"
     >
       <button
@@ -38,7 +38,7 @@ export const Menu = () => {
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      <Link className="navbar-brand " to={"/"}>
+      <Link style={{ marginTop: "-10px" }} className="navbar-brand " to={"/"}>
         {t("menu_collector")}
       </Link>
       <button
