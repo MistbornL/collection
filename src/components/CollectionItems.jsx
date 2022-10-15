@@ -13,7 +13,6 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [pop, setPop] = React.useState(false);
-
   const comment = useRef();
 
   return (
@@ -144,14 +143,15 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
                               className="form-group w-75 "
                             />
                             <button
-                              onClick={() =>
+                              onClick={() => {
                                 HandleComment(
                                   item,
                                   comment.current.value,
                                   setItems,
                                   token
-                                )
-                              }
+                                );
+                                comment.current.value = "";
+                              }}
                               type="button"
                               className="btn btn-primary "
                             >

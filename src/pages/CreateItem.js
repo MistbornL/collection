@@ -41,6 +41,9 @@ export const CreateItem = () => {
               />
             </div>
             <div className="form-group">
+              <small className="d-flex  form-text text-muted">
+                *optional img field
+              </small>
               <input
                 ref={image}
                 type="text"

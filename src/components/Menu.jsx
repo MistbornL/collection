@@ -142,7 +142,7 @@ export const Menu = () => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            navigate(`/collections/search/${search.current.value}`);
+            navigate(`/search/${search.current.value}`);
           }}
           className="form-inline my-2 my-lg-0 d-flex justify-content-end gap-3"
         >
