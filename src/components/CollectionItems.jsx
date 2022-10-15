@@ -3,13 +3,14 @@ import { useTranslation } from "react-i18next";
 import { HandleDisLike } from "../helper/DisLikeITem";
 import { HandleLike } from "../helper/LikeItem";
 import { HandleComment } from "../helper/PostComment";
+import { useNavigate } from "react-router-dom";
 
 export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
   const role = localStorage.getItem("role");
   const email = localStorage.getItem("email");
   const token = localStorage.getItem("token");
   const { t } = useTranslation();
-  console.log(item);
+  const navigate = useNavigate();
 
   const comment = useRef();
 
@@ -62,7 +63,7 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
                                   width: "fit-content",
                                 }}
                                 onClick={() => {
-                                  window.location.href = `/search/${tag}`;
+                                  navigate(`/search/${tag}`);
                                 }}
                                 key={index}
                                 className="badge d-flex mb-3 rounded-pill bg-primary "
@@ -171,7 +172,9 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
                   <div className="d-flex justify-content-center gap-5 mb-5">
                     <button
                       onClick={() => {
-                        window.location.href = `/collection/item/create/${id}/${item.createdBy}`;
+                        navigate(
+                          `/collection/item/create/${id}/${item.createdBy}`
+                        );
                       }}
                       className="btn btn-primary"
                     >
@@ -188,7 +191,7 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
                     </button>
                     <button
                       onClick={() =>
-                        (window.location.href = `/collection/item/edit/${item._id}`)
+                        navigate(`/collection/item/edit/${item._id}`)
                       }
                       className="btn btn-primary"
                     >

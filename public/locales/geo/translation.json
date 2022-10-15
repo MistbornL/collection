@@ -47,5 +47,8 @@
   "user_change_role": "შეცვალე როლი",
   "user_date_registered": " დარეგისტრირდა",
   "user_last_login": " ბოლო შესვლა",
-  "user_status": " სტატუსი"
+  "user_status": " სტატუსი",
+
+  "search_item": "საძიებო სიტყვა არ მოიძებნა, დაუბრუნდი მთავარ",
+  "search_page": "გვერდს"
 }

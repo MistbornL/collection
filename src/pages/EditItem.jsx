@@ -5,6 +5,7 @@ import { Menu } from "../components/Menu";
 import { FetchTags } from "../helper/FetchTags";
 import { GetDataForItem } from "../helper/GetDataForITem";
 import { ModifyItem } from "../helper/ModifyItem";
+import { useNavigate } from "react-router-dom";
 
 export const EditItem = () => {
   const { id } = useParams();
@@ -14,6 +15,7 @@ export const EditItem = () => {
   const token = localStorage.getItem("token");
   const [tags, setTags] = useState([]);
   const [multiSelections, setMultiSelections] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     FetchTags(setTags);
@@ -77,7 +79,8 @@ export const EditItem = () => {
                   title,
                   description,
                   image,
-                  multiSelections
+                  multiSelections,
+                  navigate
                 );
               }}
             >

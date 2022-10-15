@@ -10,12 +10,14 @@ import { handleBlock } from "../helper/BlockUser";
 import { HandleUnblock } from "../helper/UnblockUser";
 import { HandleChangeRole } from "../helper/ChangeRole";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 export const AdminPage = () => {
   const [users, setUsers] = React.useState([]);
   const token = localStorage.getItem("token");
   const email = localStorage.getItem("email");
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     FetchUsers(token, setUsers);
@@ -56,7 +58,7 @@ export const AdminPage = () => {
       >
         <div className="d-flex justify-content-between align-items-center">
           <button
-            onClick={() => handleBlock(users, token, email, setUsers)}
+            onClick={() => handleBlock(users, token, email, setUsers, navigate)}
             type="button"
             className="btn btn-danger btn-lg"
           >
@@ -69,13 +71,17 @@ export const AdminPage = () => {
             alt="unblock"
           />
           <img
-            onClick={() => HandleDelete(users, email, token, setUsers)}
+            onClick={() =>
+              HandleDelete(users, email, token, setUsers, navigate)
+            }
             style={{ cursor: "pointer", width: "60px", height: "60px" }}
             src={trash}
             alt="delete"
           />
           <button
-            onClick={() => HandleChangeRole(users, token, setUsers, email)}
+            onClick={() =>
+              HandleChangeRole(users, token, setUsers, email, navigate)
+            }
             type="button"
             className="btn btn-primary btn-lg"
           >

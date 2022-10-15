@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const HandleDelete = (users, email, token, setUsers) => {
+export const HandleDelete = (users, email, token, setUsers, navigate) => {
   const selectedUsers = users.filter((user) => user.isChecked);
 
   selectedUsers.forEach((user) => {
@@ -23,7 +23,7 @@ export const HandleDelete = (users, email, token, setUsers) => {
 
     if (user.email === email) {
       localStorage.removeItem("token");
-      window.location.href = "/";
+      navigate("/");
     }
   });
   const updatedUsers = users.filter((user) => !user.isChecked);

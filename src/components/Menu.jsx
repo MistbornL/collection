@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next";
 import { HandleLogOut } from "../helper/UserLogOut";
 import i18n from "../i18n";
 import { LanguageHandler } from "../pages/UserLanguage";
-
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export const Menu = () => {
   const token = localStorage.getItem("token");
   const search = useRef();
@@ -11,6 +12,7 @@ export const Menu = () => {
   const { t } = useTranslation();
   const email = localStorage.getItem("email");
   const language = localStorage.getItem("language");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (language === "geo") {
@@ -34,9 +36,9 @@ export const Menu = () => {
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      <a className="navbar-brand " href="/">
+      <Link className="navbar-brand " to={"/"}>
         {t("menu_collector")}
-      </a>
+      </Link>
       <button
         className="navbar-toggler"
         type="button"
@@ -55,28 +57,28 @@ export const Menu = () => {
       >
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <a className="nav-link" href="/collections">
+            <Link className="nav-link" to={"/collections"}>
               {t("menu_collections")}
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href={token ? "/account" : "/login"}>
+            <Link className="nav-link" to={token ? "/account" : "/login"}>
               {t("menu_account")}
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
             {token ? (
-              <a
+              <Link
                 style={{ cursor: "pointer" }}
                 onClick={() => HandleLogOut(token)}
                 className="nav-link"
               >
                 {t("menu_logout")}
-              </a>
+              </Link>
             ) : (
-              <a className="nav-link" href="/login">
+              <Link className="nav-link" to={"/login"}>
                 {t("menu_login")}
-              </a>
+              </Link>
             )}
           </li>
 
@@ -131,7 +133,13 @@ export const Menu = () => {
             )}
           </li>
         </ul>
-        <form className="form-inline my-2 my-lg-0 d-flex">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            navigate(`/collections/search/${search.current.value}`);
+          }}
+          className="form-inline my-2 my-lg-0 d-flex"
+        >
           <input
             className="form-control mr-sm-2"
             type="search"
@@ -141,10 +149,7 @@ export const Menu = () => {
           />
           <button
             className="btn btn-outline-success  my-2 my-sm-0"
-            type="button"
-            onClick={() =>
-              (window.location.href = `/search/${search.current.value}`)
-            }
+            type="submit"
           >
             {t("menu_search")}
           </button>

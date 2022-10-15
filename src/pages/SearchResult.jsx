@@ -1,14 +1,18 @@
 import axios from "axios";
+
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { CollectionItems } from "../components/CollectionItems";
 import { Menu } from "../components/Menu";
 import { Search } from "../helper/Search";
+import { Link } from "react-router-dom";
 
 export const SearchResult = () => {
   const { tag } = useParams();
   const [items, setItems] = useState([]);
   const token = localStorage.getItem("token");
+  const { t } = useTranslation();
 
   console.log(items);
 
@@ -58,8 +62,7 @@ export const SearchResult = () => {
         ) : (
           <div className="no-items">
             <h1 className="text-center">
-              {" "}
-              No Items Go Back To Main <a href="/">Page</a>
+              {t("search_item")} <Link to={"/"}>{t("search_page")}</Link>
             </h1>
           </div>
         )}

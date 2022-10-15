@@ -5,6 +5,7 @@ import { DeleteCollection } from "../helper/DeleteCollection";
 import { DeleteUser } from "../helper/DeleteUser";
 import { FetchAccount } from "../helper/FetchAccount";
 import { FetchCollection } from "../helper/FetchCollection";
+import { useNavigate } from "react-router-dom";
 
 export const Account = () => {
   const email = localStorage.getItem("email");
@@ -12,7 +13,7 @@ export const Account = () => {
   const [collections, setCollections] = useState([]);
   const { t } = useTranslation();
   const [user, setUser] = useState({});
-  console.log(user);
+  const navigate = useNavigate();
 
   useEffect(() => {
     FetchCollection(email, setCollections);
@@ -80,7 +81,9 @@ export const Account = () => {
 
                                 <button
                                   onClick={() => {
-                                    window.location.href = `/collection/items/${collection._id}/${user.email}`;
+                                    navigate(
+                                      `/collection/items/${collection._id}/${user.email}`
+                                    );
                                   }}
                                   className="btn btn-primary  "
                                 >
@@ -88,7 +91,9 @@ export const Account = () => {
                                 </button>
                                 <button
                                   onClick={() => {
-                                    window.location.href = `/collection/update/${collection._id}`;
+                                    navigate(
+                                      `/collection/update/${collection._id}`
+                                    );
                                   }}
                                   className="btn  btn-primary  "
                                 >
@@ -99,7 +104,8 @@ export const Account = () => {
                                     DeleteCollection(
                                       collection._id,
                                       token,
-                                      collections
+                                      collections,
+                                      navigate
                                     )
                                   }
                                   className="btn btn-primary mt-2"
@@ -115,7 +121,7 @@ export const Account = () => {
                     <div className="d-flex justify-content-center gap-5 mb-5">
                       <button
                         onClick={() => {
-                          window.location.href = "/collection/create";
+                          navigate("/collection/create");
                         }}
                         className="btn btn-primary"
                       >

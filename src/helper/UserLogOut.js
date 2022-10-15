@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const HandleLogOut = async (token) => {
+export const HandleLogOut = async (token, navigate) => {
   await axios
     .get("https://collection-server-mistborn.herokuapp.com/user/logout", {
       headers: {
@@ -11,7 +11,7 @@ export const HandleLogOut = async (token) => {
     .then((res) => {
       if (res.status === 200) {
         localStorage.clear();
-        window.location.href = "/";
+        navigate("/login");
       }
     })
     .catch((err) => {

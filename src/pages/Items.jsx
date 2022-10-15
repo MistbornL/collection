@@ -3,12 +3,14 @@ import { useParams } from "react-router-dom";
 import { Menu } from "../components/Menu";
 import axios from "axios";
 import { CollectionItems } from "../components/CollectionItems";
+import { useNavigate } from "react-router-dom";
 
 export const Items = () => {
   const { id } = useParams();
   const token = localStorage.getItem("token");
   const [items, setItems] = useState([]);
   const { email } = useParams();
+  const navigate = useNavigate();
 
   const fetchItems = async () => {
     await axios
@@ -80,7 +82,7 @@ export const Items = () => {
             <div className="d-flex justify-content-center gap-5 mb-5">
               <button
                 onClick={() => {
-                  window.location.href = `/collection/item/create/${id}/${email}`;
+                  navigate(`/collection/item/create/${id}/${email}`);
                 }}
                 className="btn btn-primary"
               >

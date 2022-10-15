@@ -7,7 +7,8 @@ export const PostItem = async (
   image,
   id,
   token,
-  multiSelections
+  multiSelections,
+  navigate
 ) => {
   const data = {
     createdBy: email,
@@ -30,7 +31,7 @@ export const PostItem = async (
     )
     .then((res) => {
       if (res.status === 200) {
-        window.location.href = "/account";
+        navigate("/account");
       }
     })
     .catch((err) => {

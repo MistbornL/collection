@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const handleBlock = (users, token, email, setUsers) => {
+export const handleBlock = (users, token, email, setUsers, navigate) => {
   const selectedUsers = users.filter((user) => user.isChecked);
   console.log(token);
 
@@ -24,7 +24,7 @@ export const handleBlock = (users, token, email, setUsers) => {
       });
     if (user.email === email) {
       localStorage.clear();
-      window.location.href = "/";
+      navigate("/");
     }
   });
   const updatedUsers = users.map((user) => {

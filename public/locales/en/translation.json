@@ -46,5 +46,8 @@
   "user_change_role": "change role",
   "user_date_registered": "Date Registered",
   "user_last_login": "Last Login",
-  "user_status": "Status"
+  "user_status": "Status",
+
+  "search_item": "No Items Go Back To Main Page",
+  "search_page": "page"
 }

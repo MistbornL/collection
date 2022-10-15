@@ -1,6 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { DeleteCollection } from "../helper/DeleteCollection";
+import { useNavigate } from "react-router-dom";
 
 export const CollectionCard = ({
   collection,
@@ -12,6 +13,7 @@ export const CollectionCard = ({
   role,
 }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   return (
     <div key={index} style={{ padding: "32px" }} className="card-body  ">
       <h2 className="card-title">
@@ -29,7 +31,7 @@ export const CollectionCard = ({
       </h2>
       <button
         onClick={() => {
-          window.location.href = `/collection/items/${collection._id}/${email}`;
+          navigate(`/collection/items/${collection._id}/${email}`);
         }}
         className="btn btn-primary"
       >
@@ -39,7 +41,7 @@ export const CollectionCard = ({
         <div className="mt-3 ">
           <button
             onClick={() => {
-              window.location.href = `/collection/create/${collection.createdBy}`;
+              navigate(`/collection/create/${collection.createdBy}`);
             }}
             className="btn btn-primary"
           >
@@ -47,7 +49,7 @@ export const CollectionCard = ({
           </button>
           <button
             onClick={() => {
-              window.location.href = `/collection/update/${collection._id}`;
+              navigate(`/collection/update/${collection._id}`);
             }}
             className="btn btn-primary"
           >

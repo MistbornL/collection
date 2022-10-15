@@ -6,6 +6,7 @@ import { GetCollectionData } from "../helper/GetCollectionData";
 import { ModifyCollection } from "../helper/ModifyCollection";
 import { Typeahead } from "react-bootstrap-typeahead";
 import { FetchTags } from "../helper/FetchTags";
+import { useNavigate } from "react-router-dom";
 
 export const EditCollection = () => {
   const { id } = useParams();
@@ -14,6 +15,7 @@ export const EditCollection = () => {
   const description = useRef();
   const [tags, setTags] = useState([]);
   const [multiSelections, setMultiSelections] = useState([]);
+  const navigate = useNavigate();
 
   useState(() => {
     FetchTags(setTags);
@@ -64,7 +66,14 @@ export const EditCollection = () => {
             <button
               className="btn bg-primary btn-lg mt-3"
               onClick={() =>
-                ModifyCollection(token, id, title, description, multiSelections)
+                ModifyCollection(
+                  token,
+                  id,
+                  title,
+                  description,
+                  multiSelections,
+                  navigate
+                )
               }
             >
               Modify

@@ -1,13 +1,14 @@
-import React, { useRef } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { Menu } from "../components/Menu";
 import { HandleSignUp } from "../helper/HandleSignUp";
+import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 export const SignUp = () => {
   const { t } = useTranslation();
-  const email = useRef();
-  const password = useRef();
-  const firstName = useRef();
-  const lastName = useRef();
+  const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
 
   return (
     <div className="App">
@@ -26,7 +27,12 @@ export const SignUp = () => {
                 />
               </div>
               <div className="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                <form style={{ width: "23rem" }}>
+                <form
+                  onSubmit={handleSubmit((data) => {
+                    HandleSignUp(data, navigate);
+                  })}
+                  style={{ width: "23rem" }}
+                >
                   <h3
                     className="fw-normal mb-3 pb-3"
                     style={{ letterSpacing: "pacing1px" }}
@@ -36,7 +42,7 @@ export const SignUp = () => {
 
                   <div className="form mb-2">
                     <input
-                      ref={firstName}
+                      {...register("firstName", { required: true })}
                       type="text"
                       placeholder={t("menu_firstName")}
                       id="firstName"
@@ -46,7 +52,7 @@ export const SignUp = () => {
 
                   <div className="form mb-2">
                     <input
-                      ref={lastName}
+                      {...register("lastName", { required: true })}
                       placeholder={t("menu_lastName")}
                       type="text"
                       id="LastName"
@@ -56,7 +62,7 @@ export const SignUp = () => {
 
                   <div className="form mb-2">
                     <input
-                      ref={email}
+                      {...register("email", { required: true })}
                       type="email"
                       id="form2Example18"
                       placeholder={t("menu_email")}
@@ -67,7 +73,7 @@ export const SignUp = () => {
 
                   <div className="form mb-2">
                     <input
-                      ref={password}
+                      {...register("password", { required: true })}
                       type="password"
                       id="form2Example28"
                       className="form-control form-control-lg"
@@ -77,11 +83,8 @@ export const SignUp = () => {
 
                   <div className="pt-1 mb-2">
                     <button
-                      onClick={() => {
-                        HandleSignUp(email, password, firstName, lastName);
-                      }}
                       className="btn btn-info btn-lg btn-block"
-                      type="button"
+                      type="submit"
                     >
                       {t("menu_sign_up")}
                     </button>
@@ -89,9 +92,9 @@ export const SignUp = () => {
 
                   <p>
                     {t("menu_login_text")}
-                    <a href="/" className="link-info">
+                    <Link to={"/"} className="link-info">
                       {t("menu_login")}
-                    </a>
+                    </Link>
                   </p>
                 </form>
               </div>

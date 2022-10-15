@@ -1,6 +1,12 @@
 import axios from "axios";
 
-export const CreateCollectionApi = async (token, email, title, description) => {
+export const CreateCollectionApi = async (
+  token,
+  email,
+  title,
+  description,
+  navigate
+) => {
   const data = {
     createdBy: email,
     title: title.current.value,
@@ -19,7 +25,7 @@ export const CreateCollectionApi = async (token, email, title, description) => {
     )
     .then((res) => {
       if (res.status === 200) {
-        window.location.href = "/account";
+        navigate("/account");
       }
     })
     .catch((err) => {

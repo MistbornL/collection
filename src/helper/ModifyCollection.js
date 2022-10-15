@@ -5,7 +5,8 @@ export const ModifyCollection = async (
   id,
   title,
   description,
-  multiSelections
+  multiSelections,
+  navigate
 ) => {
   const data = {
     title: title.current.value,
@@ -25,7 +26,7 @@ export const ModifyCollection = async (
     )
     .then((res) => {
       if (res.status === 200) {
-        window.location.href = "/account";
+        navigate("/account");
         console.log(res.data);
       }
     })

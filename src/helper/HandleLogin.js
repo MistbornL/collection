@@ -1,21 +1,22 @@
 import axios from "axios";
 
-export const HandleLogin = async (email, password) => {
-  localStorage.setItem("email", email.current.value);
+export const HandleLogin = async (data, navigate) => {
+  const { email, password } = data;
 
-  if (email.current.value !== "" && password.current.value !== "") {
+  localStorage.setItem("email", email);
+
+  if (email !== "" && password !== "") {
     await axios
       .post("https://collection-server-mistborn.herokuapp.com/user/login", {
-        email: email.current.value,
-        password: password.current.value,
+        email: email,
+        password: password,
       })
       .then((res) => {
-        console.log(res);
         if (res.status === 200) {
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("role", res.data.user.role);
           localStorage.setItem("language", res.data.user.language);
-          window.location.href = "/";
+          navigate("/");
         } else {
           alert("Something went wrong");
         }

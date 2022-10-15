@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Menu } from "../components/Menu";
 import { CreateCollectionApi } from "../helper/CreateCollection";
 import { FetchAccount } from "../helper/FetchAccount";
+import { useNavigate } from "react-router-dom";
 
 export const CreateCollection = () => {
   const token = localStorage.getItem("token");
@@ -11,16 +12,17 @@ export const CreateCollection = () => {
   const [user, setUser] = useState({});
   const description = useRef();
   var { email } = useParams();
+  const navigate = useNavigate();
 
   const handleCreate = () => {
     if (user.role === "admin" && email !== email2) {
-      CreateCollectionApi(token, email, title, description);
+      CreateCollectionApi(token, email, title, description, navigate);
       console.log("b");
     } else if (email2 !== "admin@gmail.com" && email === email2) {
-      CreateCollectionApi(token, email2, title, description);
+      CreateCollectionApi(token, email2, title, description, navigate);
       console.log("c");
     } else {
-      CreateCollectionApi(token, email2, title, description);
+      CreateCollectionApi(token, email2, title, description, navigate);
     }
   };
   useEffect(() => {

@@ -3,7 +3,7 @@ import { Menu } from "../components/Menu";
 import { useParams } from "react-router-dom";
 import { PostItem } from "../helper/PostiTem";
 import { FetchTags } from "../helper/FetchTags";
-
+import { useNavigate } from "react-router-dom";
 import { Typeahead } from "react-bootstrap-typeahead";
 
 export const CreateItem = () => {
@@ -16,6 +16,7 @@ export const CreateItem = () => {
   const { email } = useParams();
   const [tags, setTags] = useState([]);
   const [multiSelections, setMultiSelections] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     FetchTags(setTags);
@@ -78,7 +79,8 @@ export const CreateItem = () => {
                   image,
                   id,
                   token,
-                  multiSelections
+                  multiSelections,
+                  navigate
                 )
               }
             >

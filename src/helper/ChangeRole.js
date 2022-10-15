@@ -1,7 +1,7 @@
 import axios from "axios";
 import { HandleLogOut } from "./UserLogOut";
 
-export const HandleChangeRole = (users, token, setUsers, email) => {
+export const HandleChangeRole = (users, token, setUsers, email, navigate) => {
   const selectedUsers = users.filter((user) => user.isChecked);
 
   selectedUsers.forEach((user) => {
@@ -39,7 +39,7 @@ export const HandleChangeRole = (users, token, setUsers, email) => {
       user.email === email
     ) {
       HandleLogOut(token);
-      window.location.href = "/";
+      navigate("/");
       return { ...user, role: "user" };
     } else {
       return user;
