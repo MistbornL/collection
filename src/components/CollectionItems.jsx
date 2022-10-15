@@ -17,11 +17,15 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
   const comment = useRef();
 
   return (
-    <section key={index} style={{ backgroundColor: "#8098d1" }}>
+    <section key={index}>
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col col-lg-6 ">
-            <div className="card mb-3" style={{ borderRadius: ".5rem" }}>
+            <div
+              id="section"
+              className="card mb-3"
+              style={{ borderRadius: ".5rem" }}
+            >
               <div className="row g-0">
                 <div
                   className="justify-content-center d-flex "

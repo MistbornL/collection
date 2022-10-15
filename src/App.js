@@ -13,10 +13,13 @@ import { SignUp } from "./pages/SignUp";
 import { EditCollection } from "./pages/EditColleciton";
 import { SearchResult } from "./pages/SearchResult";
 import { AdminPage } from "./pages/AdminPage";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { AllCollections } from "./pages/AllCollections";
 
 function App() {
+  useEffect(() => {
+    localStorage.setItem("theme", "light");
+  }, []);
   return (
     <Suspense fallback="loading">
       <Routes>

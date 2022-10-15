@@ -48,7 +48,7 @@ export const AdminPage = () => {
   };
 
   return (
-    <>
+    <div className="App">
       <header>
         <Menu />
       </header>
@@ -142,6 +142,6 @@ export const AdminPage = () => {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 };

@@ -2,9 +2,11 @@ import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { HandleLogOut } from "../helper/UserLogOut";
 import i18n from "../i18n";
-import { LanguageHandler } from "../pages/UserLanguage";
+import { LanguageHandler } from "../helper/UserLanguage";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import DarkMode from "./darkmode/ToggleDark";
+
 export const Menu = () => {
   const token = localStorage.getItem("token");
   const search = useRef();
@@ -24,7 +26,7 @@ export const Menu = () => {
   return (
     <nav
       style={{ padding: "10px" }}
-      className="navbar navbar-expand-md navbar-dark bg-dark"
+      className="navbar  navbar-expand-md navbar-dark bg-dark"
       role="navigation"
     >
       <button
@@ -66,6 +68,7 @@ export const Menu = () => {
               {t("menu_account")}
             </Link>
           </li>
+
           <li className="nav-item">
             {token ? (
               <Link
@@ -131,6 +134,9 @@ export const Menu = () => {
                 Geo
               </a>
             )}
+          </li>
+          <li className="nav-item">
+            <DarkMode />
           </li>
         </ul>
         <form
