@@ -9,6 +9,7 @@ export const AllCollections = () => {
   const email2 = localStorage.getItem("email");
   const role = localStorage.getItem("role");
   const token = localStorage.getItem("token");
+
   useEffect(() => {
     GetAllCollection(setCollections);
   }, []);
