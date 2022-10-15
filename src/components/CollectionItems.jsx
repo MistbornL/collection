@@ -90,14 +90,14 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
                                   HandleDisLike(item, token, setItems)
                                 }
                                 type="button"
-                                className="btn btn-outline-primary"
+                                className="btn btn-outline-primary mb-3"
                               >
                                 {t("item_dislike")}
                               </button>
                             ) : (
                               <button
                                 type="button"
-                                className="btn btn-outline-primary"
+                                className="btn btn-outline-primary mb-3"
                                 onClick={() =>
                                   HandleLike(item, token, setItems)
                                 }
@@ -117,7 +117,10 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
                                 {t("item_and")} {item.likes.length - 1}{" "}
                                 <span
                                   onClick={() => setPop(true)}
-                                  style={{ cursor: "pointer" }}
+                                  style={{
+                                    cursor: "pointer",
+                                    color: "cornflowerblue",
+                                  }}
                                 >
                                   {t("item_others")}
                                 </span>

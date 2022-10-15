@@ -38,7 +38,7 @@ export const CollectionCard = ({
         {t("account_view_items")}
       </button>
       {role === "admin" || email2 === collection.createdBy ? (
-        <div className="mt-3 ">
+        <div className="mt-3 d-flex justify-content-start gap-3 ">
           <button
             onClick={() => {
               navigate(`/collection/create/${collection.createdBy}`);

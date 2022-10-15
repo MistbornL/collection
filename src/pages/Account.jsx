@@ -78,40 +78,41 @@ export const Account = () => {
                                   {t("item_description")}:{" "}
                                   {collection.description}
                                 </h6>
-
-                                <button
-                                  onClick={() => {
-                                    navigate(
-                                      `/collection/items/${collection._id}/${user.email}`
-                                    );
-                                  }}
-                                  className="btn btn-primary  "
-                                >
-                                  {t("account_view_items")}
-                                </button>
-                                <button
-                                  onClick={() => {
-                                    navigate(
-                                      `/collection/update/${collection._id}`
-                                    );
-                                  }}
-                                  className="btn  btn-primary  "
-                                >
-                                  {t("account_edit_collection")}
-                                </button>
-                                <button
-                                  onClick={() =>
-                                    DeleteCollection(
-                                      collection._id,
-                                      token,
-                                      collections,
-                                      navigate
-                                    )
-                                  }
-                                  className="btn btn-primary mt-2"
-                                >
-                                  {t("account_delete_collection")}
-                                </button>
+                                <div className="d-flex align-items-center text-align-center justify-content-center gap-3">
+                                  <button
+                                    onClick={() => {
+                                      navigate(
+                                        `/collection/items/${collection._id}/${user.email}`
+                                      );
+                                    }}
+                                    className="btn btn-primary  "
+                                  >
+                                    {t("account_view_items")}
+                                  </button>
+                                  <button
+                                    onClick={() => {
+                                      navigate(
+                                        `/collection/update/${collection._id}`
+                                      );
+                                    }}
+                                    className="btn  btn-primary  "
+                                  >
+                                    {t("account_edit_collection")}
+                                  </button>
+                                  <button
+                                    onClick={() =>
+                                      DeleteCollection(
+                                        collection._id,
+                                        token,
+                                        collections,
+                                        navigate
+                                      )
+                                    }
+                                    className="btn btn-primary "
+                                  >
+                                    {t("account_delete_collection")}
+                                  </button>
+                                </div>
                               </div>
                             );
                           })}
