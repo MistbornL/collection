@@ -23,7 +23,7 @@ export const Menu = () => {
   }, [language]);
   return (
     <nav
-      style={{ padding: "20xp" }}
+      style={{ padding: "10px" }}
       className="navbar navbar-expand-md navbar-dark bg-dark"
       role="navigation"
     >
@@ -138,7 +138,7 @@ export const Menu = () => {
             e.preventDefault();
             navigate(`/collections/search/${search.current.value}`);
           }}
-          className="form-inline my-2 my-lg-0 d-flex"
+          className="form-inline my-2 my-lg-0 d-flex justify-content-end gap-3"
         >
           <input
             className="form-control mr-sm-2"
