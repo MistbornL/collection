@@ -4,6 +4,7 @@ import { HandleDisLike } from "../helper/DisLikeITem";
 import { HandleLike } from "../helper/LikeItem";
 import { HandleComment } from "../helper/PostComment";
 import { useNavigate } from "react-router-dom";
+import { Popup } from "./popup/PopUp";
 
 export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
   const role = localStorage.getItem("role");
@@ -11,6 +12,7 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
   const token = localStorage.getItem("token");
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [pop, setPop] = React.useState(false);
 
   const comment = useRef();
 
@@ -113,7 +115,13 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
                               <h6>
                                 {t("item_liked_by")} {item.likes[0]}{" "}
                                 {t("item_and")} {item.likes.length - 1}{" "}
-                                {t("item_others")}
+                                <span
+                                  onClick={() => setPop(true)}
+                                  style={{ cursor: "pointer" }}
+                                >
+                                  {t("item_others")}
+                                </span>
+                                {pop && <Popup setPop={setPop} item={item} />}
                               </h6>
                             )}
                           </div>

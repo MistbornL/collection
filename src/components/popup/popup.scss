@@ -1,0 +1,38 @@
+.popup-wrapper {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(6px);
+}
+
+.popup {
+  position: relative;
+  transform: translateY(-50%);
+  width: 751px;
+
+  left: 620px;
+  top: 407px;
+
+  background: #111d25;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+  .cross {
+    background: #111d25;
+    color: white;
+    border-style: none;
+    margin: 25px;
+    cursor: pointer;
+    float: left;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}

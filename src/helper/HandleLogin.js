@@ -25,8 +25,10 @@ export const HandleLogin = async (data, navigate) => {
         console.log(err.response.data);
         if (err.response.status === 404) {
           alert("user does not exist");
-        } else if (err.response.status === 403) {
+        } else if (err.response.status === 401) {
           alert("password is incorrect");
+        } else if (err.response.status === 403) {
+          alert("user is not allowed to login");
         } else {
           alert("Something went wrong");
         }

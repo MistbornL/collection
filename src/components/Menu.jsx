@@ -70,7 +70,7 @@ export const Menu = () => {
             {token ? (
               <Link
                 style={{ cursor: "pointer" }}
-                onClick={() => HandleLogOut(token)}
+                onClick={() => HandleLogOut(token, navigate)}
                 className="nav-link"
               >
                 {t("menu_logout")}
