@@ -2,7 +2,6 @@ import axios from "axios";
 
 export const handleBlock = (users, token, email, setUsers, navigate) => {
   const selectedUsers = users.filter((user) => user.isChecked);
-  console.log(token);
 
   selectedUsers.forEach((user) => {
     axios
