@@ -26,36 +26,25 @@ export const Menu = () => {
   return (
     <nav
       style={{ padding: "10px" }}
-      className="navbar navbar-collapse navbar-expand-md navbar-dark "
+      className="navbar navbar-collapse navbar-expand-lg navbar-dark "
       role="navigation"
     >
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarCollapse"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
-
       <Link style={{ marginTop: "-10px" }} className="navbar-brand " to={"/"}>
         {t("menu_collector")}
       </Link>
+
       <button
         className="navbar-toggler"
         type="button"
-        data-toggle="collapse"
-        data-target="#navbarCollapse"
-        aria-controls="#navbarCollapse"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
+        data-bs-toggle="collapse"
+        data-bs-target="#navmenu"
       >
-        <span className="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon">ah</span>
       </button>
 
       <div
         className="collapse navbar-collapse justify-content-between"
-        id="#navbarCollapse"
+        id="navmenu"
       >
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
