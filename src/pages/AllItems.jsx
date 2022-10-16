@@ -1,14 +1,25 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CollectionItems } from "../components/CollectionItems";
 import { Menu } from "../components/Menu";
+import { FetchAccount } from "../helper/FetchAccount";
 import { FetCchAllItems } from "../helper/FetchAllItems";
 
 export const AllItems = () => {
   const token = localStorage.getItem("token");
   const [collections, setCollections] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log(collections);
+  const email = localStorage.getItem("email");
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    if (token) {
+      FetchAccount(email, token, setUser);
+      localStorage.setItem("theme", user.theme);
+    } else {
+      localStorage.setItem("theme", "light");
+    }
+  }, [email, user.theme, token]);
 
   const deleteItem = async (id) => {
     console.log(id);
