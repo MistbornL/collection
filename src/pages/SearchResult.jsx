@@ -13,11 +13,15 @@ export const SearchResult = () => {
   const [items, setItems] = useState([]);
   const token = localStorage.getItem("token");
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(true);
 
   console.log(items);
 
   useEffect(() => {
     Search(tag, setItems);
+    if (items.length > 0) {
+      setLoading(false);
+    }
   }, [tag]);
 
   const deleteItem = async (id) => {
@@ -48,7 +52,7 @@ export const SearchResult = () => {
       </header>
 
       <main>
-        {items.length > 0 ? (
+        {items.length ? (
           items.map((item, index) => {
             return (
               <CollectionItems
@@ -59,6 +63,12 @@ export const SearchResult = () => {
               />
             );
           })
+        ) : loading ? (
+          <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
         ) : (
           <div className="no-items">
             <h1 className="text-center">

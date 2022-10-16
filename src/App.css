@@ -84,7 +84,6 @@ nav {
 
 nav a {
   text-decoration: none;
-  text-transform: uppercase;
   color: var(--background-color);
 }
 
