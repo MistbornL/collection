@@ -13,9 +13,13 @@ export const Collection = () => {
   const email2 = localStorage.getItem("email");
   const role = localStorage.getItem("role");
   const token = localStorage.getItem("token");
+  const [loading, setLoading] = useState(true);
 
   useState(() => {
     FetchCollection(email, setCollections);
+    if (collections.length > 0) {
+      setLoading(false);
+    }
   }, []);
   return (
     <div className="App">
@@ -27,21 +31,27 @@ export const Collection = () => {
           style={{ marginTop: "100px" }}
           className="d-flex justify-content-center "
         >
-          <div className="card">
-            {collections.map((collection, index) => {
-              return (
-                <CollectionCard
-                  collection={collection}
-                  collections={collections}
-                  email={email}
-                  email2={email2}
-                  role={role}
-                  index={index}
-                  token={token}
-                />
-              );
-            })}
-          </div>
+          {loading ? (
+            <div className="d-flex justify-content-center">
+              <div className="spinner-border text-primary" role="status" />
+            </div>
+          ) : (
+            <div className="card">
+              {collections.map((collection, index) => {
+                return (
+                  <CollectionCard
+                    collection={collection}
+                    collections={collections}
+                    email={email}
+                    email2={email2}
+                    role={role}
+                    index={index}
+                    token={token}
+                  />
+                );
+              })}
+            </div>
+          )}
         </div>
       </main>
     </div>

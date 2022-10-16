@@ -16,8 +16,6 @@ export const AllItems = () => {
     if (token) {
       FetchAccount(email, token, setUser);
       localStorage.setItem("theme", user.theme);
-    } else {
-      localStorage.setItem("theme", "light");
     }
   }, [email, user.theme, token]);
 

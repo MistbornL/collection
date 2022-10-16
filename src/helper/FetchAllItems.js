@@ -8,7 +8,7 @@ export const FetCchAllItems = async (setCollections) => {
       },
     })
     .then((res) => {
-      setCollections(res.data);
+      setCollections(res.data.reverse());
     })
     .catch((err) => {
       console.log(err);

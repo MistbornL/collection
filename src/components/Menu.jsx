@@ -6,6 +6,7 @@ import { LanguageHandler } from "../helper/UserLanguage";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import DarkMode from "./darkmode/ToggleDark";
+import menu from "../assets/menu.png";
 
 export const Menu = () => {
   const token = localStorage.getItem("token");
@@ -39,7 +40,7 @@ export const Menu = () => {
         data-bs-toggle="collapse"
         data-bs-target="#navmenu"
       >
-        <span className="navbar-toggler-icon">ah</span>
+        <img style={{ width: "40px", height: "40px" }} src={menu} alt="menu" />
       </button>
 
       <div
