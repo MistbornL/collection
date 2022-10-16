@@ -5,9 +5,10 @@
   --light: cornflowerblue;
   --sectionDark: rgb(17 34 42);
   --sectionLight: rgb(255, 255, 255);
-  --text: #4240cf;
+  --text: #9999a3;
   --textLight: #fff;
   --textDark: rgb(212, 212, 212);
+  --loginDark: #195c88;
 }
 
 body {
@@ -17,6 +18,9 @@ body {
   font-weight: var(--font-weight);
   border-color: var(--border-color);
   transition: background 0.3s ease-in-out, color 0.6s ease-in-out;
+}
+body h3 {
+  color: var(--login-text-color);
 }
 
 body #section {
@@ -29,6 +33,10 @@ body #section p {
 
 body.light #section {
   --background-color-section: var(--sectionLight);
+}
+
+body.dark h3 {
+  --login-text-color: var(--loginDark);
 }
 
 body.light #section p {
