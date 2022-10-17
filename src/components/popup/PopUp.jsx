@@ -1,5 +1,6 @@
 import React from "react";
 import "./popup.scss";
+import { Link } from "react-router-dom";
 
 export const Popup = ({ setPop, item }) => {
   return (
@@ -17,7 +18,7 @@ export const Popup = ({ setPop, item }) => {
         {item.likes.map((like, index) => {
           return (
             <div className="likes" key={index}>
-              <p>{like}</p>
+              <Link to={`/collection/${like}`}>{like}</Link>
             </div>
           );
         })}

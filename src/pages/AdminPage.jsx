@@ -88,59 +88,61 @@ export const AdminPage = () => {
             {t("user_change_role")}
           </button>
         </div>
-        <table className="table ">
-          <thead>
-            <tr>
-              <input
-                className="form-check-input"
-                type="checkbox"
-                name="allSelect"
-                checked={
-                  users.filter((user) => user?.isChecked !== true).length < 1
-                }
-                onChange={handleChecked}
-                id="flexCheckDefault"
-              />
+        <div class="table-responsive-sm w-auto  ">
+          <table className="table table-striped table-hover">
+            <thead>
+              <tr>
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  name="allSelect"
+                  checked={
+                    users.filter((user) => user?.isChecked !== true).length < 1
+                  }
+                  onChange={handleChecked}
+                  id="flexCheckDefault"
+                />
 
-              <th scope="col">ID</th>
-              <th scope="col"> {t("menu_name")}</th>
-              <th scope="col"> {t("menu_email")}</th>
-              <th scope="col"> {t("user_date_registered")}</th>
-              <th scope="col"> {t("user_last_login")}</th>
-              <th scope="col"> {t("user_status")}</th>
-              <th scope="col"> {t("user_role")}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user, index) => {
-              return (
-                <Fragment key={index}>
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    name={user.email}
-                    checked={user?.isChecked || false}
-                    onChange={handleChecked}
-                    id="flexCheckDefault"
-                  />
+                <th scope="col">ID</th>
+                <th scope="col"> {t("menu_name")}</th>
+                <th scope="col"> {t("menu_email")}</th>
+                <th scope="col"> {t("user_date_registered")}</th>
+                <th scope="col"> {t("user_last_login")}</th>
+                <th scope="col"> {t("user_status")}</th>
+                <th scope="col"> {t("user_role")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user, index) => {
+                return (
+                  <Fragment key={index}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      name={user.email}
+                      checked={user?.isChecked || false}
+                      onChange={handleChecked}
+                      id="flexCheckDefault"
+                    />
 
-                  <tr>
-                    <th scope="row"></th>
-                    <td>{user.id}</td>
-                    <td>
-                      {user.firstName} {user.lastName}
-                    </td>
-                    <td>{user.email}</td>
-                    <td>{user.dateRegister}</td>
-                    <td>{user.dateLastAuthorization}</td>
-                    <td>{user.status}</td>
-                    <td>{user.role}</td>
-                  </tr>
-                </Fragment>
-              );
-            })}
-          </tbody>
-        </table>
+                    <tr>
+                      <th scope="row"></th>
+                      <td>{user.id}</td>
+                      <td>
+                        {user.firstName} {user.lastName}
+                      </td>
+                      <td>{user.email}</td>
+                      <td>{user.dateRegister}</td>
+                      <td>{user.dateLastAuthorization}</td>
+                      <td>{user.status}</td>
+                      <td>{user.role}</td>
+                    </tr>
+                  </Fragment>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

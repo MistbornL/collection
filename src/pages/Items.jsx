@@ -4,6 +4,7 @@ import { Menu } from "../components/Menu";
 import axios from "axios";
 import { CollectionItems } from "../components/CollectionItems";
 import { useNavigate } from "react-router-dom";
+import { FetchItems } from "../helper/FetchItemsForCollections";
 
 export const Items = () => {
   const { id } = useParams();
@@ -11,27 +12,7 @@ export const Items = () => {
   const [items, setItems] = useState([]);
   const { email } = useParams();
   const navigate = useNavigate();
-
-  const fetchItems = async () => {
-    await axios
-      .get(
-        `https://collection-server-mistborn.herokuapp.com/collection/userItems`,
-        {
-          headers: {
-            "content-type": "application/json",
-          },
-          params: {
-            CollectionId: id,
-          },
-        }
-      )
-      .then((res) => {
-        setItems(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  const [loading, setLoading] = useState(true);
 
   const deleteItem = async (id) => {
     await axios
@@ -56,7 +37,12 @@ export const Items = () => {
   };
 
   useEffect(() => {
-    fetchItems();
+    FetchItems(id, setItems);
+    if (items.length > 0) {
+      setLoading(false);
+    } else if (items.length === 0) {
+      setLoading(false);
+    }
   }, []);
   return (
     <div className="App">
@@ -65,7 +51,7 @@ export const Items = () => {
       </header>
 
       <main>
-        {items.length > 0 ? (
+        {!loading ? (
           items.map((item, index) => {
             return (
               <CollectionItems
@@ -76,9 +62,15 @@ export const Items = () => {
               />
             );
           })
+        ) : loading ? (
+          <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
         ) : (
           <div className=" no-items">
-            <h1 className="text-center">No Items </h1>
+            <h1 className="text-center">No Items Were Found</h1>
             <div className="d-flex justify-content-center gap-5 mb-5">
               <button
                 onClick={() => {

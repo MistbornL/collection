@@ -12,7 +12,7 @@ export const HandleSignUp = async (data, navigate) => {
       console.log(res);
       if (res.status === 200) {
         alert("User Created Successfully");
-        navigate("/");
+        navigate("/login");
       }
     })
     .catch((err) => {

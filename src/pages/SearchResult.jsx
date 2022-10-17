@@ -21,6 +21,8 @@ export const SearchResult = () => {
     Search(tag, setItems);
     if (items.length > 0) {
       setLoading(false);
+    } else if (items.length === 0) {
+      setLoading(false);
     }
   }, [tag]);
 

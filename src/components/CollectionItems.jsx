@@ -1,10 +1,11 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { HandleDisLike } from "../helper/DisLikeITem";
 import { HandleLike } from "../helper/LikeItem";
 import { HandleComment } from "../helper/PostComment";
 import { useNavigate } from "react-router-dom";
 import { Popup } from "./popup/PopUp";
+import { FetchUsers } from "../helper/FetchUsers";
 
 export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
   const role = localStorage.getItem("role");
@@ -14,6 +15,11 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
   const navigate = useNavigate();
   const [pop, setPop] = React.useState(false);
   const comment = useRef();
+  const [users, setUsers] = React.useState([]);
+
+  useEffect(() => {
+    FetchUsers(token, setUsers);
+  }, []);
 
   return (
     <section key={index}>
@@ -35,7 +41,7 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
                 >
                   <img
                     src={item.image}
-                    alt="Avatar"
+                    alt={item.image !== "" ? "img" : null}
                     className="img-fluid my-5"
                     style={{ width: "250px" }}
                   />
@@ -62,6 +68,7 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
                           {item.tags.map((tag, index) => {
                             return (
                               <span
+                                key={index}
                                 style={{
                                   cursor: "pointer",
                                   fontSize: "15px",
@@ -70,7 +77,6 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
                                 onClick={() => {
                                   navigate(`/search/${tag}`);
                                 }}
-                                key={index}
                                 className="badge d-flex mb-3 rounded-pill bg-primary "
                               >
                                 {tag}
@@ -184,8 +190,9 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
                   </div>
                 </div>
                 {role === "admin" || item.createdBy === email ? (
-                  <div className="d-flex justify-content-center gap-5 mb-5">
+                  <div className="d-flex justify-content-center gap-3  mb-5 mw-100">
                     <button
+                      style={{ textTransform: "none" }}
                       onClick={() => {
                         navigate(
                           `/collection/item/create/${id}/${item.createdBy}`
@@ -196,6 +203,7 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
                       {t("item_create")}
                     </button>
                     <button
+                      style={{ textTransform: "none" }}
                       type="button"
                       onClick={() => {
                         deleteItem(item._id);
@@ -205,6 +213,7 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
                       {t("item_delete")}
                     </button>
                     <button
+                      style={{ textTransform: "none" }}
                       onClick={() =>
                         navigate(`/collection/item/edit/${item._id}`)
                       }
