@@ -5,7 +5,7 @@ import { HandleLike } from "../helper/LikeItem";
 import { HandleComment } from "../helper/PostComment";
 import { useNavigate } from "react-router-dom";
 import { Popup } from "./popup/PopUp";
-import { FetchUsers } from "../helper/FetchUsers";
+import { Link } from "react-router-dom";
 
 export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
   const role = localStorage.getItem("role");
@@ -15,11 +15,6 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
   const navigate = useNavigate();
   const [pop, setPop] = React.useState(false);
   const comment = useRef();
-  const [users, setUsers] = React.useState([]);
-
-  useEffect(() => {
-    FetchUsers(token, setUsers);
-  }, []);
 
   return (
     <section key={index}>
@@ -43,7 +38,7 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
                     src={item.image}
                     alt={item.image !== "" ? "img" : null}
                     className="img-fluid my-5"
-                    style={{ width: "250px" }}
+                    style={{ width: "250px", borderRadius: ".5rem" }}
                   />
                 </div>
                 <div className="col-md-5 w-100 ">
@@ -177,7 +172,12 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
                                     className="d-flex flex-column "
                                   >
                                     <h6 style={{}}>
-                                      {comment.createdBy}: {comment.comment}
+                                      <Link
+                                        to={`collection/${comment.createdBy}`}
+                                      >
+                                        {comment.createdBy}
+                                      </Link>
+                                      : {comment.comment}
                                     </h6>
                                   </div>
                                 );

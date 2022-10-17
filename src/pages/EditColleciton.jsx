@@ -41,17 +41,7 @@ export const EditCollection = () => {
                 placeholder="Title"
               />
             </div>
-            <h4 className="card-text">Tags</h4>
-            <div className="form-group  ">
-              <Typeahead
-                id="basic-example"
-                onChange={setMultiSelections}
-                options={tags}
-                multiple
-                placeholder="Select Tag"
-                selected={multiSelections}
-              />
-            </div>
+
             <h4 className="card-text">Description</h4>
             <div className="form-group">
               <textarea
