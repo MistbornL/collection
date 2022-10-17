@@ -24,7 +24,7 @@ export const SearchResult = () => {
     } else if (items.length === 0) {
       setLoading(false);
     }
-  }, [tag]);
+  }, [tag, items.length]);
 
   const deleteItem = async (id) => {
     await axios
@@ -54,7 +54,7 @@ export const SearchResult = () => {
       </header>
 
       <main>
-        {!loading ? (
+        {items.length ? (
           items.map((item, index) => {
             return (
               <CollectionItems

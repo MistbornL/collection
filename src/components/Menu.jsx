@@ -131,8 +131,12 @@ export const Menu = () => {
         </ul>
         <form
           onSubmit={(e) => {
-            e.preventDefault();
-            navigate(`/search/${search.current.value}`);
+            if (search.current.value) {
+              e.preventDefault();
+              navigate(`/search/${search.current.value}`);
+            } else {
+              e.preventDefault();
+            }
           }}
           className="form-inline my-2 my-lg-0 d-flex justify-content-end gap-3"
         >
