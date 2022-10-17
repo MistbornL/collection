@@ -15,8 +15,6 @@ export const SearchResult = () => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
 
-  console.log(items);
-
   useEffect(() => {
     Search(tag, setItems);
     if (items.length > 0) {
@@ -24,7 +22,8 @@ export const SearchResult = () => {
     } else if (items.length === 0) {
       setLoading(false);
     }
-  }, [tag, items.length]);
+    console.log(loading);
+  }, [tag, items.length, loading]);
 
   const deleteItem = async (id) => {
     await axios

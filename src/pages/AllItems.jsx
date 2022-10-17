@@ -11,6 +11,7 @@ export const AllItems = () => {
   const [loading, setLoading] = useState(true);
   const email = localStorage.getItem("email");
   const [user, setUser] = useState({});
+  const [page, setPage] = useState(4);
 
   useEffect(() => {
     if (token) {
@@ -43,10 +44,10 @@ export const AllItems = () => {
       });
   };
 
-  useState(() => {
+  useEffect(() => {
     setLoading(false);
     FetCchAllItems(setCollections);
-  }, []);
+  }, [page]);
   return (
     <div className="App">
       <Menu />
@@ -55,7 +56,7 @@ export const AllItems = () => {
         <h1>Loading...</h1>
       ) : (
         <main>
-          {collections.map((item, index) => {
+          {collections.slice(0, page).map((item, index) => {
             return (
               <CollectionItems
                 key={index}
@@ -67,6 +68,14 @@ export const AllItems = () => {
               />
             );
           })}
+          <div className="w-75 d-flex justify-content-end">
+            <button
+              onClick={() => setPage(page + 1)}
+              className="btn btn-primary"
+            >
+              Load more
+            </button>
+          </div>
         </main>
       )}
     </div>
