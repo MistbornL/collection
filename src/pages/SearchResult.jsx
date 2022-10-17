@@ -54,7 +54,7 @@ export const SearchResult = () => {
       </header>
 
       <main>
-        {items.length ? (
+        {!loading ? (
           items.map((item, index) => {
             return (
               <CollectionItems
