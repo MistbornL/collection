@@ -80,6 +80,7 @@ export const Account = () => {
                                 </h6>
                                 <div className="d-flex align-items-center text-align-center justify-content-center gap-3">
                                   <button
+                                    style={{ textTransform: "none" }}
                                     onClick={() => {
                                       navigate(
                                         `/collection/items/${collection._id}/${user.email}`
@@ -90,6 +91,7 @@ export const Account = () => {
                                     {t("account_view_items")}
                                   </button>
                                   <button
+                                    style={{ textTransform: "none" }}
                                     onClick={() => {
                                       navigate(
                                         `/collection/update/${collection._id}`
@@ -100,6 +102,7 @@ export const Account = () => {
                                     {t("account_edit_collection")}
                                   </button>
                                   <button
+                                    style={{ textTransform: "none" }}
                                     onClick={() =>
                                       DeleteCollection(
                                         collection._id,
@@ -121,6 +124,7 @@ export const Account = () => {
                     </div>
                     <div className="d-flex justify-content-center gap-5 mb-5">
                       <button
+                        style={{ textTransform: "none" }}
                         onClick={() => {
                           navigate(`/collection/create/${email}`);
                         }}
@@ -129,6 +133,7 @@ export const Account = () => {
                         {t("account_create_collection")}
                       </button>
                       <button
+                        style={{ textTransform: "none" }}
                         onClick={() => DeleteUser(email, token)}
                         className="btn btn-primary"
                       >
