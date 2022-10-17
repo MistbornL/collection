@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { CollectionItems } from "../components/CollectionItems";
 import { Menu } from "../components/Menu";
 import { FetchAccount } from "../helper/FetchAccount";
@@ -11,7 +12,8 @@ export const AllItems = () => {
   const [loading, setLoading] = useState(true);
   const email = localStorage.getItem("email");
   const [user, setUser] = useState({});
-  const [page, setPage] = useState(4);
+  const [page, setPage] = useState(3);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (token) {
@@ -47,7 +49,7 @@ export const AllItems = () => {
   useEffect(() => {
     setLoading(false);
     FetCchAllItems(setCollections);
-  }, [page]);
+  }, []);
   return (
     <div className="App">
       <Menu />
@@ -73,7 +75,7 @@ export const AllItems = () => {
               onClick={() => setPage(page + 1)}
               className="btn btn-primary"
             >
-              Load more
+              {t("item_load_more")}
             </button>
           </div>
         </main>
