@@ -34,7 +34,7 @@ export const Collection = () => {
               <div className="spinner-border text-primary" role="status" />
             </div>
           ) : (
-            <div className="card">
+            <div className="card ">
               {collections.map((collection, index) => {
                 return (
                   <CollectionCard

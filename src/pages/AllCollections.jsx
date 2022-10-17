@@ -21,11 +21,11 @@ export const AllCollections = () => {
       <main>
         <div
           style={{ marginTop: "100px" }}
-          className="d-flex align-items-center gap-3  justify-content-center flex-column"
+          className="d-flex align-items-center gap-3  justify-content-center flex-column p-2"
         >
           {collections.map((collection, index) => {
             return (
-              <div className="card w-50 ">
+              <div style={{}} className="card mw-100 ">
                 <CollectionCard
                   token={token}
                   collection={collection}
