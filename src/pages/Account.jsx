@@ -122,7 +122,7 @@ export const Account = () => {
                     <div className="d-flex justify-content-center gap-5 mb-5">
                       <button
                         onClick={() => {
-                          navigate("/collection/create");
+                          navigate(`/collection/create/${email}`);
                         }}
                         className="btn btn-primary"
                       >

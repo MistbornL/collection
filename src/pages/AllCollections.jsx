@@ -25,7 +25,7 @@ export const AllCollections = () => {
         >
           {collections.map((collection, index) => {
             return (
-              <div style={{}} className="card mw-100 ">
+              <div style={{ width: "500px" }} className="card mw-100 ">
                 <CollectionCard
                   token={token}
                   collection={collection}

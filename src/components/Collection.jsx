@@ -12,10 +12,11 @@ export const CollectionCard = ({
   email2,
   role,
 }) => {
+  console.log(collection);
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
-    <div key={index} style={{ padding: "32px" }} className="card-body  ">
+    <div key={index} style={{}} className="card-body mw-100">
       <h2 className="card-title">
         {t("item_creator")}: {collection.createdBy}
       </h2>
@@ -26,9 +27,7 @@ export const CollectionCard = ({
       <p className="card-text">
         {t("item_description")}: {collection.description}
       </p>
-      <h2 className="card-title">
-        {t("item_tags")}: {collection.tags}
-      </h2>
+
       <button
         onClick={() => {
           navigate(`/collection/items/${collection._id}/${email}`);
