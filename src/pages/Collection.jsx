@@ -17,9 +17,7 @@ export const Collection = () => {
 
   useState(() => {
     FetchCollection(email, setCollections);
-    if (collections.length > 0) {
-      setLoading(false);
-    }
+    setLoading(false);
   }, []);
   return (
     <div className="App">
