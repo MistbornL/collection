@@ -19,12 +19,10 @@ export const Account = () => {
   useEffect(() => {
     FetchCollection(email, setCollections);
     FetchAccount(email, token, setUser);
-    if (collections.length > 0) {
-      setLoading(false);
-    } else if (collections.length === 0) {
+    if (collections.length >= 0) {
       setLoading(false);
     }
-  }, [email, token]);
+  }, [email, token, collections.length]);
   return (
     <div className="App">
       <header>
@@ -32,8 +30,10 @@ export const Account = () => {
       </header>
       <main>
         {loading ? (
-          <div className="spinner-border text-primary" role="status">
-            <span className="sr-only">Loading...</span>
+          <div className="justify-content-center d-flex">
+            <div className="spinner-border text-primary" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
           </div>
         ) : (
           <section className="vh-100">

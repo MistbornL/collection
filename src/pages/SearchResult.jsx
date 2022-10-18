@@ -18,7 +18,9 @@ export const SearchResult = () => {
   useEffect(() => {
     Search(tag, setItems);
     if (items.length >= 0) {
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, [500]);
     }
   }, [tag, items.length, loading]);
 
@@ -63,7 +65,7 @@ export const SearchResult = () => {
           })
         ) : loading ? (
           <div class="d-flex justify-content-center">
-            <div class="spinner-border" role="status">
+            <div class="spinner-border text-primary" role="status">
               <span class="sr-only">Loading...</span>
             </div>
           </div>

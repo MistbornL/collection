@@ -12,7 +12,6 @@ export const CollectionCard = ({
   email2,
   role,
 }) => {
-  console.log(collection);
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
