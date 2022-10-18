@@ -42,7 +42,10 @@ export const SignUp = () => {
 
                   <div className="form mb-2">
                     <input
-                      {...register("firstName", { required: true })}
+                      {...register("firstName", {
+                        required: true,
+                        maxLength: 20,
+                      })}
                       type="text"
                       placeholder={t("menu_firstName")}
                       id="firstName"
@@ -52,7 +55,10 @@ export const SignUp = () => {
 
                   <div className="form mb-2">
                     <input
-                      {...register("lastName", { required: true })}
+                      {...register("lastName", {
+                        required: true,
+                        maxLength: 20,
+                      })}
                       placeholder={t("menu_lastName")}
                       type="text"
                       id="LastName"
@@ -73,7 +79,10 @@ export const SignUp = () => {
 
                   <div className="form mb-2">
                     <input
-                      {...register("password", { required: true })}
+                      {...register("password", {
+                        required: true,
+                        minLength: 5,
+                      })}
                       type="password"
                       id="form2Example28"
                       className="form-control form-control-lg"

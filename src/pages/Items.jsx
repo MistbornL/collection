@@ -38,12 +38,10 @@ export const Items = () => {
 
   useEffect(() => {
     FetchItems(id, setItems);
-    if (items.length > 0) {
-      setLoading(false);
-    } else if (items.length === 0) {
+    if (items.length >= 0) {
       setLoading(false);
     }
-  }, []);
+  }, [id, items.length]);
   return (
     <div className="App">
       <header>

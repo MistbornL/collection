@@ -17,12 +17,9 @@ export const SearchResult = () => {
 
   useEffect(() => {
     Search(tag, setItems);
-    if (items.length > 0) {
-      setLoading(false);
-    } else if (items.length === 0) {
+    if (items.length >= 0) {
       setLoading(false);
     }
-    console.log(loading);
   }, [tag, items.length, loading]);
 
   const deleteItem = async (id) => {

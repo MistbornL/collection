@@ -14,7 +14,7 @@ export const AllItems = () => {
   const [user, setUser] = useState({});
   const [page, setPage] = useState(3);
   const { t } = useTranslation();
-
+  console.log(loading);
   useEffect(() => {
     if (token) {
       FetchAccount(email, token, setUser);
@@ -47,15 +47,19 @@ export const AllItems = () => {
   };
 
   useEffect(() => {
-    setLoading(false);
+    if (collections.length >= 0) {
+      setLoading(false);
+    }
     FetCchAllItems(setCollections);
-  }, []);
+  }, [collections.length]);
   return (
     <div className="App">
       <Menu />
 
       {loading ? (
-        <h1>Loading...</h1>
+        <div className="spinner-border text-primary" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
       ) : (
         <main>
           {collections.slice(0, page).map((item, index) => {
