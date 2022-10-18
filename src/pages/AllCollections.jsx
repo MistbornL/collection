@@ -13,7 +13,9 @@ export const AllCollections = () => {
 
   useEffect(() => {
     GetAllCollection(setCollections);
-    setLoading(false);
+    setInterval(() => {
+      setLoading(false);
+    }, [500]);
   }, []);
   return (
     <div className="App">
