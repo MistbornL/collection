@@ -21,6 +21,10 @@ body.dark {
 
   #section {
     background: rgb(17 34 42);
+    input {
+      background: rgb(17 34 42);
+      color: #9999a3;
+    }
   }
 
   #collCard {
@@ -37,54 +41,6 @@ body.dark {
     color: #9999a3;
   }
 }
-// body #section {
-//   background-color: var(--background-color-section);
-// }
-
-// body #section p {
-//   color: var(--text-color-section);
-// }
-
-// body.light #section {
-//   --background-color-section: var(--sectionLight);
-// }
-
-// body.dark h3 {
-//   --login-text-color: var(--loginDark);
-// }
-
-// body.light #section p {
-//   --text-color-section: var(--textDark);
-// }
-
-// body.light {
-//   background-color: cornflowerblue;
-//   --font-weight: 400;
-// }
-
-// body.dark {
-//   background-color: #111d25;
-//   --text-color: var(--white);
-//   --font-weight: 500;
-// }
-
-// body.dark #section {
-//   --background-color-section: var(--sectionDark);
-// }
-
-// body.dark #section p {
-//   --text-color-section: var(--textLight);
-// }
-
-// body.dark #section h6,
-// h5 {
-//   color: var(--text);
-// }
-
-// body.dark #section input,
-// textarea {
-//   outline: none;
-// }
 
 nav {
   background-color: #111d25;
@@ -98,7 +54,7 @@ nav {
 
 nav a {
   text-decoration: none;
-  color: var(--background-color);
+  color: #9999a3;
 }
 
 nav a:hover {

@@ -160,9 +160,21 @@ export const Menu = () => {
             placeholder={t("menu_search")}
             ref={search}
             aria-label="Search"
+            style={{
+              border: "1px solid #2D4662",
+              borderRadius: "10px",
+              background: "rgb(17 34 42)",
+              color: "#9999a3",
+            }}
           />
           <button
-            className="btn btn-outline-success  my-2 my-sm-0"
+            style={{
+              background: "rgba(64, 117, 255, 0.3)",
+              border: "1px solid #4075FF",
+              boxShadow: "0px 4px 34px 4px rgba(64, 117, 255, 0.3)",
+              borderRadius: "10px",
+            }}
+            className="btn btn-outline  my-2 my-sm-0"
             type="submit"
           >
             {t("menu_search")}
