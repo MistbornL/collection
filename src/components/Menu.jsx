@@ -18,14 +18,16 @@ export const Menu = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (language === "geo") {
-      i18n.changeLanguage("geo");
-    } else if (language === "en") {
-      i18n.changeLanguage("en");
-    } else {
-      i18n.changeLanguage("pl");
+    if (token) {
+      if (language === "geo") {
+        i18n.changeLanguage("geo");
+      } else if (language === "en") {
+        i18n.changeLanguage("en");
+      } else {
+        i18n.changeLanguage("pl");
+      }
     }
-  }, [language]);
+  }, [language, token]);
   return (
     <nav
       style={{ padding: "10px" }}
@@ -88,16 +90,16 @@ export const Menu = () => {
           ) : null}
 
           {/* language */}
-          <li class="nav-item dropdown">
+          <li className="nav-item dropdown">
             <a
               href="/#"
               role="button"
-              class="nav-link dropdown-toggle"
+              className="nav-link dropdown-toggle"
               data-bs-toggle="dropdown"
             >
               {t("menu_language")}
             </a>
-            <div class="dropdown-menu">
+            <div className="dropdown-menu">
               <a
                 onClick={() =>
                   token
@@ -106,7 +108,7 @@ export const Menu = () => {
                 }
                 href="/#"
                 role="button"
-                class="dropdown-item"
+                className="dropdown-item"
               >
                 English
               </a>
@@ -118,7 +120,7 @@ export const Menu = () => {
                 }
                 href="/#"
                 role="button"
-                class="dropdown-item"
+                className="dropdown-item"
               >
                 Georgian
               </a>
@@ -130,55 +132,13 @@ export const Menu = () => {
                 }
                 href="/#"
                 role="button"
-                class="dropdown-item"
+                className="dropdown-item"
               >
                 Polish
               </a>
             </div>
           </li>
-          {/* <li className="nav-item">
-            {token && language === "geo" ? (
-              <a
-                style={{ cursor: "pointer" }}
-                onClick={() => {
-                  LanguageHandler(token, "en", email);
-                }}
-                className="nav-link"
-              >
-                En
-              </a>
-            ) : token && language === "en" ? (
-              <a
-                style={{ cursor: "pointer" }}
-                onClick={() => {
-                  LanguageHandler(token, "geo", email);
-                }}
-                className="nav-link"
-              >
-                Geo
-              </a>
-            ) : i18n.language === "geo" ? (
-              <a
-                style={{ cursor: "pointer" }}
-                onClick={() => {
-                  i18n.changeLanguage("en");
-                }}
-                className="nav-link"
-              >
-                En
-              </a>
-            ) : (
-              <a
-                style={{ cursor: "pointer" }}
-                onClick={() => {
-                  i18n.changeLanguage("geo");
-                }}
-                className="nav-link"
-              >
-                Geo
-              </a>
-            )}
-          </li> */}
+
           <li className="nav-item">
             <DarkMode />
           </li>

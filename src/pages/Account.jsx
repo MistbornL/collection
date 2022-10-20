@@ -40,7 +40,11 @@ export const Account = () => {
             <div className="container py-5 h-100">
               <div className="row d-flex justify-content-center align-items-center h-100">
                 <div className="col col-lg-6 mb-3 mb-lg-0">
-                  <div className="card mb-10" style={{ borderRadius: ".5rem" }}>
+                  <div
+                    className="card mb-10"
+                    id="account"
+                    style={{ borderRadius: ".5rem" }}
+                  >
                     <div className="row g-0">
                       <div
                         className="col-md-4 gradient-custom text-center text-white"

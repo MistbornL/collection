@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap");
+
+body {
+  font-family: "Raleway", sans-serif;
+  transition: background 0.3s ease-in-out, color 0.6s ease-in-out;
+}
+body h3 {
+  color: var(--login-text-color);
+}
+
+body.light {
+  background-color: cornflowerblue;
+}
+
+body.dark {
+  background-color: #111d25;
+
+  h1 {
+    color: #9999a3;
+  }
+
+  #section {
+    background: rgb(17 34 42);
+  }
+
+  #collCard {
+    background: rgb(17 34 42);
+    color: rgb(184, 181, 181);
+  }
+
+  #account {
+    background: rgb(17 34 42);
+    color: #9999a3;
+  }
+
+  table {
+    color: #9999a3;
+  }
+}
+// body #section {
+//   background-color: var(--background-color-section);
+// }
+
+// body #section p {
+//   color: var(--text-color-section);
+// }
+
+// body.light #section {
+//   --background-color-section: var(--sectionLight);
+// }
+
+// body.dark h3 {
+//   --login-text-color: var(--loginDark);
+// }
+
+// body.light #section p {
+//   --text-color-section: var(--textDark);
+// }
+
+// body.light {
+//   background-color: cornflowerblue;
+//   --font-weight: 400;
+// }
+
+// body.dark {
+//   background-color: #111d25;
+//   --text-color: var(--white);
+//   --font-weight: 500;
+// }
+
+// body.dark #section {
+//   --background-color-section: var(--sectionDark);
+// }
+
+// body.dark #section p {
+//   --text-color-section: var(--textLight);
+// }
+
+// body.dark #section h6,
+// h5 {
+//   color: var(--text);
+// }
+
+// body.dark #section input,
+// textarea {
+//   outline: none;
+// }
+
+nav {
+  background-color: #111d25;
+  padding: 1rem 25%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--background-color);
+}
+
+nav a:hover {
+  color: rgb(12, 216, 189);
+}

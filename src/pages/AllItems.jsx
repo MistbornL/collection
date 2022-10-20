@@ -5,6 +5,8 @@ import { CollectionItems } from "../components/CollectionItems";
 import { Menu } from "../components/Menu";
 import { FetchAccount } from "../helper/FetchAccount";
 import { FetCchAllItems } from "../helper/FetchAllItems";
+import { TypeAnimation } from "react-type-animation";
+import i18next from "i18next";
 
 export const AllItems = () => {
   const token = localStorage.getItem("token");
@@ -14,13 +16,22 @@ export const AllItems = () => {
   const [user, setUser] = useState({});
   const [page, setPage] = useState(3);
   const { t } = useTranslation();
-  console.log(loading);
+
   useEffect(() => {
     if (token) {
       FetchAccount(email, token, setUser);
       localStorage.setItem("theme", user.theme);
     }
   }, [email, user.theme, token]);
+
+  useEffect(() => {
+    if (collections.length >= 0) {
+      setTimeout(() => {
+        setLoading(false);
+      }, [500]);
+    }
+    FetCchAllItems(setCollections);
+  }, [collections.length]);
 
   const deleteItem = async (id) => {
     console.log(id);
@@ -46,26 +57,26 @@ export const AllItems = () => {
       });
   };
 
-  useEffect(() => {
-    if (collections.length >= 0) {
-      setTimeout(() => {
-        setLoading(false);
-      }, [500]);
-    }
-    FetCchAllItems(setCollections);
-  }, [collections.length]);
   return (
     <div className="App">
-      <Menu />
+      <header>
+        <Menu />
+      </header>
 
       {loading ? (
-        <div class="d-flex justify-content-center">
-          <div class="spinner-border text-primary" role="status">
-            <span class="sr-only">Loading...</span>
+        <div className="d-flex justify-content-center">
+          <div className="spinner-border text-primary" role="status">
+            <span className="sr-only">Loading...</span>
           </div>
         </div>
       ) : (
         <main>
+          <TypeAnimation
+            className="text-center mt-3"
+            sequence={[i18next.t("item_welcome")]}
+            wrapper="h1"
+            cursor={false}
+          />
           {collections.slice(0, page).map((item, index) => {
             return (
               <CollectionItems

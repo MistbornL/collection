@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 export const CollectionCard = ({
   collection,
   collections,
-  index,
   token,
   email,
   email2,
@@ -15,7 +14,7 @@ export const CollectionCard = ({
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
-    <div key={index} style={{}} className="card-body mw-100">
+    <div key={collection._id} className="card-body mw-100">
       <h2 className="card-title">
         {t("item_creator")}: {collection.createdBy}
       </h2>
@@ -36,7 +35,7 @@ export const CollectionCard = ({
         {t("account_view_items")}
       </button>
       {role === "admin" || email2 === collection.createdBy ? (
-        <div s className="mt-3 d-flex gap-3 ">
+        <div className="mt-3 d-flex gap-3 ">
           <button
             style={{ textTransform: "none" }}
             onClick={() => {
