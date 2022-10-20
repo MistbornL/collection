@@ -20,8 +20,10 @@ export const Menu = () => {
   useEffect(() => {
     if (language === "geo") {
       i18n.changeLanguage("geo");
-    } else {
+    } else if (language === "en") {
       i18n.changeLanguage("en");
+    } else {
+      i18n.changeLanguage("pl");
     }
   }, [language]);
   return (
@@ -49,32 +51,34 @@ export const Menu = () => {
       >
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <Link className="nav-link" to={"/collections"}>
+            <a role="button" className="nav-link" href="/collections">
               {t("menu_collections")}
-            </Link>
+            </a>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to={token ? "/account" : "/login"}>
+            <a className="nav-link" href={token ? "/account" : "/login"}>
               {t("menu_account")}
-            </Link>
+            </a>
           </li>
 
           <li className="nav-item">
             {token ? (
-              <Link
+              <a
+                role="button"
+                href="/#"
                 style={{ cursor: "pointer" }}
                 onClick={() => HandleLogOut(token, navigate)}
                 className="nav-link"
               >
                 {t("menu_logout")}
-              </Link>
+              </a>
             ) : (
-              <Link className="nav-link" to={"/login"}>
+              <a role="button" className="nav-link" href="/login">
                 {t("menu_login")}
-              </Link>
+              </a>
             )}
           </li>
-
+          {/* admin page */}
           {role === "admin" ? (
             <li className="nav-item">
               <a className="nav-link" href="/admin">
@@ -82,7 +86,57 @@ export const Menu = () => {
               </a>
             </li>
           ) : null}
-          <li className="nav-item">
+
+          {/* language */}
+          <li class="nav-item dropdown">
+            <a
+              href="/#"
+              role="button"
+              class="nav-link dropdown-toggle"
+              data-bs-toggle="dropdown"
+            >
+              {t("menu_language")}
+            </a>
+            <div class="dropdown-menu">
+              <a
+                onClick={() =>
+                  token
+                    ? LanguageHandler(token, "en", email)
+                    : i18n.changeLanguage("en")
+                }
+                href="/#"
+                role="button"
+                class="dropdown-item"
+              >
+                English
+              </a>
+              <a
+                onClick={() =>
+                  token
+                    ? LanguageHandler(token, "geo", email)
+                    : i18n.changeLanguage("geo")
+                }
+                href="/#"
+                role="button"
+                class="dropdown-item"
+              >
+                Georgian
+              </a>
+              <a
+                onClick={() =>
+                  token
+                    ? LanguageHandler(token, "pl", email)
+                    : i18n.changeLanguage("pl")
+                }
+                href="/#"
+                role="button"
+                class="dropdown-item"
+              >
+                Polish
+              </a>
+            </div>
+          </li>
+          {/* <li className="nav-item">
             {token && language === "geo" ? (
               <a
                 style={{ cursor: "pointer" }}
@@ -124,7 +178,7 @@ export const Menu = () => {
                 Geo
               </a>
             )}
-          </li>
+          </li> */}
           <li className="nav-item">
             <DarkMode />
           </li>

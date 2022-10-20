@@ -1,0 +1,21 @@
+{
+  "background.enabled": true,
+  "background.loop": false,
+  "background.useDefault": false,
+  "background.useFront": false,
+  "background.customImages": [
+    "https://w.wallhaven.cc/full/x8/wallhaven-x8r9vd.jpg"
+  ],
+  "background.style": {
+    "content": "''",
+    "pointer-events": "none",
+    "position": "absolute",
+    "z-index": "9999",
+    "width": "70%",
+    "height": "100%",
+    "margin-left": "30%",
+    "background-position": "right",
+    "background-size": "cover",
+    "background-repeat": "no-repeat",
+    "opacity": 0.1,
+}

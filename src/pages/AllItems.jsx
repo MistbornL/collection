@@ -79,12 +79,14 @@ export const AllItems = () => {
             );
           })}
           <div className="w-75 d-flex justify-content-end">
-            <button
-              onClick={() => setPage(page + 1)}
-              className="btn btn-primary"
-            >
-              {t("item_load_more")}
-            </button>
+            {page < collections.length ? (
+              <button
+                onClick={() => setPage(page + 2)}
+                className="btn btn-primary"
+              >
+                {t("item_load_more")}
+              </button>
+            ) : null}
           </div>
         </main>
       )}
