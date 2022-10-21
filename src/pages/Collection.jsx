@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useParams } from "react-router-dom";
 import { CollectionCard } from "../components/Collection";
@@ -8,19 +8,20 @@ import { FetchCollection } from "../helper/FetchCollection";
 
 export const Collection = () => {
   const [collections, setCollections] = useState([]);
-
   const { email } = useParams();
   const email2 = localStorage.getItem("email");
   const role = localStorage.getItem("role");
   const token = localStorage.getItem("token");
   const [loading, setLoading] = useState(true);
 
-  useState(() => {
+  useEffect(() => {
     FetchCollection(email, setCollections);
-    if (collections.length > 0) {
-      setLoading(false);
-    }
-  }, []);
+    setTimeout(() => {
+      if (collections.length > 0) {
+        setLoading(false);
+      }
+    }, [500]);
+  }, [collections.length, setLoading, email]);
   return (
     <div className="App">
       <header>

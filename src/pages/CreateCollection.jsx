@@ -7,22 +7,23 @@ import { useNavigate } from "react-router-dom";
 
 export const CreateCollection = () => {
   const token = localStorage.getItem("token");
-  var email2 = localStorage.getItem("email");
-  const title = useRef();
-  const [user, setUser] = useState({});
-  const description = useRef();
-  var { email } = useParams();
+  const email2 = localStorage.getItem("email");
+  const role = localStorage.getItem("role");
+  const { email } = useParams();
   const navigate = useNavigate();
+  const [user, setUser] = useState({});
+  const title = useRef();
+  const description = useRef();
+
+  const topic = useRef();
 
   const handleCreate = () => {
     if (user.role === "admin" && email !== email2) {
-      CreateCollectionApi(token, email, title, description, navigate);
-      console.log("b");
-    } else if (email2 !== "admin@gmail.com" && email === email2) {
-      CreateCollectionApi(token, email2, title, description, navigate);
-      console.log("c");
+      CreateCollectionApi(token, email, title, description, navigate, topic);
+    } else if (role !== "admin" && email === email2) {
+      CreateCollectionApi(token, email2, title, description, navigate, topic);
     } else {
-      CreateCollectionApi(token, email2, title, description, navigate);
+      CreateCollectionApi(token, email2, title, description, navigate, topic);
     }
   };
   useEffect(() => {
@@ -41,6 +42,16 @@ export const CreateCollection = () => {
             <div className="form-group">
               <input
                 ref={title}
+                type="text"
+                className="form-control"
+                aria-describedby="helpId"
+                placeholder="Title"
+              />
+            </div>
+            <h4 className="card-title">Topic</h4>
+            <div className="form-group">
+              <input
+                ref={topic}
                 type="text"
                 className="form-control"
                 aria-describedby="helpId"

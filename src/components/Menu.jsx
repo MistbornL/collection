@@ -92,7 +92,7 @@ export const Menu = () => {
           {/* language */}
           <li className="nav-item dropdown">
             <a
-              href="/#"
+              href=""
               role="button"
               className="nav-link dropdown-toggle"
               data-bs-toggle="dropdown"

@@ -4,8 +4,7 @@ import { Menu } from "../components/Menu";
 import { useParams } from "react-router-dom";
 import { GetCollectionData } from "../helper/GetCollectionData";
 import { ModifyCollection } from "../helper/ModifyCollection";
-import { Typeahead } from "react-bootstrap-typeahead";
-import { FetchTags } from "../helper/FetchTags";
+
 import { useNavigate } from "react-router-dom";
 
 export const EditCollection = () => {
@@ -13,12 +12,9 @@ export const EditCollection = () => {
   const token = localStorage.getItem("token");
   const title = useRef();
   const description = useRef();
-  const [tags, setTags] = useState([]);
-  const [multiSelections, setMultiSelections] = useState([]);
   const navigate = useNavigate();
 
   useState(() => {
-    FetchTags(setTags);
     GetCollectionData(token, title, description, id);
   }, []);
 
@@ -61,7 +57,7 @@ export const EditCollection = () => {
                   id,
                   title,
                   description,
-                  multiSelections,
+
                   navigate
                 )
               }

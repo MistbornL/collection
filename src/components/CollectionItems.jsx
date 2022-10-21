@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Popup } from "./popup/PopUp";
 import { Link } from "react-router-dom";
 
-export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
+export const CollectionItems = ({ item, id, deleteItem, setItems }) => {
   const role = localStorage.getItem("role");
   const email = localStorage.getItem("email");
   const token = localStorage.getItem("token");
@@ -17,7 +17,7 @@ export const CollectionItems = ({ item, id, deleteItem, index, setItems }) => {
   const comment = useRef();
 
   return (
-    <section key={index}>
+    <section key={item._id}>
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col col-lg-6 ">

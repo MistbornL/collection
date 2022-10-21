@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { Menu } from "../components/Menu";
 import { HandleLogin } from "../helper/HandleLogin";
@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 export const Login = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
-  const theme = localStorage.getItem("theme");
   const { t } = useTranslation();
 
   return (

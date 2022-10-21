@@ -4,12 +4,9 @@ body {
   font-family: "Raleway", sans-serif;
   transition: background 0.3s ease-in-out, color 0.6s ease-in-out;
 }
-body h3 {
-  color: var(--login-text-color);
-}
 
 body.light {
-  background-color: cornflowerblue;
+  background-color: rgb(95, 124, 177);
 }
 
 body.dark {
@@ -19,25 +16,11 @@ body.dark {
     color: #9999a3;
   }
 
-  #section {
-    background: rgb(17 34 42);
-    input {
-      background: rgb(17 34 42);
-      color: #9999a3;
-    }
-  }
-
-  #collCard {
-    background: rgb(17 34 42);
-    color: rgb(184, 181, 181);
-  }
-
-  #account {
-    background: rgb(17 34 42);
+  table {
     color: #9999a3;
   }
-
-  table {
+  .card {
+    background: rgb(17 34 42);
     color: #9999a3;
   }
 }

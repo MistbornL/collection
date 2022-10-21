@@ -11,7 +11,6 @@ export const ModifyCollection = async (
   const data = {
     title: title.current.value,
     description: description.current.value,
-    tags: multiSelections,
   };
   await axios
     .put(

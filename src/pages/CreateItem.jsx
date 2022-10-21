@@ -5,6 +5,7 @@ import { PostItem } from "../helper/PostiTem";
 import { FetchTags } from "../helper/FetchTags";
 import { useNavigate } from "react-router-dom";
 import { Typeahead } from "react-bootstrap-typeahead";
+import { FieldPop } from "../components/popup/FieldPop";
 
 export const CreateItem = () => {
   const token = localStorage.getItem("token");
@@ -17,10 +18,13 @@ export const CreateItem = () => {
   const [tags, setTags] = useState([]);
   const [multiSelections, setMultiSelections] = useState([]);
   const navigate = useNavigate();
+  const [fields, setFields] = useState([]);
+  const [pop, setPop] = useState(false);
+  console.log(fields);
 
   useEffect(() => {
     FetchTags(setTags);
-  }, []);
+  }, [fields]);
   return (
     <div className="App">
       <header>
@@ -62,7 +66,7 @@ export const CreateItem = () => {
               />
             </div>
             <h4 className="card-text">Description</h4>
-            <div className="form-group">
+            <div className="form-group mt-3">
               <textarea
                 required
                 ref={description}
@@ -72,23 +76,45 @@ export const CreateItem = () => {
                 placeholder="Description"
               />
             </div>
-            <button
-              className="btn bg-primary btn-lg mt-3"
-              onClick={() =>
-                PostItem(
-                  email,
-                  title,
-                  description,
-                  image,
-                  id,
-                  token,
-                  multiSelections,
-                  navigate
-                )
-              }
-            >
-              Create
-            </button>
+
+            <div className="form-group mt-3">
+              {fields.map((field) => {
+                return field;
+              })}
+            </div>
+
+            <div className="d-flex gap-3">
+              <button
+                className="btn bg-primary btn-lg mt-3"
+                onClick={() =>
+                  PostItem(
+                    email,
+                    title,
+                    description,
+                    image,
+                    id,
+                    token,
+                    multiSelections,
+                    navigate
+                  )
+                }
+              >
+                Create
+              </button>
+              <button
+                onClick={() => setPop(true)}
+                className="btn bg-primary btn-lg mt-3"
+              >
+                Add Custom Field
+              </button>
+              {pop ? (
+                <FieldPop
+                  setPop={setPop}
+                  setFields={setFields}
+                  fields={fields}
+                />
+              ) : null}
+            </div>
           </div>
         </div>
       </main>

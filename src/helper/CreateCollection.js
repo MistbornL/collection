@@ -5,12 +5,14 @@ export const CreateCollectionApi = async (
   email,
   title,
   description,
-  navigate
+  navigate,
+  topic
 ) => {
   const data = {
     createdBy: email,
     title: title.current.value,
     description: description.current.value,
+    topic: topic.current.value,
   };
   await axios
     .post(

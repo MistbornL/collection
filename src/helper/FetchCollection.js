@@ -14,9 +14,8 @@ export const FetchCollection = async (email, setCollections) => {
       }
     )
     .then((res) => {
-      console.log(res.data);
       if (res.status === 200) {
-        setCollections(res.data);
+        setCollections(res.data.reverse());
       }
     })
     .catch((err) => {

@@ -26,6 +26,10 @@ export const CollectionCard = ({
         {t("item_description")}: {collection.description}
       </p>
 
+      <p className="card-text">
+        {t("item_Topic")}: {collection.topic}
+      </p>
+
       <button
         onClick={() => {
           navigate(`/collection/items/${collection._id}/${email}`);

@@ -13,6 +13,7 @@ export const Items = () => {
   const { email } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  console.log(items);
 
   const deleteItem = async (id) => {
     await axios
@@ -50,14 +51,9 @@ export const Items = () => {
 
       <main>
         {!loading ? (
-          items.map((item, index) => {
+          items.reverse().map((item) => {
             return (
-              <CollectionItems
-                index={index}
-                item={item}
-                deleteItem={deleteItem}
-                id={id}
-              />
+              <CollectionItems item={item} deleteItem={deleteItem} id={id} />
             );
           })
         ) : loading ? (
