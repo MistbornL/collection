@@ -1,9 +1,9 @@
 {
   "menu_collector": "Collector",
   "menu_collections": "Collections",
+  "menu_name": "name",
   "menu_account": "Account",
   "menu_logout": "Logout",
-  "menu_login": "Login",
   "menu_admin": "Admin",
   "menu_search": "Search",
   "menu_login": "Login",

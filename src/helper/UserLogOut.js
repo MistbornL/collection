@@ -10,6 +10,7 @@ export const HandleLogOut = async (token, navigate) => {
     })
     .then((res) => {
       if (res.status === 200) {
+        console.log(res.data);
         localStorage.clear();
         navigate("/login");
       }

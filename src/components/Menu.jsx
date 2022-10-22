@@ -66,10 +66,12 @@ export const Menu = () => {
           <li className="nav-item">
             {token ? (
               <a
-                role="button"
-                href="/#"
+                href=""
                 style={{ cursor: "pointer" }}
-                onClick={() => HandleLogOut(token, navigate)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  HandleLogOut(token, navigate);
+                }}
                 className="nav-link"
               >
                 {t("menu_logout")}
@@ -93,7 +95,6 @@ export const Menu = () => {
           <li className="nav-item dropdown">
             <a
               href=""
-              role="button"
               className="nav-link dropdown-toggle"
               data-bs-toggle="dropdown"
             >
@@ -106,8 +107,6 @@ export const Menu = () => {
                     ? LanguageHandler(token, "en", email)
                     : i18n.changeLanguage("en")
                 }
-                href="/#"
-                role="button"
                 className="dropdown-item"
               >
                 English
@@ -118,8 +117,6 @@ export const Menu = () => {
                     ? LanguageHandler(token, "geo", email)
                     : i18n.changeLanguage("geo")
                 }
-                href="/#"
-                role="button"
                 className="dropdown-item"
               >
                 Georgian
@@ -130,8 +127,6 @@ export const Menu = () => {
                     ? LanguageHandler(token, "pl", email)
                     : i18n.changeLanguage("pl")
                 }
-                href="/#"
-                role="button"
                 className="dropdown-item"
               >
                 Polish

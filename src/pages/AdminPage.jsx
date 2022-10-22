@@ -102,7 +102,7 @@ export const AdminPage = () => {
                 {t("user_change_role")}
               </button>
             </div>
-            <div class="table-responsive-sm w-auto  ">
+            <div className="table-responsive-sm w-auto  ">
               <table className="table table-striped table-hover">
                 <thead>
                   <tr>
