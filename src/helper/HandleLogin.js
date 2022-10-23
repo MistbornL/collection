@@ -8,7 +8,7 @@ export const HandleLogin = async (data, navigate) => {
   if (email !== "" && password !== "") {
     await axios
       .post(
-        "http://localhost:5000/user/login",
+        "https://collection-server-mistborn.herokuapp.com/user/login",
         {
           email: email,
           password: password,
@@ -49,7 +49,7 @@ export const HandleLogin = async (data, navigate) => {
 
 export const HandleGoogleLogin = async (data, navigate) => {
   await axios
-    .post(`http://localhost:5000/user/login`, {
+    .post(`https://collection-server-mistborn.herokuapp.com/user/login`, {
       googleAccessToken: data,
     })
     .then((res) => {

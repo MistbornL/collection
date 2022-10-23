@@ -9,7 +9,7 @@ export const HandleComment = async (item, comments, setItems, token) => {
   };
   await axios
     .put(
-      `http://localhost:5000/collection/item/comment`,
+      `https://collection-server-mistborn.herokuapp.com/collection/item/comment`,
       { id: item._id, comments: commentsData },
       {
         headers: {

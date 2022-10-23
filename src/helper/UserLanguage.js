@@ -4,7 +4,7 @@ import i18n from "../i18n";
 export const LanguageHandler = async (token, language, email) => {
   await axios
     .put(
-      `http://localhost:5000/users/language/${email}`,
+      `https://collection-server-mistborn.herokuapp.com/users/language/${email}`,
       { language: language },
       {
         headers: {

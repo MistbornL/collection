@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const FetchAccount = async (email, token, setUser) => {
   await axios
-    .get(`http://localhost:5000/users/profile`, {
+    .get(`https://collection-server-mistborn.herokuapp.com/users/profile`, {
       headers: {
         "content-type": "application/json",
         Authorization: `Bearer ${token}`,

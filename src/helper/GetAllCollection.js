@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const GetAllCollection = (setCollections) => {
   axios
-    .get("http://localhost:5000/collection/")
+    .get("https://collection-server-mistborn.herokuapp.com/collection/")
     .then((res) => {
       setCollections(res.data);
       console.log(res.data);

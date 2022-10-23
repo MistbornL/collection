@@ -5,7 +5,7 @@ import { CollectionItems } from "../components/CollectionItems";
 import { Menu } from "../components/Menu";
 import { FetchAccount } from "../helper/FetchAccount";
 import { FetCchAllItems } from "../helper/FetchAllItems";
-import { TypeAnimation } from "react-type-animation";
+
 import i18next from "i18next";
 
 export const AllItems = () => {
@@ -37,12 +37,15 @@ export const AllItems = () => {
   const deleteItem = async (id) => {
     console.log(id);
     await axios
-      .delete(`http://localhost:5000/collection/delete/item/${id}`, {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .delete(
+        `https://collection-server-mistborn.herokuapp.com/collection/delete/item/${id}`,
+        {
+          headers: {
+            "content-type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         if (res.status === 200) {
           console.log(res.data);
