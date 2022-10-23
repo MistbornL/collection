@@ -1,14 +1,20 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Menu } from "../components/Menu";
-import { HandleLogin } from "../helper/HandleLogin";
-import { Link } from "react-router-dom";
+import { HandleGoogleLogin, HandleLogin } from "../helper/HandleLogin";
+
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useGoogleLogin } from "@react-oauth/google";
 export const Login = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  const login = useGoogleLogin({
+    onSuccess: (tokenResponse) =>
+      HandleGoogleLogin(tokenResponse.access_token, navigate),
+  });
 
   return (
     <div className="App">
@@ -68,11 +74,36 @@ export const Login = () => {
                   </button>
                 </div>
 
+                <div class="divider d-flex align-items-center my-4">
+                  <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+                </div>
+
+                {/* social login */}
+                <div>
+                  <a
+                    class="btn btn-primary btn-lg btn-block"
+                    style={{ backgroundColor: "#3b5998" }}
+                    role="button"
+                    onClick={() => login()}
+                  >
+                    <i class="fab fa-google me-2"></i>
+                    Continue with google
+                  </a>
+                  <a
+                    class="btn btn-primary btn-lg btn-block"
+                    style={{ backgroundColor: "#55acee" }}
+                    role="button"
+                  >
+                    <i class="fab fa-facebook me-2"></i>Continue with facebook
+                  </a>
+                </div>
+
+                {/* sign up */}
                 <p>
                   {t("menu_register_text")}
-                  <Link to={"/signup"} className="link-info">
+                  <a href="/signup" className="link-info">
                     {t("menu_register")}
-                  </Link>
+                  </a>
                 </p>
               </form>
             </div>

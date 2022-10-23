@@ -6,7 +6,7 @@ export const HandleDisLike = async (item, token, setItems) => {
   const dislikeData = { disLikedBy: localStorage.getItem("email") };
   await axios
     .put(
-      `https://collection-server-mistborn.herokuapp.com/collection/item/dislike/${item._id}`,
+      `http://localhost:5000/collection/item/dislike/${item._id}`,
       dislikeData,
       {
         headers: {

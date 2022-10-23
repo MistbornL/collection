@@ -26,15 +26,12 @@ export const SearchResult = () => {
 
   const deleteItem = async (id) => {
     await axios
-      .delete(
-        `https://collection-server-mistborn.herokuapp.com/collection/delete/item/${id}`,
-        {
-          headers: {
-            "content-type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+      .delete(`http://localhost:5000/collection/delete/item/${id}`, {
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         if (res.status === 200) {
           window.location.reload();

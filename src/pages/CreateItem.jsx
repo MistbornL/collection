@@ -45,6 +45,7 @@ export const CreateItem = () => {
               />
             </div>
             <div className="form-group">
+              <h4 className="card-title">image</h4>
               <small className="d-flex  form-text text-muted">
                 *optional img field
               </small>
@@ -56,6 +57,7 @@ export const CreateItem = () => {
               />
             </div>
             <div className="form-group  mt-3">
+              <h4 className="card-title">Tags</h4>
               <Typeahead
                 id="basic-example"
                 onChange={setMultiSelections}
@@ -79,7 +81,7 @@ export const CreateItem = () => {
 
             <div className="form-group mt-3">
               {fields.map((field) => {
-                return field;
+                return <field.component />;
               })}
             </div>
 

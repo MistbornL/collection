@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const HandleSignUp = async (data, navigate) => {
   await axios
-    .post("https://collection-server-mistborn.herokuapp.com/user/signup", {
+    .post("http://localhost:5000/user/signup", {
       email: data.email,
       password: data.password,
       firstName: data.firstName,

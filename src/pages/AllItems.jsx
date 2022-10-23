@@ -16,6 +16,7 @@ export const AllItems = () => {
   const [user, setUser] = useState({});
   const [page, setPage] = useState(3);
   const { t } = useTranslation();
+  console.log(collections);
 
   useEffect(() => {
     if (token) {
@@ -36,15 +37,12 @@ export const AllItems = () => {
   const deleteItem = async (id) => {
     console.log(id);
     await axios
-      .delete(
-        `https://collection-server-mistborn.herokuapp.com/collection/delete/item/${id}`,
-        {
-          headers: {
-            "content-type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+      .delete(`http://localhost:5000/collection/delete/item/${id}`, {
+        headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         if (res.status === 200) {
           console.log(res.data);

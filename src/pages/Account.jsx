@@ -54,7 +54,7 @@ export const Account = () => {
                         }}
                       >
                         <img
-                          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                          src="http://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
                           alt="Avatar"
                           className="img-fluid my-5"
                           style={{ width: "80px" }}

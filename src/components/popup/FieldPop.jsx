@@ -21,7 +21,15 @@ export const FieldPop = ({ setPop, setFields, fields }) => {
           onClick={() =>
             setFields([
               ...fields,
-              <CustomInput placeholder={field} type="text" ref={null} />,
+              {
+                component: (
+                  <CustomInput
+                    placeholder={field.current.value}
+                    type="text"
+                    ref={field}
+                  />
+                ),
+              },
             ])
           }
         >

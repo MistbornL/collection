@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 export const CustomInput = ({ placeholder, type, ref }) => {
   return (
     <Fragment>
-      <h4 className="card-title">Title</h4>
+      <h4 className="card-title">{placeholder}</h4>
       <div className="form-group">
         <input
           ref={ref}

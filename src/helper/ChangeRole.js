@@ -7,7 +7,7 @@ export const HandleChangeRole = (users, token, setUsers, email, navigate) => {
   selectedUsers.forEach((user) => {
     axios
       .put(
-        `https://collection-server-mistborn.herokuapp.com/users/changeRole/${user.email}`,
+        `http://localhost:5000/users/changeRole/${user.email}`,
         {},
         {
           headers: {
