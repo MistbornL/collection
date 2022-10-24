@@ -52,14 +52,7 @@ export const EditCollection = () => {
             <button
               className="btn bg-primary btn-lg mt-3"
               onClick={() =>
-                ModifyCollection(
-                  token,
-                  id,
-                  title,
-                  description,
-
-                  navigate
-                )
+                ModifyCollection(token, id, title, description, navigate)
               }
             >
               Modify

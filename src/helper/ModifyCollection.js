@@ -5,7 +5,6 @@ export const ModifyCollection = async (
   id,
   title,
   description,
-  multiSelections,
   navigate
 ) => {
   const data = {
