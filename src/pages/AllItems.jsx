@@ -71,12 +71,7 @@ export const AllItems = () => {
         </div>
       ) : (
         <main className="row g-0 ">
-          {/* <TypeAnimation
-            className="text-center mt-3"
-            sequence={[i18next.t("item_welcome")]}
-            wrapper="h1"
-            cursor={false}
-          /> */}
+          <h1 className="text-center mt-3">{t("item_welcome")}</h1>
           {collections.slice(0, page).map((item, index) => {
             return (
               <CollectionItems

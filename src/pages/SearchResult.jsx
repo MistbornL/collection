@@ -14,6 +14,7 @@ export const SearchResult = () => {
   const token = localStorage.getItem("token");
   const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
+  console.log(items);
 
   useEffect(() => {
     Search(tag, setItems);
@@ -57,6 +58,7 @@ export const SearchResult = () => {
             return (
               <CollectionItems
                 index={index}
+                setItems={setItems}
                 item={item}
                 deleteItem={deleteItem}
                 id={item.collectionId}
