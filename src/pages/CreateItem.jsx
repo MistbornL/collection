@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Menu } from "../components/Menu";
 import { useParams } from "react-router-dom";
 import { PostItem } from "../helper/PostiTem";
@@ -9,7 +9,6 @@ import { FieldPop } from "../components/popup/FieldPop";
 
 export const CreateItem = () => {
   const token = localStorage.getItem("token");
-
   const title = useRef();
   const description = useRef();
   const image = useRef();
@@ -20,7 +19,19 @@ export const CreateItem = () => {
   const navigate = useNavigate();
   const [fields, setFields] = useState([]);
   const [pop, setPop] = useState(false);
-  console.log(fields);
+  const [labels, setLabels] = useState([]);
+
+  const handleAdd = () => {
+    setFields([...fields, []]);
+  };
+
+  const handleChange = (onChangeValue, i, label) => {
+    const inputData = [...fields];
+    const dict = {};
+    dict[label] = onChangeValue.target.value;
+    inputData[i] = dict;
+    setFields(inputData);
+  };
 
   useEffect(() => {
     FetchTags(setTags);
@@ -78,8 +89,21 @@ export const CreateItem = () => {
             </div>
 
             <div className="form-group mt-3">
-              {fields.map((field) => {
-                return field;
+              {fields.map((data, index) => {
+                return (
+                  <Fragment key={index}>
+                    <h4 className="card-title">{labels[index]}</h4>
+                    <div className="form-group">
+                      <input
+                        required
+                        onChange={(e) => handleChange(e, index, labels[index])}
+                        type="text"
+                        className="form-control"
+                        placeholder={labels[index]}
+                      />
+                    </div>
+                  </Fragment>
+                );
               })}
             </div>
 
@@ -95,6 +119,7 @@ export const CreateItem = () => {
                     id,
                     token,
                     multiSelections,
+                    fields,
                     navigate
                   )
                 }
@@ -102,16 +127,19 @@ export const CreateItem = () => {
                 Create
               </button>
               <button
-                onClick={() => setPop(true)}
+                onClick={() => {
+                  setPop(true);
+                }}
                 className="btn bg-primary btn-lg mt-3"
               >
                 Add Custom Field
               </button>
               {pop ? (
                 <FieldPop
+                  handleAdd={handleAdd}
+                  setLabels={setLabels}
+                  labels={labels}
                   setPop={setPop}
-                  setFields={setFields}
-                  fields={fields}
                 />
               ) : null}
             </div>

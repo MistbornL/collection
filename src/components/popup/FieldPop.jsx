@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
-import { CustomInput } from "../CustomInput";
+
 import "./popup.scss";
 
-export const FieldPop = ({ setPop, setFields, fields }) => {
+export const FieldPop = ({ setPop, setLabels, labels, handleAdd }) => {
   const field = useRef();
   return (
     <div className="popup-wrapper">
@@ -16,17 +16,18 @@ export const FieldPop = ({ setPop, setFields, fields }) => {
           X
         </button>
         <h1>title for your field </h1>
-        <input ref={field} type="text" />
-        <button
-          onClick={() =>
-            setFields([
-              ...fields,
-              <CustomInput placeholder={field} type="text" ref={null} />,
-            ])
-          }
-        >
-          add
-        </button>
+        <div className="d-flex gap-3">
+          <input ref={field} type="text" />
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              setLabels([...labels, field.current.value]);
+              handleAdd();
+            }}
+          >
+            add
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ export const PostItem = async (
   id,
   token,
   multiSelections,
+  fields,
   navigate
 ) => {
   const data = {
@@ -17,6 +18,7 @@ export const PostItem = async (
     image: image.current.value,
     collectionId: id,
     tags: multiSelections,
+    customFields: fields,
   };
   await axios
     .post(

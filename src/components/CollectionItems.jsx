@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { Fragment, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { HandleDisLike } from "../helper/DisLikeITem";
 import { HandleLike } from "../helper/LikeItem";
@@ -85,6 +85,22 @@ export const CollectionItems = ({ item, id, deleteItem, setItems }) => {
                         <h6>{t("item_description")}</h6>
                         <p className="text-muted">{item.description}</p>
                       </div>
+
+                      <div className="col-6 mb-5">
+                        {item.customFields.length > 0
+                          ? item.customFields.map((fields, index) => {
+                              return (
+                                <Fragment key={index}>
+                                  <h6>{Object.keys(fields)[index]}</h6>
+                                  <p className="text-muted">
+                                    {Object.values(fields)[index]}
+                                  </p>
+                                </Fragment>
+                              );
+                            })
+                          : null}
+                      </div>
+
                       {token ? (
                         <>
                           <div className="w-100 mb-5">

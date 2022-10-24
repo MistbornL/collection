@@ -5,7 +5,7 @@ import { CollectionItems } from "../components/CollectionItems";
 import { Menu } from "../components/Menu";
 import { FetchAccount } from "../helper/FetchAccount";
 import { FetCchAllItems } from "../helper/FetchAllItems";
-import { TypeAnimation } from "react-type-animation";
+
 import i18next from "i18next";
 
 export const AllItems = () => {
