@@ -53,7 +53,12 @@ export const Items = () => {
         {!loading ? (
           items.reverse().map((item) => {
             return (
-              <CollectionItems item={item} deleteItem={deleteItem} id={id} />
+              <CollectionItems
+                setItems={setItems}
+                item={item}
+                deleteItem={deleteItem}
+                id={id}
+              />
             );
           })
         ) : loading ? (
