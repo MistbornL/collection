@@ -15,23 +15,38 @@ export const EditItem = () => {
   const token = localStorage.getItem("token");
   const [tags, setTags] = useState([]);
   const [multiSelections, setMultiSelections] = useState([]);
+  const [customFields, setCustomFields] = useState([]);
+  const [fields, setFields] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     FetchTags(setTags);
-    GetDataForItem(title, description, image, token, id);
+    GetDataForItem(title, description, image, setCustomFields, token, id);
   }, [id, token]);
+
+  const handleChange = (onChangeValue, i, label) => {
+    const inputData = [...fields];
+    const dict = {};
+    dict[label] = onChangeValue.target.value;
+    inputData[i] = dict;
+    setFields(inputData);
+  };
+
   return (
     <div className="App">
       <header>
         <Menu />
       </header>
-      <main className="d-flex align-items-center justify-content-center mt-5">
-        <div className="card  w-50 d-flex  justify-content-center ">
+      <main className="p-3 d-flex align-items-center justify-content-center mt-5">
+        <div
+          style={{ width: "800px" }}
+          className="card  d-flex  justify-content-center "
+        >
           <div className="card-body">
             <h1>Modify Item</h1>
-            <h4 className="card-title">Title</h4>
-            <div className="form-group">
+
+            <div className="form-group mt-3">
+              <h4 className="card-title">Title</h4>
               <input
                 ref={title}
                 type="text"
@@ -40,7 +55,7 @@ export const EditItem = () => {
               />
             </div>
 
-            <div className="form-group">
+            <div className="form-group mt-3">
               <h4 className="card-text">Image</h4>
               <input
                 ref={image}
@@ -70,6 +85,23 @@ export const EditItem = () => {
                 placeholder="Description"
               />
             </div>
+            {customFields.length > 0
+              ? customFields.map((field, index) => {
+                  return (
+                    <div key={index} className="form-group mt-3">
+                      <h4 className="card-text">{Object.keys(field)[index]}</h4>
+                      <input
+                        onChange={(e) => {
+                          handleChange(e, index, Object.keys(field)[index]);
+                        }}
+                        type="text"
+                        className="form-control "
+                        placeholder={Object.keys(field)[index]}
+                      />
+                    </div>
+                  );
+                })
+              : null}
             <button
               className="btn bg-primary btn-lg mt-3"
               onClick={() => {
@@ -80,7 +112,8 @@ export const EditItem = () => {
                   description,
                   image,
                   multiSelections,
-                  navigate
+                  navigate,
+                  fields
                 );
               }}
             >

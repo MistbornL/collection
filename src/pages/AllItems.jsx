@@ -70,7 +70,7 @@ export const AllItems = () => {
           </div>
         </div>
       ) : (
-        <main>
+        <main className="row g-0 ">
           {/* <TypeAnimation
             className="text-center mt-3"
             sequence={[i18next.t("item_welcome")]}

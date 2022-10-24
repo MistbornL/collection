@@ -7,13 +7,15 @@ export const ModifyItem = async (
   description,
   image,
   multiSelections,
-  navigate
+  navigate,
+  fields
 ) => {
   const data = {
     title: title.current.value,
     description: description.current.value,
     image: image.current.value,
     tags: multiSelections,
+    customFields: fields,
   };
   await axios
     .put(
