@@ -29,7 +29,7 @@ export const AllItems = () => {
   }, [email, user.theme, token]);
 
   useEffect(() => {
-    if (collections.length >= 0) {
+    if (items.length >= 0) {
       setTimeout(() => {
         setLoading(false);
       }, [500]);
@@ -118,7 +118,6 @@ export const AllItems = () => {
                       className="card mw-100 "
                     >
                       <CollectionCard
-                        data={items}
                         token={token}
                         collection={collection}
                         collections={collections}

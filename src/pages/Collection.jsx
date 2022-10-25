@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { useParams } from "react-router-dom";
 import { CollectionCard } from "../components/Collection";
@@ -13,6 +14,7 @@ export const Collection = () => {
   const role = localStorage.getItem("role");
   const token = localStorage.getItem("token");
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     FetchCollection(email, setCollections);
@@ -28,6 +30,7 @@ export const Collection = () => {
         <Menu />
       </header>
       <main>
+        <h1 className="text-center mt-2">{t("menu_collections")}</h1>
         <div
           style={{ marginTop: "100px" }}
           className="d-flex justify-content-center "
@@ -38,7 +41,7 @@ export const Collection = () => {
             </div>
           ) : (
             <div className="card ">
-              {collections.map((collection, index) => {
+              {collections.map((collection) => {
                 return (
                   <CollectionCard
                     collection={collection}
@@ -46,7 +49,6 @@ export const Collection = () => {
                     email={email}
                     email2={email2}
                     role={role}
-                    index={index}
                     token={token}
                   />
                 );

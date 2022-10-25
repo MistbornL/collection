@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { DeleteCollection } from "../helper/DeleteCollection";
 import { useNavigate } from "react-router-dom";
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
+import { FetCchAllItems } from "../helper/FetchAllItems";
 
 export const CollectionCard = ({
   collection,
@@ -11,11 +12,14 @@ export const CollectionCard = ({
   email,
   email2,
   role,
-  data,
 }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const [data, setData] = useState([]);
 
+  useEffect(() => {
+    FetCchAllItems(setData);
+  }, []);
   return (
     <div key={collection._id} className=" card-body mw-100">
       <h2 className="card-title">
@@ -43,7 +47,7 @@ export const CollectionCard = ({
         </button>
         <button className="btn btn-primary">
           <CSVLink
-            style={{ textDecoration: "none", color:"white" }}
+            style={{ textDecoration: "none", color: "white" }}
             data={data.filter(
               (item) => item.createdBy === collection.createdBy
             )}
