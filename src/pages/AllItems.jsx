@@ -1,20 +1,24 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { CollectionCard } from "../components/Collection";
 import { CollectionItems } from "../components/CollectionItems";
 import { Menu } from "../components/Menu";
 import { FetchAccount } from "../helper/FetchAccount";
 import { FetCchAllItems } from "../helper/FetchAllItems";
-
-import i18next from "i18next";
+import { GetAllCollection } from "../helper/GetAllCollection";
 
 export const AllItems = () => {
   const token = localStorage.getItem("token");
   const [collections, setCollections] = useState([]);
+  const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const email = localStorage.getItem("email");
+  const role = localStorage.getItem("role");
   const [user, setUser] = useState({});
   const [page, setPage] = useState(3);
+  const [showItems, setShowItems] = useState(true);
+
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -30,7 +34,8 @@ export const AllItems = () => {
         setLoading(false);
       }, [500]);
     }
-    FetCchAllItems(setCollections);
+    FetCchAllItems(setItems);
+    GetAllCollection(setCollections);
   }, [collections.length]);
 
   const deleteItem = async (id) => {
@@ -70,20 +75,60 @@ export const AllItems = () => {
           </div>
         </div>
       ) : (
-        <main className="row g-0 ">
+        <main className=" g-0 ">
           <h1 className="text-center mt-3">{t("item_welcome")}</h1>
-          {collections.slice(0, page).map((item, index) => {
-            return (
-              <CollectionItems
-                key={index}
-                item={item}
-                itemId={item._id}
-                setItems={setCollections}
-                id={item.collectionId}
-                deleteItem={deleteItem}
-              />
-            );
-          })}
+          <div className=" d-flex justify-content-center mt-4 gap-3">
+            <button
+              id="itemCol"
+              className=" btn btn-outline  my-2 my-sm-0"
+              type="button"
+              onClick={() => setShowItems(true)}
+            >
+              {t("menu_items")}
+            </button>
+            <button
+              id="itemCol"
+              className="btn btn-outline  my-2 my-sm-0"
+              type="button"
+              onClick={() => setShowItems(false)}
+            >
+              {t("menu_collections")}
+            </button>
+          </div>
+          <div className="mt-5 gap-5 d-flex justify-content-center flex-column align-items-center">
+            {showItems
+              ? items.slice(0, page).map((item, index) => {
+                  return (
+                    <CollectionItems
+                      key={index}
+                      item={item}
+                      itemId={item._id}
+                      setItems={setCollections}
+                      id={item.collectionId}
+                      deleteItem={deleteItem}
+                    />
+                  );
+                })
+              : collections.map((collection) => {
+                  return (
+                    <div
+                      key={collection._id}
+                      style={{ width: "500px" }}
+                      id="collCard"
+                      className="card mw-100 "
+                    >
+                      <CollectionCard
+                        token={token}
+                        collection={collection}
+                        collections={collections}
+                        email={collection.createdBy}
+                        email2={email}
+                        role={role}
+                      />
+                    </div>
+                  );
+                })}
+          </div>
           <div className="w-75 d-flex justify-content-end">
             {page < collections.length ? (
               <button

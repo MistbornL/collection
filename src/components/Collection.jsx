@@ -14,7 +14,7 @@ export const CollectionCard = ({
   const { t } = useTranslation();
   const navigate = useNavigate();
   return (
-    <div key={collection._id} className="card-body mw-100">
+    <div key={collection._id} className=" card-body mw-100">
       <h2 className="card-title">
         {t("item_creator")}: {collection.createdBy}
       </h2>

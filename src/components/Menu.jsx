@@ -52,11 +52,6 @@ export const Menu = () => {
         id="navmenu"
       >
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item active">
-            <a role="button" className="nav-link" href="/collections">
-              {t("menu_collections")}
-            </a>
-          </li>
           <li className="nav-item">
             <a className="nav-link" href={token ? "/account" : "/login"}>
               {t("menu_account")}

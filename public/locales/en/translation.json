@@ -1,6 +1,7 @@
 {
   "menu_collector": "Collector",
   "menu_collections": "Collections",
+  "menu_items": "Items",
   "menu_name": "name",
   "menu_account": "Account",
   "menu_logout": "Logout",
