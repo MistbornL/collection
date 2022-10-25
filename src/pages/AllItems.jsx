@@ -36,7 +36,7 @@ export const AllItems = () => {
     }
     FetCchAllItems(setItems);
     GetAllCollection(setCollections);
-  }, [collections.length]);
+  }, [items.length]);
 
   const deleteItem = async (id) => {
     console.log(id);
@@ -130,9 +130,9 @@ export const AllItems = () => {
                 })}
           </div>
           <div className="w-75 d-flex justify-content-end">
-            {page < collections.length ? (
+            {page < items.length && showItems ? (
               <button
-                onClick={() => setPage(page + 2)}
+                onClick={() => setPage(page + 5)}
                 className="btn btn-primary"
               >
                 {t("item_load_more")}

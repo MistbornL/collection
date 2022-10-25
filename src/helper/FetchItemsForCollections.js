@@ -14,7 +14,7 @@ export const FetchItems = async (id, setItems) => {
       }
     )
     .then((res) => {
-      setItems(res.data);
+      setItems(res.data.reverse());
     })
     .catch((err) => {
       console.log(err);

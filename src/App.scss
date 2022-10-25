@@ -35,6 +35,21 @@ body.dark {
   .card {
     background: rgb(17 34 42);
     color: #9999a3;
+
+    textarea,
+    input {
+      padding-left: 20px;
+      padding-top: 5px;
+      border: 1px solid #2d4662;
+      border-radius: 10px;
+      background: rgb(17 34 42);
+      color: #9999a3;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: #264caa;
+    }
   }
 
   #itemCol {

@@ -41,8 +41,8 @@ export const EditCollection = () => {
               />
             </div>
 
-            <h4 className="card-text">Description</h4>
-            <div className="form-group">
+            <div className="form-group mt-3">
+              <h4 className="card-text ">Description</h4>
               <textarea
                 ref={description}
                 style={{ resize: "none" }}

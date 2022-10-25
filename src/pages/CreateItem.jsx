@@ -77,10 +77,12 @@ export const CreateItem = () => {
                 multiple
                 placeholder="Select Tag"
                 selected={multiSelections}
+                style={{}}
               />
             </div>
-            <h4 className="card-text">Description</h4>
+
             <div className="form-group mt-3">
+              <h4 className="card-text ">Description</h4>
               <textarea
                 required
                 ref={description}

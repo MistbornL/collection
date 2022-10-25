@@ -64,8 +64,9 @@ export const EditItem = () => {
                 placeholder="image url"
               />
             </div>
-            <h4 className="card-text">Tags</h4>
+
             <div className="form-group  mt-3">
+              <h4 className="card-text">Tags</h4>
               <Typeahead
                 id="basic-example"
                 onChange={setMultiSelections}
@@ -75,8 +76,9 @@ export const EditItem = () => {
                 selected={multiSelections}
               />
             </div>
-            <h4 className="card-text">Description</h4>
-            <div className="form-group">
+
+            <div className="form-group mt-3">
+              <h4 className="card-text">Description</h4>
               <textarea
                 ref={description}
                 style={{ resize: "none" }}
