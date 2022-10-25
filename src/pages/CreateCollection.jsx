@@ -35,7 +35,10 @@ export const CreateCollection = () => {
         <Menu />
       </header>
       <main className="d-flex align-items-center justify-content-center mt-5">
-        <div className="card  w-50 d-flex  justify-content-center ">
+        <div
+          style={{ width: "800px" }}
+          className="card   d-flex  justify-content-center "
+        >
           <div className="card-body">
             <h1>Create Collection</h1>
             <h4 className="card-title">Title</h4>

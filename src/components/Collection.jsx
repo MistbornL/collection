@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { DeleteCollection } from "../helper/DeleteCollection";
 import { useNavigate } from "react-router-dom";
+import { CSVLink, CSVDownload } from "react-csv";
 
 export const CollectionCard = ({
   collection,
@@ -10,9 +11,11 @@ export const CollectionCard = ({
   email,
   email2,
   role,
+  data,
 }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+
   return (
     <div key={collection._id} className=" card-body mw-100">
       <h2 className="card-title">
@@ -29,15 +32,27 @@ export const CollectionCard = ({
       <p className="card-text">
         {t("item_Topic")}: {collection.topic}
       </p>
+      <div className="d-flex justify-content-start gap-3">
+        <button
+          onClick={() => {
+            navigate(`/collection/items/${collection._id}/${email}`);
+          }}
+          className="btn btn-primary"
+        >
+          {t("account_view_items")}
+        </button>
+        <button className="btn btn-primary">
+          <CSVLink
+            style={{ textDecoration: "none", color:"white" }}
+            data={data.filter(
+              (item) => item.createdBy === collection.createdBy
+            )}
+          >
+            export csv
+          </CSVLink>
+        </button>
+      </div>
 
-      <button
-        onClick={() => {
-          navigate(`/collection/items/${collection._id}/${email}`);
-        }}
-        className="btn btn-primary"
-      >
-        {t("account_view_items")}
-      </button>
       {role === "admin" || email2 === collection.createdBy ? (
         <div className="mt-3 d-flex gap-3 ">
           <button

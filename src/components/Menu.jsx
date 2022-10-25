@@ -58,25 +58,6 @@ export const Menu = () => {
             </a>
           </li>
 
-          <li className="nav-item">
-            {token ? (
-              <a
-                href=""
-                style={{ cursor: "pointer" }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  HandleLogOut(token, navigate);
-                }}
-                className="nav-link"
-              >
-                {t("menu_logout")}
-              </a>
-            ) : (
-              <a role="button" className="nav-link" href="/login">
-                {t("menu_login")}
-              </a>
-            )}
-          </li>
           {/* admin page */}
           {role === "admin" ? (
             <li className="nav-item">
@@ -129,6 +110,27 @@ export const Menu = () => {
             </div>
           </li>
 
+          {/* login */}
+          <li className="nav-item">
+            {token ? (
+              <a
+                href=""
+                style={{ cursor: "pointer" }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  HandleLogOut(token, navigate);
+                }}
+                className="nav-link"
+              >
+                {t("menu_logout")}
+              </a>
+            ) : (
+              <a role="button" className="nav-link" href="/login">
+                {t("menu_login")}
+              </a>
+            )}
+          </li>
+          {/* darkmode */}
           <li className="nav-item">
             <DarkMode />
           </li>

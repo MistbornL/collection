@@ -75,7 +75,7 @@ export const AllItems = () => {
           </div>
         </div>
       ) : (
-        <main className=" g-0 ">
+        <main className="p-3 g-0 ">
           <h1 className="text-center mt-3">{t("item_welcome")}</h1>
           <div className=" d-flex justify-content-center mt-4 gap-3">
             <button
@@ -118,6 +118,7 @@ export const AllItems = () => {
                       className="card mw-100 "
                     >
                       <CollectionCard
+                        data={items}
                         token={token}
                         collection={collection}
                         collections={collections}
