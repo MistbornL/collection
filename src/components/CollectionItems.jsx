@@ -1,4 +1,4 @@
-import React, { Fragment, useRef } from "react";
+import React, { Fragment, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { HandleDisLike } from "../helper/DisLikeITem";
 import { HandleLike } from "../helper/LikeItem";
@@ -15,6 +15,7 @@ export const CollectionItems = ({ item, id, deleteItem, setItems }) => {
   const navigate = useNavigate();
   const [pop, setPop] = React.useState(false);
   const comment = useRef();
+  const [resize, setResize] = useState(false);
 
   return (
     <section key={item._id}>
@@ -38,7 +39,22 @@ export const CollectionItems = ({ item, id, deleteItem, setItems }) => {
                     src={item.image}
                     alt={item.image !== "" ? "img" : null}
                     className="img-fluid my-5"
-                    style={{ width: "250px", borderRadius: ".5rem" }}
+                    onClick={() => setResize(!resize)}
+                    style={
+                      resize
+                        ? {
+                            transform: "scale(1.5)",
+                            cursor: "zoom-out",
+                            borderRadius: ".5rem",
+                            transition: "transform 0.25s ease",
+                          }
+                        : {
+                            width: "250px",
+                            cursor: "zoom-in",
+                            borderRadius: ".5rem",
+                            transition: "transform 0.25s ease",
+                          }
+                    }
                   />
                 </div>
                 <div className="col-md-5 w-100 ">
