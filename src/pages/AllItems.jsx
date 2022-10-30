@@ -36,7 +36,7 @@ export const AllItems = () => {
     }
     FetCchAllItems(setItems);
     GetAllCollection(setCollections);
-  }, [items.length]);
+  }, [items]);
 
   const deleteItem = async (id) => {
     console.log(id);

@@ -10,12 +10,13 @@ import menu from "../assets/menu.png";
 
 export const Menu = () => {
   const token = localStorage.getItem("token");
-  const search = useRef();
   const role = localStorage.getItem("role");
-  const { t } = useTranslation();
   const email = localStorage.getItem("email");
   const language = localStorage.getItem("language");
+
+  const { t } = useTranslation();
   const navigate = useNavigate();
+  const search = useRef();
 
   useEffect(() => {
     if (token) {

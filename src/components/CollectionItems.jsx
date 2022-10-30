@@ -141,6 +141,8 @@ export const CollectionItems = ({ item, id, deleteItem, setItems }) => {
                                 {t("item_like")}
                               </button>
                             )}
+
+                            {/* liked by */}
                             {item.likes.length === 0 ? (
                               <h6> {t("item_no_likes")}</h6>
                             ) : item.likes.length === 1 ? (
