@@ -50,7 +50,7 @@ export const Items = () => {
       </header>
 
       <main>
-        {!loading ? (
+        {!loading && items.length > 0 ? (
           items.reverse().map((item) => {
             return (
               <CollectionItems

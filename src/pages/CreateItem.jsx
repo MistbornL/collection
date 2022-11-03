@@ -77,7 +77,6 @@ export const CreateItem = () => {
                 multiple
                 placeholder="Select Tag"
                 selected={multiSelections}
-                style={{}}
               />
             </div>
 
