@@ -12,16 +12,12 @@ export const ModifyCollection = async (
     description: description.current.value,
   };
   await axios
-    .put(
-      `https://collection-server-mistborn.herokuapp.com/collection/update/${id}`,
-      data,
-      {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    )
+    .put(`https://collection-server.vercel.app/collection/update/${id}`, data, {
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then((res) => {
       if (res.status === 200) {
         navigate("/account");

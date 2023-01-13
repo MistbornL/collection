@@ -29,20 +29,20 @@ export const AllItems = () => {
   }, [email, user.theme, token]);
 
   useEffect(() => {
+    FetCchAllItems(setItems);
+    GetAllCollection(setCollections);
     if (items.length >= 0) {
       setTimeout(() => {
         setLoading(false);
       }, [500]);
     }
-    FetCchAllItems(setItems);
-    GetAllCollection(setCollections);
   }, [items]);
 
   const deleteItem = async (id) => {
     console.log(id);
     await axios
       .delete(
-        `https://collection-server-mistborn.herokuapp.com/collection/delete/item/${id}`,
+        `https://collection-server.vercel.app/collection/delete/item/${id}`,
         {
           headers: {
             "content-type": "application/json",

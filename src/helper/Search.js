@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const Search = async (searchTag, setItems) => {
   await axios
-    .get(`https://collection-server-mistborn.herokuapp.com/tag/search`, {
+    .get(`https://collection-server.vercel.app/tag/search`, {
       headers: {
         "content-type": "application/json",
       },

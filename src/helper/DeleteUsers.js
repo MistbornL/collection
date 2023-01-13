@@ -6,7 +6,7 @@ export const HandleDelete = (users, email, token, setUsers, navigate) => {
   selectedUsers.forEach((user) => {
     axios
       .delete(
-        `https://collection-server-mistborn.herokuapp.com/users/delete/${user.email}`,
+        `https://collection-server.vercel.app/users/delete/${user.email}`,
         {
           headers: {
             "content-type": "application/json",

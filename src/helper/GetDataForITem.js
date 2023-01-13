@@ -9,18 +9,15 @@ export const GetDataForItem = async (
   id
 ) => {
   await axios
-    .get(
-      `https://collection-server-mistborn.herokuapp.com/collection/userItem`,
-      {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          id: id,
-        },
-      }
-    )
+    .get(`https://collection-server.vercel.app/collection/userItem`, {
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      params: {
+        id: id,
+      },
+    })
     .then((res) => {
       let item = res.data.filter((item) => item.id !== id)[0];
       console.log(item);

@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const FetCchAllItems = async (setItems) => {
   await axios
-    .get(`https://collection-server-mistborn.herokuapp.com/collection/item`, {
+    .get(`https://collection-server.vercel.app/collection/item`, {
       headers: {
         "content-type": "application/json",
       },

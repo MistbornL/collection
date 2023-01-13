@@ -3,7 +3,7 @@ import axios from "axios";
 export const DeleteItem = async (id, token, collections) => {
   await axios
     .delete(
-      `https://collection-server-mistborn.herokuapp.com/collection/delete/item`,
+      `https://collection-server.vercel.app/collection/delete/item`,
 
       {
         headers: {

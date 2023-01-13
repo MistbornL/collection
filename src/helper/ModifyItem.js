@@ -19,7 +19,7 @@ export const ModifyItem = async (
   };
   await axios
     .put(
-      `https://collection-server-mistborn.herokuapp.com/collection/item/update/${id}`,
+      `https://collection-server.vercel.app/collection/item/update/${id}`,
       data,
       {
         headers: {

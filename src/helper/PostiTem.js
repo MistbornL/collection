@@ -21,16 +21,12 @@ export const PostItem = async (
     customFields: fields,
   };
   await axios
-    .post(
-      `https://collection-server-mistborn.herokuapp.com/collection/create/item`,
-      data,
-      {
-        headers: {
-          "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    )
+    .post(`https://collection-server.vercel.app/collection/create/item`, data, {
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then((res) => {
       if (res.status === 200) {
         navigate("/account");

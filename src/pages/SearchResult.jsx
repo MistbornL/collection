@@ -28,7 +28,7 @@ export const SearchResult = () => {
   const deleteItem = async (id) => {
     await axios
       .delete(
-        `https://collection-server-mistborn.herokuapp.com/collection/delete/item/${id}`,
+        `https://collection-server.vercel.app/collection/delete/item/${id}`,
         {
           headers: {
             "content-type": "application/json",

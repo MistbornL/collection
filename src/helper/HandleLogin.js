@@ -7,7 +7,7 @@ export const HandleLogin = async (data, navigate) => {
 
   if (email !== "" && password !== "") {
     await axios
-      .post("https://collection-server-mistborn.herokuapp.com/user/login", {
+      .post("https://collection-server.vercel.app/user/login", {
         email: email,
         password: password,
       })
@@ -40,7 +40,7 @@ export const HandleLogin = async (data, navigate) => {
 
 export const HandleGoogleLogin = async (data, navigate) => {
   await axios
-    .post(`https://collection-server-mistborn.herokuapp.com/user/login`, {
+    .post(`https://collection-server.vercel.app/user/login`, {
       googleAccessToken: data,
     })
     .then((res) => {

@@ -5,7 +5,7 @@ export const HandleLike = async (item, token, setItems) => {
   const likeData = { likedBy: localStorage.getItem("email") };
   await axios
     .put(
-      `https://collection-server-mistborn.herokuapp.com/collection/item/like/${item._id}`,
+      `https://collection-server.vercel.app/collection/item/like/${item._id}`,
       likeData,
       {
         headers: {

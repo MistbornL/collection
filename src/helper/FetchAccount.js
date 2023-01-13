@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const FetchAccount = async (email, token, setUser) => {
   await axios
-    .get(`https://collection-server-mistborn.herokuapp.com/users/profile`, {
+    .get(`https://collection-server.vercel.app/users/profile`, {
       headers: {
         "content-type": "application/json",
         Authorization: `Bearer ${token}`,

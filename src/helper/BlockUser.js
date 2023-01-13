@@ -6,7 +6,7 @@ export const handleBlock = (users, token, email, setUsers, navigate) => {
   selectedUsers.forEach((user) => {
     axios
       .put(
-        `https://collection-server-mistborn.herokuapp.com/users/block/${user.email}`,
+        `https://collection-server.vercel.app/users/block/${user.email}`,
         {},
         {
           headers: {

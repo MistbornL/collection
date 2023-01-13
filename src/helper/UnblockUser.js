@@ -6,7 +6,7 @@ export const HandleUnblock = (users, token, setUsers) => {
   selectedUsers.forEach((user) => {
     axios
       .put(
-        `https://collection-server-mistborn.herokuapp.com/users/unblock/${user.email}`,
+        `https://collection-server.vercel.app/users/unblock/${user.email}`,
         {},
         {
           headers: {
