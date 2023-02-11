@@ -19,7 +19,7 @@ export const CollectionItems = ({ item, id, deleteItem, setItems }) => {
 
   return (
     <section key={item._id}>
-      <div style={{ width: "820px" }} className="container py-5 h-100 ">
+      <div className=" py-5 h-100 ">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col col-lg-10 ">
             <div
