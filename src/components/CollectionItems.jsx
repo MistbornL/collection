@@ -21,7 +21,7 @@ export const CollectionItems = ({ item, id, deleteItem, setItems }) => {
     <section key={item._id}>
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
-          <div className="col col-lg-6 ">
+          <div className="col col-lg-10 ">
             <div
               id="section"
               className="card mb-3"

@@ -36,7 +36,7 @@ export const AllItems = () => {
         setLoading(false);
       }, [500]);
     }
-  }, [items]);
+  }, []);
 
   const deleteItem = async (id) => {
     console.log(id);
